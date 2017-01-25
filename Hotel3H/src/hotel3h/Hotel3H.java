@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hotel3h;
+import java.sql.*;
 
 /**
  *
@@ -18,6 +19,17 @@ public class Hotel3H {
         // TODO code application logic here
         System.out.println("Hello, hotel!");
         System.out.println(2+2);
+
+        System.out.println("Java/SQL Interface");
+        Connection c = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    System.out.println("Opened database successfully");
     }
     
 }
