@@ -22,22 +22,24 @@ public class Hotel3H {
         try {
             //c.setAutoCommit(false);
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:src/sql/hotel3h.db");
+//            c = DriverManager.getConnection("jdbc:sqlite:src/sql/hotel3h.db");
+            c = DriverManager.getConnection("jdbc:sqlite:src/sql/hoteltest9.db");
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM Hotels;" );
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM hotel;" );
             
             System.out.println("ID - Name - Type - Stars - Country - City - Rooms - HasPool");
             
             while ( rs.next() ) {
-                int id = rs.getInt("ID");
-                String name = rs.getString("Name");
-                String type = rs.getString("Type");
-                int stars = rs.getInt("Stars");
-                String country = rs.getString("Country");
-                String city = rs.getString("City");
-                int rooms = rs.getInt("Rooms");
-                boolean haspool = rs.getBoolean("HasPool");
-                System.out.println(id + " | " + name + " | " + type + " | " + stars + " | " + country + " | " + city + " | " + rooms + " | " + haspool);
+                int nr = rs.getInt("nr");
+                String name = rs.getString("name");
+//                String type = rs.getString("Type");
+                int stars = rs.getInt("stars");
+//                String country = rs.getString("Country");
+//                String city = rs.getString("City");
+//                int rooms = rs.getInt("Rooms");
+//                boolean haspool = rs.getBoolean("HasPool");
+//                System.out.println(id + " | " + name + " | " + type + " | " + stars + " | " + country + " | " + city + " | " + rooms + " | " + haspool);
+                System.out.println(nr + " | " + name + " | " + stars);
             }
             
             rs.close();
