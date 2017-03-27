@@ -27,7 +27,7 @@ public class HotelDatabaseManager {
 	            // create a connection to the database
 	            conn = DriverManager.getConnection(url);
 	            
-	            System.out.println("Connection to SQLite has been established.");
+//	            System.out.println("Connection to SQLite has been established.");
 	            
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -92,7 +92,7 @@ public class HotelDatabaseManager {
 		 			
 		 		ArrayList<Hotel> hotels = new ArrayList<>();
 	        String sql ;
-        System.out.println("Komin í línu 94");
+//        System.out.println("Komin í línu 94");
 	        sql = "SELECT * FROM HotelSearch, Hotel WHERE HotelSearch.nr = Hotel.nr AND "
 	        		+ "gym >= " + gym + " AND spa >= " + spa +
 	        		" AND pool >= " + pool + " AND hottub >= " + hottub +
@@ -104,13 +104,13 @@ public class HotelDatabaseManager {
 	        		" AND flyBus >= " + flyBus;
 			if (type != 0)
 				sql += " AND type = " + type;
-	System.out.println("Komin í línu 106");
+//	System.out.println("Komin í línu 106");
                         
 	        
 	        try (Connection conn = connect();
 	             Statement stmt  = conn.createStatement();
 	             ResultSet rs    = stmt.executeQuery(sql)){
-	System.out.println("Komin í línu 112");     
+//	System.out.println("Komin í línu 112");     
         
 	            while (rs.next()) {
 	                		Hotel h = new Hotel(rs.getInt("nr"), rs.getInt("type"), rs.getInt("gym"), rs.getInt("spa"), 
@@ -123,7 +123,7 @@ public class HotelDatabaseManager {
 	                		
 	                		hotels.add(h);
 	            }
-	System.out.print("Komin í línu 125");
+//	System.out.print("Komin í línu 125");
                     
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
