@@ -8,37 +8,55 @@ public class Hotel {
 	int nr, type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomservice, wheelchair, elevator, flybus, stars, areacode;
 	String name, address, website;
 	ArrayList<Room> rooms;
-	public Hotel(int nr, int type, int gym, int spa, int pool, int hottub,
-			int wifi, int conference, int restaurant,
-			int bar, int inclusive, int breakfast, 
-			int cancellation, int roomservice, int wheelchair,
-			int elevator, int flybus, int stars, int areacode, 
-			String name, String address, String website, ArrayList<Room> rooms){
-this.nr = nr;
-this.type = type;
-this.gym = gym;
-this.spa = spa;
-this.pool = pool;
-this.hottub = hottub;
-this.wifi = wifi;
-this.conference = conference;
-this.restaurant = restaurant;
-this.bar = bar;
-this.inclusive = inclusive;
-this.breakfast = breakfast;
-this.cancellation = cancellation;
-this.roomservice = roomservice;
-this.wheelchair = wheelchair;
-this.elevator = elevator;
-this.flybus = flybus;
-this.rooms = rooms;
-this.stars = stars;
-this.areacode = areacode;
-this.name = name;
-this.address = address;
-this.website = website;
-
-}
+	public Hotel(
+                int nr,
+                int type,
+                int gym,
+                int spa,
+                int pool,
+                int hottub,
+		int wifi,
+                int conference,
+                int restaurant,
+		int bar,
+                int inclusive,
+                int breakfast, 
+		int cancellation,
+                int roomservice,
+                int wheelchair,
+		int elevator,
+                int flybus,
+                int stars,
+                int areacode, 
+		String name,
+                String address,
+                String website,
+                ArrayList<Room> rooms
+        ){
+            this.nr = nr;
+            this.type = type;
+            this.gym = gym;
+            this.spa = spa;
+            this.pool = pool;
+            this.hottub = hottub;
+            this.wifi = wifi;
+            this.conference = conference;
+            this.restaurant = restaurant;
+            this.bar = bar;
+            this.inclusive = inclusive;
+            this.breakfast = breakfast;
+            this.cancellation = cancellation;
+            this.roomservice = roomservice;
+            this.wheelchair = wheelchair;
+            this.elevator = elevator;
+            this.flybus = flybus;
+            this.rooms = rooms;
+            this.stars = stars;
+            this.areacode = areacode;
+            this.name = name;
+            this.address = address;
+            this.website = website;
+        }
 
 	public int getStars() {
 		return stars;
