@@ -40,10 +40,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="jDateFrom" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jComboBox3" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -89,7 +91,7 @@
                   </Group>
                   <Component id="jLogin" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -209,11 +211,14 @@
     <Component class="javax.swing.JComboBox" name="jComboBox2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Sydney"/>
-            <StringItem index="1" value="Melbourne"/>
-            <StringItem index="2" value="Brisbane"/>
-            <StringItem index="3" value="Perth"/>
+          <StringArray count="7">
+            <StringItem index="0" value="H&#xf6;fu&#xf0;borgarsv&#xe6;&#xf0;i"/>
+            <StringItem index="1" value="Su&#xf0;urnes"/>
+            <StringItem index="2" value="Vesturland"/>
+            <StringItem index="3" value="Vestfir&#xf0;ir"/>
+            <StringItem index="4" value="Nor&#xf0;urland vestra"/>
+            <StringItem index="5" value="Nor&#xf0;urland eystra"/>
+            <StringItem index="6" value="Su&#xf0;urland"/>
           </StringArray>
         </Property>
       </Properties>
