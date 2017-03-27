@@ -5,6 +5,15 @@
  */
 package gui;
 
+import hotel3h.SearchManager;
+import hotel3h.Hotel;
+import hotel3h.HotelListaStyring;
+import java.util.ArrayList;
+import hotel3h.HotelListaVinnsla;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Snaevar
@@ -12,6 +21,12 @@ package gui;
 public class hotel_gui extends javax.swing.JFrame {
     
     int conditionCount = 0;
+    int checkType = 0;
+    int minSize = 0;
+    int minPrice = 0;
+    int maxSize;
+    int maxPrice;
+    int minBeds = 0;
     Boolean checkGym = false;
     Boolean checkSpa = false;
     Boolean checkPool = false;
@@ -22,19 +37,87 @@ public class hotel_gui extends javax.swing.JFrame {
     Boolean checkBar = false;
     Boolean checkAllin = false;
     Boolean checkBreakfast = false;
+    Boolean checkCancellation = false;
     Boolean checkRoomservice = false;
     Boolean checkWheelchairaccess = false;
     Boolean checkElevatoraccess = false;
     Boolean checkFlybus = false;
+    ArrayList<Hotel> hotel;
+    static Hotel h,htemp;
+    int compare;
+    Date dateFrom, dateTo;
+    int dayFrom, dayTo, monthFrom, monthTo, yearFrom, yearTo;
     
     /**
      * Creates new form mockup
      */
     public hotel_gui() {
         initComponents();        
-        
+        compare = 0;
+        jCompareButton.setEnabled(false); //Cannot compare if nothing has been searched for.
+    }
+    
+    //Changes boolean to int
+    public int boolToInt(boolean b){
+        if(b) return 1;
+        return 0;
+    }
+    
+    /*Takes all of the boolean values, turns them into ints and returns all in 
+    a list of ints.*/
+    public int[] getInfo(){
+        //Breyta yfir í boolean ef klasarnir leyfa það.
+        int cGym = boolToInt(checkGym);
+        int cSpa = boolToInt(checkSpa);
+        int cPool = boolToInt(checkPool);
+        int cHotTub = boolToInt(checkHotTub);
+        int cWifi = boolToInt(checkWifi);
+        int cConferenceRoom = boolToInt(checkConferenceRoom);
+        int cRestaurant = boolToInt(checkRestaurant);
+        int cBar = boolToInt(checkBar);
+        int cAllin = boolToInt(checkAllin);
+        int cBreakfast = boolToInt(checkBreakfast);
+        int cCancellation = boolToInt(checkCancellation);
+        int cRoomservice = boolToInt(checkRoomservice);
+        int cWheelchairaccess = boolToInt(checkWheelchairaccess);
+        int cElevatoraccess = boolToInt(checkElevatoraccess);
+        int cFlybus = boolToInt(checkFlybus);
+        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus};
+        return heild;
     }
 
+    //Returns the list of Hotels from the database.
+    public ArrayList<Hotel> getHotel(){
+        return hotel;
+    }
+    
+    //Returns the Hotel we want to look closer at.
+    public static Hotel getChosenHotel(){
+        return h;
+    }
+    
+    //Returns the second Hotel we want to look closer at in the comparison.
+    public static Hotel getSecondHotel(){
+        return htemp;
+    }
+    
+    //Sets the Hotel we want to look closer at.
+    public void setHotel(Hotel h1){
+        if(compare != 0){
+            htemp = h;        
+        }
+        h = h1;
+    }
+    
+    //Returns array of ints which would return every hotel
+    public static int[] getNone(){
+        int[] i = new int[16];
+        for(int j=0;j<16;j++){
+            i[j]=0;
+        }
+        return i;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,10 +155,16 @@ public class hotel_gui extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jComboBox7 = new javax.swing.JComboBox<>();
         jComboBox8 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jButton_Search = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList = new javax.swing.JList<>();
+        jCompareButton = new javax.swing.JButton();
+        jLogin = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jDateFrom = new org.jdesktop.swingx.JXDatePicker();
+        jDateTo = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +177,7 @@ public class hotel_gui extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("City");
+        jLabel2.setText("Region");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sydney", "Melbourne", "Brisbane", "Perth" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -99,17 +188,37 @@ public class hotel_gui extends javax.swing.JFrame {
 
         jLabel3.setText("Type of hotel");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Luxury", "Motel", "Coffin motel" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hotel", "Luxury Hotel", "Hostel", "Apartment/Flat", "Summer house", "Chest hotel", "Capsule hotel", "Motel", "Other" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("Room Size (m2)");
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "5", "10", "15", "20", "25" }));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "5", "10", "15", "20", "25" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
 
-        jLabel19.setText("Number of beds");
+        jLabel19.setText("Minimal number of beds");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "Any" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox6ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Gym");
         jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -226,13 +335,18 @@ public class hotel_gui extends javax.swing.JFrame {
         jLabel20.setText("Price (USD)");
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "20", "40", "80", "100" }));
+        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox7ActionPerformed(evt);
+            }
+        });
 
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "20", "40", "80", "100" }));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox8ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Results");
 
@@ -243,92 +357,162 @@ public class hotel_gui extends javax.swing.JFrame {
             }
         });
 
+        jList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListMouseClicked(evt);
+            }
+        });
+        jList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList);
+
+        jCompareButton.setText("Choose hotels to compare");
+        jCompareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCompareButtonActionPerformed(evt);
+            }
+        });
+
+        jLogin.setText("Log in");
+        jLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Date from");
+
+        jLabel6.setText("Date to");
+
+        jDateFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDateFromActionPerformed(evt);
+            }
+        });
+
+        jDateTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDateToActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCompareButton))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox9)
+                            .addComponent(jCheckBox10)
+                            .addComponent(jCheckBox11)
+                            .addComponent(jCheckBox12)
+                            .addComponent(jCheckBox13)
+                            .addComponent(jCheckBox14)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox3)
+                            .addComponent(jCheckBox4)
+                            .addComponent(jCheckBox5)
+                            .addComponent(jCheckBox6)
+                            .addComponent(jCheckBox7)
+                            .addComponent(jCheckBox8)
+                            .addComponent(jButton_Search)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel18)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel20)))
-                    .addComponent(jCheckBox9)
-                    .addComponent(jCheckBox10)
-                    .addComponent(jCheckBox11)
-                    .addComponent(jCheckBox12)
-                    .addComponent(jCheckBox13)
-                    .addComponent(jCheckBox14)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jButton_Search))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel1)
+                                            .addGap(167, 167, 167))
+                                        .addComponent(jDateFrom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLogin))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jCompareButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLogin)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton_Search)
-                        .addGap(33, 33, 33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(71, 71, 71)
-                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel18)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel19)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel19))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,27 +527,27 @@ public class hotel_gui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBox4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox8)
-                        .addGap(0, 0, 0)
-                        .addComponent(jCheckBox9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox12)
-                        .addGap(3, 3, 3)
-                        .addComponent(jCheckBox13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox14))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                        .addComponent(jCheckBox5))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox8)
+                .addGap(0, 0, 0)
+                .addComponent(jCheckBox9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox12)
+                .addGap(3, 3, 3)
+                .addComponent(jCheckBox13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox14)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -377,107 +561,15 @@ public class hotel_gui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    //Function for the search button.
     private void jButton_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SearchActionPerformed
         //Search button pressed
-        
-//        int count = 0;
-        
-        String sql_query = "";
-        sql_query += "SELECT * FROM Hotel";
-        
-        if (conditionCount > 0){
-            sql_query += " WHERE";
-        }
-        
-        //First condition
-        if (checkGym == true) {
-//            if (count > 0) {sql_query += " AND";}
-            sql_query += " hasGym = True";
-//            count++;
-        }
-
-        if (checkSpa == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasSpa = True";
-//            count++;
-        }
-
-        if (checkPool == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasPool = True";
-//            count++;
-        }
-                
-        //Check rest of conditions
-        //Hot Tub
-        if (checkHotTub == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasHotTub = True";
-        }
-
-        //Wi-Fi
-        if (checkWifi == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasWiFi = True";
-        }
-
-        //Conference Room
-        if (checkConferenceRoom == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasConferenceRoom = True";
-        }
-
-        //Restaurant
-        if (checkRestaurant == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasRestaurant = True";
-        }
-
-        //Bar
-        if (checkBar == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasBar = True";
-        }
-
-        //Bar
-        if (checkAllin == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasAllin = True";
-        }
-
-        //Breakfast
-        if (checkBreakfast == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasBreakfast = True";
-        }
-
-        //Room Service
-        if (checkRoomservice == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasRoomservice = True";
-        }
-
-        //Wheelchair Access
-        if (checkWheelchairaccess == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasWheelchairaccess = True";
-        }
-
-        //Elevator Access
-        if (checkElevatoraccess == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasElevatoraccess = True";
-        }
-
-        //Bar
-        if (checkElevatoraccess == true) {
-            if (conditionCount > 0) {sql_query += " AND";}
-            sql_query += " hasElevatoraccess = True";
-        }
-        
-        sql_query += ";";
-        sql_query += "\n\nCondition count: " + conditionCount;        
-        jTextArea1.setText(sql_query);
+        SearchManager sm = new SearchManager(getInfo());
+        hotel = sm.searchHotel();
+        HotelListaVinnsla hlisti = new HotelListaVinnsla(hotel);
+        jList.setModel(hlisti);
+        jList.addListSelectionListener(new HotelListaStyring(this,hotel));
+        jCompareButton.setEnabled(true);
     }//GEN-LAST:event_jButton_SearchActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -648,6 +740,150 @@ public class hotel_gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBox14ActionPerformed
 
+//Opens a Dialog with a closer look at a Hotel or a Dialog with Hotel Comparisons.
+    private void jListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListValueChanged
+        // TODO add your handling code here:
+        if(compare == 0){
+            openHotel();
+        }
+        else{
+            compare += 1;
+            if (compare > 3){
+                System.out.print(compare + " " + h.getName() + " " + htemp.getName());
+                Comparison cGluggi = new Comparison(this,true,getChosenHotel(),getSecondHotel());
+                cGluggi.setVisible(true);
+                compare = 0;
+                if(cGluggi.show > 0){
+                    setHotel(cGluggi.getChosen());
+                    openHotel();
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jListValueChanged
+
+    private void jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jListMouseClicked
+
+    //When the compare button is pressed it gives instructions on how to do the comparison.
+    private void jCompareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCompareButtonActionPerformed
+        // TODO add your handling code here:
+        compare = 1;
+        String[] tmp = {"OK"};
+        int i = JOptionPane.showOptionDialog(null, new JLabel("Pick two hotels from the list to compare.", null, JLabel.LEFT), "Choose hotels", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+    }//GEN-LAST:event_jCompareButtonActionPerformed
+
+    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+        // TODO add your handling code here:
+        minPrice = 20*jComboBox7.getSelectedIndex();
+    }//GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        //Hotel=1, Luxury hotel=2, Hostel=3, Apartment/Flat=4, Summer house=5, Capsule hotel=6, Motel=7, Other=8
+        checkType = jComboBox3.getSelectedIndex() + 1;
+        
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
+        // TODO add your handling code here:
+        LogInView logIn = new LogInView(this,true);
+        logIn.setVisible(true);
+        if(logIn.wtev==1){
+            SearchManager sm = new SearchManager(getNone());
+            String[] s = sm.searchHotelName();
+            whatToEditView wtev = new whatToEditView(this,true,s,getHotel());
+            wtev.setVisible(true);
+        }
+    }//GEN-LAST:event_jLoginActionPerformed
+
+    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+        // TODO add your handling code here:
+        minBeds = jComboBox6.getSelectedIndex();
+    }//GEN-LAST:event_jComboBox6ActionPerformed
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        // TODO add your handling code here:
+        minSize = 5*jComboBox4.getSelectedIndex();
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+        int i = 5*jComboBox5.getSelectedIndex();
+        if(i>minSize || i==0){
+            maxSize = i;
+        }
+        else{
+            String[] tmp = {"OK"};
+            int j = JOptionPane.showOptionDialog(null, new JLabel("Maximum size selected is smaller than the minimum size.", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+            jComboBox5.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
+    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+        // TODO add your handling code here:
+        int j = 20*jComboBox8.getSelectedIndex();
+        if(j>minPrice || j==0){
+            maxPrice = j;
+        }
+        else{
+            String[] tmp = {"OK"};
+            int i = JOptionPane.showOptionDialog(null, new JLabel("Maximum price is lower than minimum price.", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+            jComboBox8.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jComboBox8ActionPerformed
+
+    private void jDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateFromActionPerformed
+        // TODO add your handling code here:
+        dateFrom = jDateFrom.getDate();
+        int[] d1 = settingDates(dateFrom);
+        dayFrom = d1[0];
+        monthFrom = d1[1];
+        yearFrom = d1[2];
+        System.out.println("Date from: " + dayFrom + "/" + monthFrom + "/" + yearFrom);
+    }//GEN-LAST:event_jDateFromActionPerformed
+
+    private void jDateToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateToActionPerformed
+        // TODO add your handling code here:
+        dateTo = jDateTo.getDate();
+        int[] d2 = settingDates(dateTo);
+        dayTo = d2[0];
+        monthTo = d2[1];
+        yearTo = d2[2];
+        System.out.println("Date to: " + dayTo + "/" + monthTo + "/" + yearTo);
+    }//GEN-LAST:event_jDateToActionPerformed
+
+    //Opens the dialog which looks at a Hotel
+    private void openHotel(){
+        hotelView hotelDialog = new hotelView(this,true,getChosenHotel());
+        hotelDialog.setVisible(true);
+        if(hotelDialog.book == 1){
+            openBooking();
+        }
+    }
+    //Opens the dialog for booking.
+    private void openBooking(){
+        BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn());
+        bookingDialog.setVisible(true);
+    }
+    
+    /*Takes a Date and returns an array of ints where
+        item 0: day (dd)
+        item 1: month (MM)
+        item 2: year (YY)
+    */
+    private int[] settingDates(Date d){
+        int[] i = new int[3];
+        SimpleDateFormat sDayFrom = new SimpleDateFormat("dd");
+        i[0] = Integer.parseInt(sDayFrom.format(d));
+        SimpleDateFormat sMonthFrom = new SimpleDateFormat("MM");
+        i[1] = Integer.parseInt(sMonthFrom.format(d));
+        SimpleDateFormat sYearFrom = new SimpleDateFormat("YY");
+        i[2] = Integer.parseInt(sYearFrom.format(d));
+        return i;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -709,6 +945,9 @@ public class hotel_gui extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
+    private javax.swing.JButton jCompareButton;
+    private org.jdesktop.swingx.JXDatePicker jDateFrom;
+    private org.jdesktop.swingx.JXDatePicker jDateTo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -716,7 +955,10 @@ public class hotel_gui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jList;
+    private javax.swing.JButton jLogin;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
