@@ -10,7 +10,6 @@ public class Room {
 		this.nr = nr;
 		this.hnr = hnr;
 		this.pets = pets;
-		this.count = count;
 		this.washing = washing;
 		this.kitchen = kitchen;
 		this.minifridge = minifridge;
@@ -25,6 +24,7 @@ public class Room {
 		this.bed1 = bed1;
 		this.bed2 = bed2;
 		this.baby = baby;
+                this.count = 2*bed2 + bed1;
 	}
 
 	public int getNr() {
