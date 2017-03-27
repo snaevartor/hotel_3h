@@ -793,7 +793,7 @@ public class hotel_gui extends javax.swing.JFrame {
         if(logIn.wtev==1){
             SearchManager sm = new SearchManager(getNone());
             String[] s = sm.searchHotelName();
-            whatToEditView wtev = new whatToEditView(this,true,s,getHotel());
+            whatToEditView wtev = new whatToEditView(this,true,s,getHotel(),logIn.selected);
             wtev.setVisible(true);
         }
     }//GEN-LAST:event_jLoginActionPerformed

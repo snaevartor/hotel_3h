@@ -19,6 +19,7 @@ public class LogInView extends javax.swing.JDialog {
     char[][] password;
     int n;
     int wtev;
+    String selected;
     /**
      * Creates new form LogInView
      * @param parent
@@ -43,6 +44,7 @@ public class LogInView extends javax.swing.JDialog {
         for(int i=0;i<n;i++){
             if(u.equals(user[i]) && Arrays.equals(p, password[i])){
                 System.out.print("Login successful");
+                selected = user[i];
                 i=n;
                 wtev = 1;
                 this.dispose();

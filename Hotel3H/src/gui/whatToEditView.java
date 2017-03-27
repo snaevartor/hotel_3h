@@ -18,6 +18,7 @@ public class whatToEditView extends javax.swing.JDialog {
     static String[] sHotels;
     String[] sRooms;
     static ArrayList<Hotel> alHotel;
+    static String user;
 
     /**
      * Creates new form whatToEditView
@@ -26,12 +27,14 @@ public class whatToEditView extends javax.swing.JDialog {
      * @param s
      * @param h
      */
-    public whatToEditView(java.awt.Frame parent, boolean modal, String[] s, ArrayList<Hotel> h) {
+    public whatToEditView(java.awt.Frame parent, boolean modal, String[] s, ArrayList<Hotel> h, String u) {
         super(parent, modal);
         initComponents();
         sHotels = s;
         jComboBox1.setModel(new DefaultComboBoxModel(sHotels));
         alHotel = h;
+        user = u;
+        jWelcome.setText("Welcome " + user);
     }
 
     /**
@@ -52,6 +55,7 @@ public class whatToEditView extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jEditHotel = new javax.swing.JButton();
         jEditRoom = new javax.swing.JButton();
+        jWelcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,6 +88,9 @@ public class whatToEditView extends javax.swing.JDialog {
 
         jEditRoom.setText("Edit Selected Room");
 
+        jWelcome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jWelcome.setText("Welcome");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,12 +98,6 @@ public class whatToEditView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jNewHotel)
-                            .addComponent(jNewRoom)
-                            .addComponent(jLabel1))
-                        .addGap(0, 157, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
@@ -108,13 +109,21 @@ public class whatToEditView extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jEditRoom)))
+                        .addComponent(jEditRoom))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jNewHotel)
+                            .addComponent(jNewRoom)
+                            .addComponent(jLabel1)
+                            .addComponent(jWelcome))
+                        .addGap(0, 157, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addComponent(jWelcome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -185,7 +194,7 @@ public class whatToEditView extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                whatToEditView dialog = new whatToEditView(new javax.swing.JFrame(), true, sHotels, alHotel);
+                whatToEditView dialog = new whatToEditView(new javax.swing.JFrame(), true, sHotels, alHotel, user);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -207,5 +216,6 @@ public class whatToEditView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jNewHotel;
     private javax.swing.JButton jNewRoom;
+    private javax.swing.JLabel jWelcome;
     // End of variables declaration//GEN-END:variables
 }
