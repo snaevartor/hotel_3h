@@ -41,9 +41,9 @@ public class Comparison extends javax.swing.JDialog {
         jBar.setText("Bar: " + getBar(h));
         jBreakfast.setText("Breakfast included: " + getBreakfast(h));
         jCancellation.setText("Free cancellation: " + getCancellation(h));
-        jCheapest.setText("Cheapest room: " + getCheapest(h) + "USD");
+        jCheapest.setText("Cheapest room: " + h.getMinPrice() + "USD");
         jElevator.setText("Elevator access: " + getElevator(h));
-        jExpensive.setText("Most expensive room: " + getMostExpensive(h) + "USD");
+        jExpensive.setText("Most expensive room: " + h.getMaxPrice() + "USD");
         jGym.setText("Gym: " + getGym(h));
         jHotelName.setText(h.getName());
         jInclusive.setText("All inclusive: " + getInclusive(h));
@@ -57,9 +57,9 @@ public class Comparison extends javax.swing.JDialog {
         jBar1.setText("Bar: " + getBar(h1));
         jBreakfast1.setText("Breakfast included: " + getBreakfast(h1));
         jCancellation1.setText("Free cancellation: " + getCancellation(h1));
-        jCheapest1.setText("Cheapest room: " + getCheapest(h1) + "USD");
+        jCheapest1.setText("Cheapest room: " + h1.getMinPrice() + "USD");
         jElevator1.setText("Elevator access: " + getElevator(h1));
-        jExpensive1.setText("Most expensive room: " + getMostExpensive(h1) + "USD");
+        jExpensive1.setText("Most expensive room: " + h1.getMaxPrice() + "USD");
         jGym1.setText("Gym: " + getGym(h1));
         jHotelName1.setText(h1.getName());
         jInclusive1.setText("All inclusive: " + getInclusive(h1));
@@ -68,28 +68,6 @@ public class Comparison extends javax.swing.JDialog {
         jStars1.setText("Stars: " + h1.getStars());
         jWifi1.setText("Free wifi: " + getWifi(h1));
         jWheelchair1.setText("Wheelchair access: " + getWheelchair(h1));
-    }
-    
-    //find cheapest room
-    private int getCheapest(Hotel h){
-        int min = h.getRooms().get(0).getPrice();
-        for(Room r: h.getRooms()){
-            if(r.getPrice()<min){
-                min = r.getPrice();
-            }
-        }
-        return min;
-    }
-    
-    //find most expensive room
-    private int getMostExpensive(Hotel h){
-        int max = h.getRooms().get(0).getPrice();
-        for(Room r: h.getRooms()){
-            if(r.getPrice()>max){
-                max = r.getPrice();
-            }
-        }
-        return max;
     }
     
     //Getters which change 1 and 0 to "Yes"s and "No"s

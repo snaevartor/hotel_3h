@@ -241,6 +241,26 @@ public class Hotel {
 	public void setRooms(ArrayList<Room> rooms){
 		this.rooms = rooms;
 	}
+        
+        public int getMinPrice(){
+            int min = getRooms().get(0).getPrice();
+            for(Room r: getRooms()){
+            if(r.getPrice()<min){
+                min = r.getPrice();
+            }
+        }
+        return min;
+        }
+        
+        public int getMaxPrice(){
+            int max = getRooms().get(0).getPrice();
+            for(Room r: getRooms()){
+            if(r.getPrice()>max){
+                max = r.getPrice();
+            }
+        }
+        return max;
+        }
 	
 	
 }
