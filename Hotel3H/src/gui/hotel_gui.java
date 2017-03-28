@@ -42,6 +42,7 @@ public class hotel_gui extends javax.swing.JFrame {
     int compare;
     Date dateFrom, dateTo;
     int dayFrom, dayTo, monthFrom, monthTo, yearFrom, yearTo;
+    int[] d1,d2;
     
     /**
      * Creates new form mockup
@@ -821,7 +822,7 @@ public class hotel_gui extends javax.swing.JFrame {
         // TODO add your handling code here:
         dateFrom = jDateFrom.getDate();
         jDateTo.setDate(dateFrom);
-        int[] d1 = settingDates(dateFrom);
+        d1 = settingDates(dateFrom);
         dayFrom = d1[0];
         monthFrom = d1[1];
         yearFrom = d1[2];
@@ -837,7 +838,7 @@ public class hotel_gui extends javax.swing.JFrame {
             jDateTo.setDate(dateFrom);
         }
         else{
-            int[] d2 = settingDates(dateTo);
+            d2 = settingDates(dateTo);
             dayTo = d2[0];
             monthTo = d2[1];
             yearTo = d2[2];
@@ -855,7 +856,7 @@ public class hotel_gui extends javax.swing.JFrame {
     }
     //Opens the dialog for booking.
     private void openBooking(){
-        BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn());
+        BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn(),this);
         bookingDialog.setVisible(true);
     }
     
@@ -873,6 +874,13 @@ public class hotel_gui extends javax.swing.JFrame {
         SimpleDateFormat sYearFrom = new SimpleDateFormat("YY");
         i[2] = Integer.parseInt(sYearFrom.format(d));
         return i;
+    }
+    
+    public int[] getDateFrom(){
+        return d1;
+    }
+    public int[] getDateTo(){
+        return d2;
     }
     
     /**
