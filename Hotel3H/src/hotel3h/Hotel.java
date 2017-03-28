@@ -262,5 +262,44 @@ public class Hotel {
         return max;
         }
 	
+        public int getMaxBeds(){
+            int max = getRooms().get(0).getCount();
+            for(Room r: getRooms()){
+                if(r.getCount()>max){
+                    max = r.getCount();
+                }
+            }
+            return max;
+        }
+        
+        public int getMinBeds(){
+            int min = getRooms().get(0).getCount();
+            for(Room r: getRooms()){
+                if(r.getCount()<min){
+                    min = r.getCount();
+                }
+            }
+            return min;
+        }
+        
+        public int getMinSize(){
+            int min = getRooms().get(0).getSize();
+            for(Room r: getRooms()){
+                if(r.getSize()<min){
+                    min = r.getSize();
+                }
+            }
+            return min;
+        }
+        
+        public int getMaxSize(){
+            int max = getRooms().get(0).getSize();
+            for(Room r: getRooms()){
+                if(r.getSize()>max){
+                    max = r.getSize();
+                }
+            }
+            return max;
+        }
 	
 }

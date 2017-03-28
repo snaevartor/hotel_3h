@@ -77,7 +77,7 @@ public class hotel_gui extends javax.swing.JFrame {
         int cWheelchairaccess = boolToInt(checkWheelchairaccess);
         int cElevatoraccess = boolToInt(checkElevatoraccess);
         int cFlybus = boolToInt(checkFlybus);
-        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus};
+        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minSize, maxSize, minPrice, maxPrice, minBeds};
         return heild;
     }
 
@@ -752,6 +752,10 @@ public class hotel_gui extends javax.swing.JFrame {
     private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
         // TODO add your handling code here:
         minPrice = 20*jComboBox7.getSelectedIndex();
+        if(jComboBox8.getSelectedIndex()>0 && minPrice > maxPrice){
+            jComboBox7.setSelectedIndex(0);
+            minPrice = 0;
+        }
     }//GEN-LAST:event_jComboBox7ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -781,12 +785,16 @@ public class hotel_gui extends javax.swing.JFrame {
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
         // TODO add your handling code here:
         minSize = 5*jComboBox4.getSelectedIndex();
+        if(jComboBox5.getSelectedIndex()>0 && maxSize < minSize){
+            jComboBox4.setSelectedIndex(0);
+            minSize = 0;
+        }
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
         // TODO add your handling code here:
         int i = 5*jComboBox5.getSelectedIndex();
-        if(i>minSize || i==0){
+        if(i>=minSize || i==0){
             maxSize = i;
         }
         else{
@@ -799,7 +807,7 @@ public class hotel_gui extends javax.swing.JFrame {
     private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
         // TODO add your handling code here:
         int j = 20*jComboBox8.getSelectedIndex();
-        if(j>minPrice || j==0){
+        if(j>=minPrice || j==0){
             maxPrice = j;
         }
         else{
@@ -812,6 +820,7 @@ public class hotel_gui extends javax.swing.JFrame {
     private void jDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateFromActionPerformed
         // TODO add your handling code here:
         dateFrom = jDateFrom.getDate();
+        jDateTo.setDate(dateFrom);
         int[] d1 = settingDates(dateFrom);
         dayFrom = d1[0];
         monthFrom = d1[1];
@@ -822,11 +831,18 @@ public class hotel_gui extends javax.swing.JFrame {
     private void jDateToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateToActionPerformed
         // TODO add your handling code here:
         dateTo = jDateTo.getDate();
-        int[] d2 = settingDates(dateTo);
-        dayTo = d2[0];
-        monthTo = d2[1];
-        yearTo = d2[2];
-        System.out.println("Date to: " + dayTo + "/" + monthTo + "/" + yearTo);
+        if(dateTo.before(dateFrom)){
+            String[] tmp = {"OK"};
+            int j = JOptionPane.showOptionDialog(null, "Your departure date is sooner than your arrival date. Please choose another date for your departure.", "Error", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, tmp, tmp);
+            jDateTo.setDate(dateFrom);
+        }
+        else{
+            int[] d2 = settingDates(dateTo);
+            dayTo = d2[0];
+            monthTo = d2[1];
+            yearTo = d2[2];
+            System.out.println("Date to: " + dayTo + "/" + monthTo + "/" + yearTo);
+        }
     }//GEN-LAST:event_jDateToActionPerformed
 
     //Opens the dialog which looks at a Hotel
