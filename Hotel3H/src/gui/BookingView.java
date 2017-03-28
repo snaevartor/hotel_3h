@@ -19,17 +19,23 @@ public class BookingView extends javax.swing.JDialog {
     private int phonenr;
     private int cardnr;
     private Room r;
+    private int[] dateFrom;
+    private int[] dateTo;
+    private hotel_gui gui;
     
-    public BookingView(java.awt.Frame parent, boolean modal, Room rm) {
+    public BookingView(java.awt.Frame parent, boolean modal, Room rm, hotel_gui gui) {
         super(parent, modal);
         initComponents();
+        this.gui = gui;
+        dateFrom = gui.getDateFrom();
+        dateTo = gui.getDateTo();
         r = rm;
         //Set texts for labels
         jHotelName.setText(hotel_gui.getChosenHotel().getName());
         jPeople.setText("" + r.getCount());
         jPrice.setText(r.getPrice() + " USD per night.");
-        jDateFrom.setText("Kemur seinna");
-        jDateTo.setText("Kemur seinna");
+        jDateFrom.setText(dateFrom[0] + "/" + dateFrom[1] + "/" + dateFrom[2]);
+        jDateTo.setText(dateTo[0] + "/" + dateTo[1] + "/" + dateTo[2]);
     }
 
     /**
@@ -279,6 +285,12 @@ public class BookingView extends javax.swing.JDialog {
     public int getCardnr(){
         return cardnr;
     }
+    public int[] getDateTo(){
+        return dateTo;
+    }
+    public int[] getDateFrom(){
+        return dateFrom;
+    }
     
     
     /**
@@ -313,7 +325,8 @@ public class BookingView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Room r = null;
-                BookingView dialog = new BookingView(new javax.swing.JFrame(), true, r);
+                hotel_gui gui = null;
+                BookingView dialog = new BookingView(new javax.swing.JFrame(), true, r, gui);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
