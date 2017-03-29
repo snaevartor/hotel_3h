@@ -856,8 +856,14 @@ public class hotel_gui extends javax.swing.JFrame {
     }
     //Opens the dialog for booking.
     private void openBooking(){
-        BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn(),this);
-        bookingDialog.setVisible(true);
+        if(dateTo==null || dateFrom == null){
+            String[] tmp = {"OK"};
+            int i = JOptionPane.showOptionDialog(null, new JLabel("You haven't chosen any dates for your trip.", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+        }
+        else{
+            BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn(),this);
+            bookingDialog.setVisible(true);
+        }
     }
     
     /*Takes a Date and returns an array of ints where
