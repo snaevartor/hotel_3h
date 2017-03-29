@@ -170,5 +170,11 @@ public class Room {
 	public void setBaby(int baby) {
 		this.baby = baby;
 	}
+        
+        public int[] getAllInt(int minPrice, int maxPrice, int minSize, int maxSize){
+            int[] i = {hnr, pets, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac, 
+                minPrice, maxPrice, minSize, maxSize, bed1, bed2, baby};
+            return i;
+        }
 
 }

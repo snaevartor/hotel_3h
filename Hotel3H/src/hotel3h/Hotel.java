@@ -245,21 +245,21 @@ public class Hotel {
         public int getMinPrice(){
             int min = getRooms().get(0).getPrice();
             for(Room r: getRooms()){
-            if(r.getPrice()<min){
-                min = r.getPrice();
+                if(r.getPrice()<min){
+                    min = r.getPrice();
+                }
             }
-        }
-        return min;
+            return min;
         }
         
         public int getMaxPrice(){
             int max = getRooms().get(0).getPrice();
             for(Room r: getRooms()){
-            if(r.getPrice()>max){
-                max = r.getPrice();
+                if(r.getPrice()>max){
+                    max = r.getPrice();
+                }
             }
-        }
-        return max;
+            return max;
         }
 	
         public int getMaxBeds(){

@@ -5,6 +5,7 @@ import hotel3h.Hotel;
 import hotel3h.HotelListaStyring;
 import java.util.ArrayList;
 import hotel3h.HotelListaVinnsla;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JLabel;
@@ -19,8 +20,8 @@ public class hotel_gui extends javax.swing.JFrame {
     int checkType = 0;
     int minSize = 0;
     int minPrice = 0;
-    int maxSize;
-    int maxPrice;
+    int maxSize = 100000;
+    int maxPrice = 100000;
     int minBeds = 0;
     Boolean checkGym = false;
     Boolean checkSpa = false;
@@ -78,7 +79,7 @@ public class hotel_gui extends javax.swing.JFrame {
         int cWheelchairaccess = boolToInt(checkWheelchairaccess);
         int cElevatoraccess = boolToInt(checkElevatoraccess);
         int cFlybus = boolToInt(checkFlybus);
-        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minSize, maxSize, minPrice, maxPrice, minBeds};
+        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minPrice, maxPrice, minSize, maxSize, minBeds};
         return heild;
     }
 
@@ -319,14 +320,14 @@ public class hotel_gui extends javax.swing.JFrame {
 
         jLabel20.setText("Price (USD)");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "20", "40", "80", "100" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "200", "400", "800", "1000" }));
         jComboBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox7ActionPerformed(evt);
             }
         });
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "20", "40", "80", "100" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "200", "400", "800", "1000" }));
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox8ActionPerformed(evt);
@@ -752,7 +753,7 @@ public class hotel_gui extends javax.swing.JFrame {
 
     private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
         // TODO add your handling code here:
-        minPrice = 20*jComboBox7.getSelectedIndex();
+        minPrice = 200*jComboBox7.getSelectedIndex();
         if(jComboBox8.getSelectedIndex()>0 && minPrice > maxPrice){
             jComboBox7.setSelectedIndex(0);
             minPrice = 0;
@@ -803,11 +804,14 @@ public class hotel_gui extends javax.swing.JFrame {
             int j = JOptionPane.showOptionDialog(null, new JLabel("Maximum size selected is smaller than the minimum size.", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             jComboBox5.setSelectedIndex(0);
         }
+        if(maxSize<1){
+            maxSize = 100000;
+        }
     }//GEN-LAST:event_jComboBox5ActionPerformed
 
     private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
         // TODO add your handling code here:
-        int j = 20*jComboBox8.getSelectedIndex();
+        int j = 200*jComboBox8.getSelectedIndex();
         if(j>=minPrice || j==0){
             maxPrice = j;
         }
@@ -815,6 +819,9 @@ public class hotel_gui extends javax.swing.JFrame {
             String[] tmp = {"OK"};
             int i = JOptionPane.showOptionDialog(null, new JLabel("Maximum price is lower than minimum price.", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             jComboBox8.setSelectedIndex(0);
+        }
+        if(maxPrice < 1){
+            maxPrice = 100000;
         }
     }//GEN-LAST:event_jComboBox8ActionPerformed
 

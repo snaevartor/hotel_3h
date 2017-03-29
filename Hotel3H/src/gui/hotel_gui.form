@@ -466,11 +466,11 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
-            <StringItem index="0" value="Any"/>
-            <StringItem index="1" value="20"/>
-            <StringItem index="2" value="40"/>
-            <StringItem index="3" value="80"/>
-            <StringItem index="4" value="100"/>
+            <StringItem index="0" value="0"/>
+            <StringItem index="1" value="200"/>
+            <StringItem index="2" value="400"/>
+            <StringItem index="3" value="800"/>
+            <StringItem index="4" value="1000"/>
           </StringArray>
         </Property>
       </Properties>
@@ -486,10 +486,10 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
             <StringItem index="0" value="Any"/>
-            <StringItem index="1" value="20"/>
-            <StringItem index="2" value="40"/>
-            <StringItem index="3" value="80"/>
-            <StringItem index="4" value="100"/>
+            <StringItem index="1" value="200"/>
+            <StringItem index="2" value="400"/>
+            <StringItem index="3" value="800"/>
+            <StringItem index="4" value="1000"/>
           </StringArray>
         </Property>
       </Properties>
