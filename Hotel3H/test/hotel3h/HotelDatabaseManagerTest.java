@@ -82,14 +82,18 @@ public class HotelDatabaseManagerTest {
         int smoke = 0;
         int ac = 0;
         int minPrice = 0;
-        int maxPrice = 50;
+        int maxPrice = 0;
         int minSize = 0;
         int maxSize = 0;
-        int bed1 = 1;
+        int bed1 = 0;
         int bed2 = 0;
         int baby = 0;
         HotelDatabaseManager instance = new HotelDatabaseManager();
         ArrayList<Room> expResult = new ArrayList<>();
+        
+        ArrayList<Room> testResult = instance.searchRooms(hnr, pets, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac, minPrice, maxPrice, minSize, maxSize, bed1, bed2, baby);
+        System.out.println(testResult.isEmpty());
+//        System.out.println(testResult.get(0));
 //        ArrayList<Room> expResult = null;
         ArrayList<Room> result = instance.searchRooms(hnr, pets, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac, minPrice, maxPrice, minSize, maxSize, bed1, bed2, baby);
         assertEquals(expResult, result);
@@ -122,6 +126,9 @@ public class HotelDatabaseManagerTest {
         boolean expResult = false;
         ArrayList<Hotel> testResult = instance.searchHotels(type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomService, wheelChair, elevator, flyBus);        
         boolean result = testResult.isEmpty();
+        System.out.println(testResult.size());
+        System.out.println(testResult.get(0).getNr());
+        System.out.println(testResult.get(0).getName());
         assertEquals(expResult, result);
     }
 
@@ -132,15 +139,25 @@ public class HotelDatabaseManagerTest {
     public void testGetHotelStringInfo() {
         System.out.println("getHotelStringInfo");
         int nr = 1;
-        //Equivalence classes note: 0 does not refer to any hotel in database, starts counting from 1.
         HotelDatabaseManager instance = new HotelDatabaseManager();
-        //Reference: INSERT INTO Hotel VALUES (NULL,"Hilton Reykjavík Nordica", "Suðurlandsbraut 2",4,108, "www.hiltonreykjavik.com");
-//        String[] expResult = {null, null, null};
         String[] expResult = {"Hilton Reykjavík Nordica","Suðurlandsbraut 2","www.hiltonreykjavik.com"};
         String[] result = instance.getHotelStringInfo(nr);
         assertArrayEquals(expResult, result);
     }
 
+    /**
+     * Test of getHotelStringInfo method, of class HotelDatabaseManager.
+     */
+    @Test
+    public void testGetHotelStringInfo2() {
+        System.out.println("getHotelStringInfo2");
+        int nr = 5;
+        HotelDatabaseManager instance = new HotelDatabaseManager();
+        String[] expResult = {"Hotel Ódinsvé","Thorsgata 1, 101 Reykjavík, Iceland","www.hotelodinsve.com"};
+        String[] result = instance.getHotelStringInfo(nr);
+        assertArrayEquals(expResult, result);
+    }
+    
     /**
      * Test of getHotelIntInfo method, of class HotelDatabaseManager.
      */
@@ -153,5 +170,28 @@ public class HotelDatabaseManagerTest {
         int[] result = instance.getHotelIntInfo(nr);
         assertArrayEquals(expResult, result);
     }
-    
+
+    /**
+     * Test of getHotelIntInfo method, of class HotelDatabaseManager.
+     */
+    @Test
+    public void testGetHotelIntInfo2() {
+        System.out.println("getHotelIntInfo2");
+        int nr = 10;
+        HotelDatabaseManager instance = new HotelDatabaseManager();
+        int[] expResult = {1,801};
+        int[] result = instance.getHotelIntInfo(nr);
+        assertArrayEquals(expResult, result);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testGetHotelIntInfo3() {
+        System.out.println("getHotelIntInfo3");
+        Integer nr = null;
+        HotelDatabaseManager instance = new HotelDatabaseManager();
+//        int[] expResult = {0,0};
+        int[] result = instance.getHotelIntInfo(nr);
+//        assertArrayEquals(expResult, result);
+    }
+
 }
