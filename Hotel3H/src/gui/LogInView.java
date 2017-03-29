@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author Soley
  */
 public class LogInView extends javax.swing.JDialog {
-    String user[];
+    String user[],username[];
     char[][] password;
     int n;
     int wtev;
@@ -24,6 +24,7 @@ public class LogInView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         user = new String[]{"notandi","soley","omar","snaevar","helgi"};
+        username = new String[]{"Notandi","Sóley","Ómar","Snævar","Helgi"};
         char[] p0 = {'l','y','k','i','l','o','r','d'};
         char[] p1 = {'s','b','2','2'};
         char[] p2 = {'o','p','a','0','4'};
@@ -39,7 +40,7 @@ public class LogInView extends javax.swing.JDialog {
         for(int i=0;i<n;i++){
             if(u.equals(user[i]) && Arrays.equals(p, password[i])){
                 System.out.print("Login successful");
-                selected = user[i];
+                selected = username[i];
                 i=n;
                 wtev = 1;
                 this.dispose();

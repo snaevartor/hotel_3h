@@ -108,7 +108,7 @@ public class hotel_gui extends javax.swing.JFrame {
     
     //Returns array of ints which would return every hotel
     public static int[] getNone(){
-        int[] i = new int[16];
+        int[] i = new int[20];
         for(int j=0;j<16;j++){
             i[j]=0;
         }
