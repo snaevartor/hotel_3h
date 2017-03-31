@@ -17,7 +17,7 @@ public class hotelView extends javax.swing.JDialog {
     ArrayList<Room> rListi;
     static Hotel hotel;
     int book;
-    static Room valinn;
+    static Room valinn = null;
     
     /**
      * Creates new form NewJDialog
@@ -214,6 +214,7 @@ public class hotelView extends javax.swing.JDialog {
         jPool = new javax.swing.JLabel();
         jConferenceRooms = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        bookingPopup = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(4, 4));
@@ -330,6 +331,8 @@ public class hotelView extends javax.swing.JDialog {
                     .addComponent(jHotelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBookNow)
+                        .addGap(18, 18, 18)
+                        .addComponent(bookingPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,8 +350,10 @@ public class hotelView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jHotelName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBookNow)
-                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBookNow)
+                    .addComponent(bookingPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -364,8 +369,14 @@ public class hotelView extends javax.swing.JDialog {
     //Opens BookingView
     private void jBookNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBookNowActionPerformed
         // TODO add your handling code here:
+        if (valinn != null){
         book = 1;
         this.setVisible(false);
+        }
+        
+        else {
+            bookingPopup.setText("Please select a room");
+        }
     }//GEN-LAST:event_jBookNowActionPerformed
 
      
@@ -415,6 +426,7 @@ public class hotelView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bookingPopup;
     private javax.swing.JLabel jBar;
     private javax.swing.JButton jBookNow;
     private javax.swing.JLabel jBreakfast;
