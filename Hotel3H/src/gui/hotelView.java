@@ -64,7 +64,13 @@ public class hotelView extends javax.swing.JDialog {
     
     //Getters
     public static Room getValinn(){
-        return valinn;
+        if(valinn.getHnr()== hotel.getNr()){
+            return valinn;
+        }
+        else{
+            System.out.print("No room chosen.");
+            return null;
+        }
     }
     
     public void setValinn(Room h){
