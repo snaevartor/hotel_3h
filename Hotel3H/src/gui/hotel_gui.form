@@ -94,7 +94,7 @@
                   </Group>
                   <Component id="jLogin" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -309,7 +309,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel19">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Minimal number of beds"/>
+        <Property name="text" type="java.lang.String" value="Number of people"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox6">

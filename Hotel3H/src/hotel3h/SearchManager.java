@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class SearchManager {
     //All of the conditions the search asks for
-    int type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,minPrice,maxPrice,minSize,maxSize;
+    int type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,minPrice,maxPrice,minSize,maxSize,minBeds;
     
     public SearchManager(int[] heild){
         //Set all values
@@ -33,6 +33,7 @@ public class SearchManager {
         maxPrice = heild[17];
         minSize = heild[18];
         maxSize = heild[19];
+        minBeds = heild[20];
     }
     
     public ArrayList<Hotel> searchHotel(){
@@ -53,12 +54,12 @@ public class SearchManager {
         return s;
     }
     
-    public int[] listForRoomSearch(int hnr, int minPrice, int maxPrice, int minSize, int maxSize){
+    private int[] listForRoomSearch(int hnr, int minPrice, int maxPrice, int minSize, int maxSize){
         int[] i = {hnr,0,0,0,0,0,0,0,0,0,0,minPrice,maxPrice,minSize,maxSize,0,0,0};
         return i;
     }
     
-    public void searchForRooms(HotelDatabaseManager hdm, ArrayList<Hotel> h){
+    private void searchForRooms(HotelDatabaseManager hdm, ArrayList<Hotel> h){
         Hotel[] hFylki = new Hotel[h.size()];
         int temp = 0;
         for(Hotel htemp: h){
@@ -66,11 +67,29 @@ public class SearchManager {
             ArrayList<Room> r = hdm.searchRooms(i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7],i[8],i[9],i[10],i[11],i[12],i[13],i[14],i[15],i[16],i[17]);
             if(r.isEmpty()){
                 hFylki[temp] = htemp;
-                System.out.println("Null");
                 temp++;
             }
-            else{
-                System.out.println("OK");
+        }
+        for(int j=0;j<temp;j++){
+            h.remove(hFylki[j]);
+        }
+        hFylki = new Hotel[h.size()];
+        temp = 0;
+        for(Hotel htemp: h){
+            Room[] rFylki = new Room[htemp.getRooms().size()];
+            int rTalning = 0;
+            for(Room r: htemp.getRooms()){
+                if(r.getCount()<minBeds){
+                    rFylki[rTalning]=r;
+                    rTalning++;
+                }
+            }
+            for(int j=0; j<rTalning; j++){
+                htemp.getRooms().remove(rFylki[j]);
+            }
+            if(htemp.getRooms().isEmpty()){
+                hFylki[temp] = htemp;
+                temp++;
             }
         }
         for(int j=0;j<temp;j++){

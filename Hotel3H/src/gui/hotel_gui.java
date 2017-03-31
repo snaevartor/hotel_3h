@@ -199,7 +199,7 @@ public class hotel_gui extends javax.swing.JFrame {
             }
         });
 
-        jLabel19.setText("Minimal number of beds");
+        jLabel19.setText("Number of people");
 
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         jComboBox6.addActionListener(new java.awt.event.ActionListener() {
@@ -456,7 +456,7 @@ public class hotel_gui extends javax.swing.JFrame {
                             .addComponent(jCheckBox10))
                         .addGap(68, 68, 68))
                     .addComponent(jLogin, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -876,6 +876,8 @@ public class hotel_gui extends javax.swing.JFrame {
             sort = 0;
         }
         if(searched == 1){
+            SearchManager sm = new SearchManager(getInfo());
+            hotel = sm.searchHotel();
             HotelListaVinnsla hlisti = new HotelListaVinnsla(hotel,sort);
             jList.setModel(hlisti);
             jList.addListSelectionListener(new HotelListaStyring(this,hotel));

@@ -21,7 +21,7 @@ public class HotelListaVinnsla extends DefaultListModel{
         //Add all elements from the ArrayList to the list
         hotel = hl;
         if(sort == 1){
-            Collections.sort(hotel);        
+            Collections.sort(hotel);     
         }
         for(Hotel h: hotel){
             addElement(h.getName());
