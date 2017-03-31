@@ -34,6 +34,15 @@ public class SearchManagerTest {
     @After
     public void tearDown() {
     }
+    
+    //TODO: More tests involving invalid inputs (for example, trying to process an incorrect class / list type)
+    //and empty lists. Create more diverse tests and ensure that the tests make sense.
+    
+    //TODO: Incorporate testing of sorting functionality via HotelListaVinnsla.java class.
+    //Question of whether to add said test via function calls in this class
+    //or whether to create a test class for HotelListaVinnsla.java
+    
+    //TODO: Create mock objects and documentation for the unit tests.
 
     /**
      * Test of searchHotel method, of class SearchManager.
@@ -68,20 +77,12 @@ public class SearchManagerTest {
         
         HotelDatabaseManager hotelInstance = new HotelDatabaseManager();
         ArrayList<Hotel> hotelList = hotelInstance.searchHotels(type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomService, wheelChair, elevator, flyBus);
-//        ArrayList<Hotel> hotelList = Hotel();
-//        SearchManager instance = null;
         SearchManager instance = new SearchManager(searchManagerArray);
 
-//        ArrayList<Hotel> expResult = null;
         String[] expResult = {"Hilton Reykjavík Nordica","Kerlingarfjöll Mountain Resort"};
         ArrayList<Hotel> testResult = instance.searchHotel();
         String[] result = {testResult.get(0).getName(),testResult.get(9).getName()};
         
-//        System.out.println(expResult);
-//        System.out.println(testResult);
-//        System.out.println(testResult.get(0).getName());
-//        System.out.println(testResult.get(9).getName());
-//        assertEquals(expResult, result);
         Assert.assertArrayEquals(expResult, result);
     }
 
@@ -117,6 +118,7 @@ public class SearchManagerTest {
         
         int[] searchManagerArray = {type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomService, wheelChair, elevator, flyBus, minPrice, maxPrice, minSize, maxSize, minBeds};
 
+        //Searches for room size
         //TODO: May need to set different conditions / inputs
         SearchManager instance = new SearchManager(searchManagerArray);
         
@@ -124,40 +126,6 @@ public class SearchManagerTest {
         String[] result = instance.searchHotelName();        
 
         assertArrayEquals(expResult, result);
-        //searches for room size
     }
-
-//    /**
-//     * Test of listForRoomSearch method, of class SearchManager.
-//     */
-//    @Test
-//    public void testListForRoomSearch() {
-//        System.out.println("listForRoomSearch");
-//        int hnr = 0;
-//        int minPrice = 0;
-//        int maxPrice = 0;
-//        int minSize = 0;
-//        int maxSize = 0;
-//        SearchManager instance = null;
-//        int[] expResult = null;
-//        int[] result = instance.listForRoomSearch(hnr, minPrice, maxPrice, minSize, maxSize);
-//        assertArrayEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    
-//    /**
-//     * Test of searchForRooms method, of class SearchManager.
-//     */
-//    @Test
-//    public void testSearchForRooms() {
-//        System.out.println("searchForRooms");
-//        HotelDatabaseManager hdm = null;
-//        ArrayList<Hotel> h = null;
-//        SearchManager instance = null;
-//        instance.searchForRooms(hdm, h);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
     
 }
