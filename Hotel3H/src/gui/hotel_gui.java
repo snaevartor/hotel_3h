@@ -44,6 +44,7 @@ public class hotel_gui extends javax.swing.JFrame {
     Date dateFrom, dateTo;
     int dayFrom, dayTo, monthFrom, monthTo, yearFrom, yearTo;
     int[] d1,d2;
+    int searched,sort;
     
     /**
      * Creates new form mockup
@@ -160,6 +161,7 @@ public class hotel_gui extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jDateFrom = new org.jdesktop.swingx.JXDatePicker();
         jDateTo = new org.jdesktop.swingx.JXDatePicker();
+        jSortByPrice = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -385,18 +387,27 @@ public class hotel_gui extends javax.swing.JFrame {
             }
         });
 
+        jSortByPrice.setText("Sort by price");
+        jSortByPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSortByPriceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCompareButton))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCompareButton))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSortByPrice))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton_Search)
@@ -459,6 +470,8 @@ public class hotel_gui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSortByPrice)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton_Search)
@@ -541,9 +554,10 @@ public class hotel_gui extends javax.swing.JFrame {
     //Function for the search button.
     private void jButton_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SearchActionPerformed
         //Search button pressed
+        searched = 1;
         SearchManager sm = new SearchManager(getInfo());
         hotel = sm.searchHotel();
-        HotelListaVinnsla hlisti = new HotelListaVinnsla(hotel);
+        HotelListaVinnsla hlisti = new HotelListaVinnsla(hotel,sort);
         jList.setModel(hlisti);
         jList.addListSelectionListener(new HotelListaStyring(this,hotel));
         jCompareButton.setEnabled(true);
@@ -853,6 +867,21 @@ public class hotel_gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jDateToActionPerformed
 
+    private void jSortByPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSortByPriceActionPerformed
+        // TODO add your handling code here:
+        if(jSortByPrice.isSelected()){
+            sort = 1;
+        }
+        else{
+            sort = 0;
+        }
+        if(searched == 1){
+            HotelListaVinnsla hlisti = new HotelListaVinnsla(hotel,sort);
+            jList.setModel(hlisti);
+            jList.addListSelectionListener(new HotelListaStyring(this,hotel));
+        }
+    }//GEN-LAST:event_jSortByPriceActionPerformed
+
     //Opens the dialog which looks at a Hotel
     private void openHotel(){
         hotelView hotelDialog = new hotelView(this,true,getChosenHotel());
@@ -970,5 +999,6 @@ public class hotel_gui extends javax.swing.JFrame {
     private javax.swing.JList<String> jList;
     private javax.swing.JButton jLogin;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JCheckBox jSortByPrice;
     // End of variables declaration//GEN-END:variables
 }

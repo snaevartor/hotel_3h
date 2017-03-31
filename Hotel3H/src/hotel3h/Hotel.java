@@ -2,7 +2,7 @@ package hotel3h;
 
 import java.util.ArrayList;
 
-public class Hotel {
+public class Hotel implements Comparable<Hotel>{
  
 
 	int nr, type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomservice, wheelchair, elevator, flybus, stars, areacode;
@@ -301,5 +301,15 @@ public class Hotel {
             }
             return max;
         }
-	
+
+    @Override
+    public int compareTo(Hotel o) {
+        if(this.getMinPrice()<o.getMinPrice()){
+            return -1;
+        }
+        else{
+            return 1;
+        }
+    }
+
 }
