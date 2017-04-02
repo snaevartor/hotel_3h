@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
  * 
  * @author Snaevar
  */
-public class HotelDatabaseManagerTest {
+public class HotelDatabaseManagerMockTest {
     
-    public HotelDatabaseManagerTest() {
+    public HotelDatabaseManagerMockTest() {
     }
     
     @BeforeClass

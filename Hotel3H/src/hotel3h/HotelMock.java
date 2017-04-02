@@ -3,19 +3,20 @@ package hotel3h;
 import java.util.ArrayList;
 
 /**
-* Class: Hotel
-* Usage: Class for creating Hotel objects.
+* Class: HotelMock
+* Usage: Class for creating Hotel objects. (Mock version).
 * @author Helgi
 * @author Omar
+* @author Snaevar
 */
 
-public class Hotel implements Comparable<Hotel>{
+public class HotelMock implements Comparable<Hotel>{
  
 
 	int nr, type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomservice, wheelchair, elevator, flybus, stars, areacode;
 	String name, address, website;
-	ArrayList<Room> rooms;
-	public Hotel(
+	ArrayList<RoomMock> rooms;
+	public HotelMock(
                 int nr,
                 int type,
                 int gym,
@@ -38,7 +39,7 @@ public class Hotel implements Comparable<Hotel>{
 		String name,
                 String address,
                 String website,
-                ArrayList<Room> rooms
+                ArrayList<RoomMock> rooms
         ){
             this.nr = nr;
             this.type = type;
@@ -241,17 +242,17 @@ public class Hotel implements Comparable<Hotel>{
 		this.flybus = flybus;
 	}
 
-	public ArrayList<Room> getRooms(){
+	public ArrayList<RoomMock> getRooms(){
 		return rooms;
 	}
 	
-	public void setRooms(ArrayList<Room> rooms){
+	public void setRooms(ArrayList<RoomMock> rooms){
 		this.rooms = rooms;
 	}
         
         public int getMinPrice(){
             int min = getRooms().get(0).getPrice();
-            for(Room r: getRooms()){
+            for(RoomMock r: getRooms()){
                 if(r.getPrice()<min){
                     min = r.getPrice();
                 }
@@ -261,7 +262,7 @@ public class Hotel implements Comparable<Hotel>{
         
         public int getMaxPrice(){
             int max = getRooms().get(0).getPrice();
-            for(Room r: getRooms()){
+            for(RoomMock r: getRooms()){
                 if(r.getPrice()>max){
                     max = r.getPrice();
                 }
@@ -271,7 +272,7 @@ public class Hotel implements Comparable<Hotel>{
 	
         public int getMaxBeds(){
             int max = getRooms().get(0).getCount();
-            for(Room r: getRooms()){
+            for(RoomMock r: getRooms()){
                 if(r.getCount()>max){
                     max = r.getCount();
                 }
@@ -281,7 +282,7 @@ public class Hotel implements Comparable<Hotel>{
         
         public int getMinBeds(){
             int min = getRooms().get(0).getCount();
-            for(Room r: getRooms()){
+            for(RoomMock r: getRooms()){
                 if(r.getCount()<min){
                     min = r.getCount();
                 }
@@ -291,7 +292,7 @@ public class Hotel implements Comparable<Hotel>{
         
         public int getMinSize(){
             int min = getRooms().get(0).getSize();
-            for(Room r: getRooms()){
+            for(RoomMock r: getRooms()){
                 if(r.getSize()<min){
                     min = r.getSize();
                 }
@@ -301,7 +302,7 @@ public class Hotel implements Comparable<Hotel>{
         
         public int getMaxSize(){
             int max = getRooms().get(0).getSize();
-            for(Room r: getRooms()){
+            for(RoomMock r: getRooms()){
                 if(r.getSize()>max){
                     max = r.getSize();
                 }

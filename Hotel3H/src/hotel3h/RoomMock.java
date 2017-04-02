@@ -5,14 +5,32 @@ package hotel3h;
 * Usage: Class for creating Room objects.
 * @author Helgi
 * @author Omar
+* @author Snaevar
 */
 
-public class Room {
+public class RoomMock {
 
 	int nr, hnr, pets, count, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac, price, size, bed1, bed2, baby;
 
-	public Room(int nr, int hnr, int pets, int count, int washing, int kitchen, int minifridge, int tv, int bath,
-			int view, int noise, int smoke, int ac, int price, int size, int bed1, int bed2, int baby) {
+	public RoomMock(
+                int nr,
+                int hnr,
+                int pets,
+                int count,
+                int washing,
+                int kitchen,
+                int minifridge,
+                int tv,
+                int bath,
+                int view,
+                int noise,
+                int smoke,
+                int ac,
+                int price,
+                int size,
+                int bed1,
+                int bed2,
+                int baby) {
 	
 		this.nr = nr;
 		this.hnr = hnr;

@@ -8,18 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
-* Class: HotelDatabaseManager
-* Usage: Create and operate on Hotel objects.
+* Class: HotelDatabaseManagerMock
+* Usage: Create and operate on Hotel objects. (Mock version).
 * @author Helgi
 * @author Omar
+* @author Snaevar
 */
 
-public class HotelDatabaseManager {
+public class HotelDatabaseManagerMock {
 	
     /**
     * Constructor for HotelDatabaseManager
     */
-    public  HotelDatabaseManager(){ }
+    public  HotelDatabaseManagerMock(){ }
 
     /**
     * Private method for establishing a connection with the database.
@@ -38,14 +39,14 @@ public class HotelDatabaseManager {
     /**
     * Private method for getting a list of rooms belonging to a specific hotel.
     */
-    private ArrayList<Room> getRooms(int hnr){
+    private ArrayList<RoomMock> getRooms(int hnr){
         String sql = "SELECT * FROM RoomSearch, Room WHERE RoomSearch.nr = Room.nr AND hotelnr = hnr AND hnr = " + hnr;
-        ArrayList<Room> rooms = new ArrayList<>();	
+        ArrayList<RoomMock> rooms = new ArrayList<>();	
         try (Connection conn = connect();
         Statement stmt  = conn.createStatement();
         ResultSet rs    = stmt.executeQuery(sql)){	     
             while (rs.next()) {
-            	Room r = new Room(rs.getInt("nr"), rs.getInt("hnr"), rs.getInt("pets"), 
+            	RoomMock r = new RoomMock(rs.getInt("nr"), rs.getInt("hnr"), rs.getInt("pets"), 
                     rs.getInt("washing"), rs.getInt("kitchen"), rs.getInt("minifridge"),
 	            rs.getInt("tv"), rs.getInt("bath"), rs.getInt("view"), rs.getInt("view"),
 	            rs.getInt("noise"), rs.getInt("smoke"), rs.getInt("ac"), rs.getInt("price"), 
@@ -56,13 +57,13 @@ public class HotelDatabaseManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return rooms;	      
+        return rooms;
     }
 
     /**
     * Filter rooms based on specified search criteria.
     */
-    public ArrayList<Room> searchRooms(
+    public ArrayList<RoomMock> searchRooms(
             int hnr,
             int pets,
             int washing,
@@ -82,7 +83,7 @@ public class HotelDatabaseManager {
             int bed2,
             int baby){
         
-                ArrayList<Room> rooms = new ArrayList<>();
+                ArrayList<RoomMock> rooms = new ArrayList<>();
                 String sql;
                 sql = "SELECT * FROM RoomSearch, Room WHERE Room.nr = Roomsearch.nr AND"
       		+ " hotelnr = hnr AND hnr = " + hnr + 
@@ -98,7 +99,7 @@ public class HotelDatabaseManager {
             Statement stmt  = conn.createStatement();
             ResultSet rs    = stmt.executeQuery(sql)){     
 	    while (rs.next()) {
-	        Room r = new Room(rs.getInt("nr"), rs.getInt("hnr"), rs.getInt("pets"), 
+	        RoomMock r = new RoomMock(rs.getInt("nr"), rs.getInt("hnr"), rs.getInt("pets"), 
                     rs.getInt("washing"), rs.getInt("kitchen"), rs.getInt("minifridge"),
                     rs.getInt("tv"), rs.getInt("bath"), rs.getInt("view"), rs.getInt("view"),
                     rs.getInt("noise"), rs.getInt("smoke"), rs.getInt("ac"), rs.getInt("price"), 
@@ -114,7 +115,7 @@ public class HotelDatabaseManager {
     /**
     * Filter hotels based on specified search criteria.
     */
-    public ArrayList<Hotel> searchHotels(
+    public ArrayList<HotelMock> searchHotels(
             int type,
             int gym,
             int spa,
@@ -132,7 +133,7 @@ public class HotelDatabaseManager {
             int elevator,
             int flyBus){
         
-                ArrayList<Hotel> hotels = new ArrayList<>();
+                ArrayList<HotelMock> hotels = new ArrayList<>();
                 String sql;
                 sql = "SELECT * FROM HotelSearch, Hotel WHERE HotelSearch.nr = Hotel.nr AND "
                 + "gym >= " + gym + " AND spa >= " + spa +
@@ -152,7 +153,7 @@ public class HotelDatabaseManager {
                 ResultSet rs    = stmt.executeQuery(sql)){
 
                 while (rs.next()) {
-                    Hotel h = new Hotel(rs.getInt("nr"), rs.getInt("type"), rs.getInt("gym"), rs.getInt("spa"), 
+                    HotelMock h = new HotelMock(rs.getInt("nr"), rs.getInt("type"), rs.getInt("gym"), rs.getInt("spa"), 
                         rs.getInt("pool"), rs.getInt("hottub"), rs.getInt("wifi"), rs.getInt("conference"), 
                         rs.getInt("restaurant"), rs.getInt("bar"), rs.getInt("inclusive"), rs.getInt("breakfast"), 
                         rs.getInt("cancellation"), rs.getInt("roomservice"), rs.getInt("wheelchair"), 
