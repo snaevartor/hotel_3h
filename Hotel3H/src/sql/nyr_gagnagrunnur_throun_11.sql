@@ -1,4 +1,4 @@
-PRAGMA foreign_keys = ON;
+﻿PRAGMA foreign_keys = ON;
 
 BEGIN TRANSACTION;
 
@@ -42,8 +42,8 @@ CREATE TABLE HotelSearch (
 CREATE TABLE Room (
 	nr int,
 	hotelnr integer REFERENCES Hotel(nr),
-	price int,
 	size int,
+	price int,
 	bed1 int,
 	bed2 int,
 	baby boolean,
@@ -74,9 +74,10 @@ CREATE TABLE Booking(
 	nr integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(50),
 	dateFrom int,
-        dateTo int,
+	dateTo int,
 	cardnr int,
 	roomnr int,
+	cancel int,
 	hotelnr integer REFERENCES Hotel(nr)
 );
 CREATE TABLE Available(
@@ -389,56 +390,56 @@ INSERT INTO RoomSearch VALUES (303,10,0,4,0,0,0,1,1,1,0,3,302,NULL,1,0);
 /*---BOOKING---*/
 
 /*---hilton reykjavik nordica (4)---*/
-INSERT INTO Booking VALUES(NULL,"Jón Jónsson",240617,NULL,101,1);
-INSERT INTO Booking VALUES(NULL,"Jón Sveinsson",250617,NULL,101,1);
-INSERT INTO Booking VALUES(NULL,"Heimir Jónsson",260617,NULL,101,1);
-INSERT INTO Booking VALUES(NULL,"Haraldur Jónsson",270617,NULL,101,1);
-INSERT INTO Booking VALUES(NULL,"Sveinn Karlsson",200617,NULL,302,1);
-INSERT INTO Booking VALUES(NULL,"Karl Karlsson",210617,NULL,302,1);
+INSERT INTO Booking VALUES(NULL,"Jón Jónsson",240617,280617,NULL,101,0,1);
+INSERT INTO Booking VALUES(NULL,"Jón Sveinsson",250617,280617,NULL,102,0,1);
+INSERT INTO Booking VALUES(NULL,"Heimir Jónsson",260617,280617,NULL,103,0,1);
+INSERT INTO Booking VALUES(NULL,"Haraldur Jónsson",270617,280617,NULL,201,0,1);
+INSERT INTO Booking VALUES(NULL,"Sveinn Karlsson",200617,280617,NULL,301,0,1);
+INSERT INTO Booking VALUES(NULL,"Karl Karlsson",210617,280617,NULL,302,0,1);
 
 /*---idelandair hotel reykjavik natura (4)---*/
-INSERT INTO Booking VALUES(NULL,"Daði Grímsson",270917,NULL,102,2);
-INSERT INTO Booking VALUES(NULL,"John Smith",200717,NULL,203,2);
-INSERT INTO Booking VALUES(NULL,"Grant Wells",210318,NULL,304,2);
+INSERT INTO Booking VALUES(NULL,"Daði Grímsson",270917,280917,NULL,102,0,2);
+INSERT INTO Booking VALUES(NULL,"John Smith",200717,280717,NULL,203,0,2);
+INSERT INTO Booking VALUES(NULL,"Grant Wells",210318,280317,NULL,304,0,2);
 
 /*---hotel klettur (4)---*/
-INSERT INTO Booking VALUES(NULL,"Dan Rather",260817,NULL,101,3);
-INSERT INTO Booking VALUES(NULL,"Jim Piddock",300118,NULL,102,3);
-INSERT INTO Booking VALUES(NULL,"Greinir Jónsson",240518,NULL,103,3);
-INSERT INTO Booking VALUES(NULL,"Blake Edwards",260917,NULL,202,3);
+INSERT INTO Booking VALUES(NULL,"Dan Rather",260817,280817,NULL,101,0,3);
+INSERT INTO Booking VALUES(NULL,"Jim Piddock",300118,010218,NULL,102,0,3);
+INSERT INTO Booking VALUES(NULL,"Greinir Jónsson",240518,280518,NULL,103,0,3);
+INSERT INTO Booking VALUES(NULL,"Blake Edwards",260917,280917,NULL,202,0,3);
 
 /*---hotel vellir (3)---*/
-INSERT INTO Booking VALUES(NULL,"Nína Völudóttir",250318,NULL,204,4);
-INSERT INTO Booking VALUES(NULL,"Raymon Carver",260618,NULL,302,4);
-INSERT INTO Booking VALUES(NULL,"Jane Doe",270918,NULL,303,4);
+INSERT INTO Booking VALUES(NULL,"Nína Völudóttir",250318,280318,NULL,204,0,4);
+INSERT INTO Booking VALUES(NULL,"Raymon Carver",260618,280618,NULL,302,0,4);
+INSERT INTO Booking VALUES(NULL,"Jane Doe",270918,280917,NULL,303,0,4);
 
 /*---hotel odinsve (4)---*/
-INSERT INTO Booking VALUES(NULL,"Jónína Jóns",011217,NULL,302,5);
-INSERT INTO Booking VALUES(NULL,"Lee Mack",101118,NULL,203,5);
+INSERT INTO Booking VALUES(NULL,"Jónína Jóns",011217,031217,NULL,302,0,5);
+INSERT INTO Booking VALUES(NULL,"Lee Mack",101118,121118,NULL,203,0,5);
 
 /*---reykjavik residence apartment hotel (4)---*/
-INSERT INTO Booking VALUES(NULL,"Ken Curry",280419,NULL,101,6);
-INSERT INTO Booking VALUES(NULL,"Sadie Cobb",130217,NULL,104,6);
-INSERT INTO Booking VALUES(NULL,"Lloyd Butler",170717,NULL,203,6);
-INSERT INTO Booking VALUES(NULL,"Dolores Fletcher",191020,NULL,303,6);
+INSERT INTO Booking VALUES(NULL,"Ken Curry",280419,280619,NULL,101,0,6);
+INSERT INTO Booking VALUES(NULL,"Sadie Cobb",130217,280217,NULL,104,0,6);
+INSERT INTO Booking VALUES(NULL,"Lloyd Butler",170717,280717,NULL,203,0,6);
+INSERT INTO Booking VALUES(NULL,"Dolores Fletcher",191020,281020,NULL,303,0,6);
 
 /*---black pearl (5)---*/
-INSERT INTO Booking VALUES(NULL,"Joann Campbell",020518,NULL,304,7);
-INSERT INTO Booking VALUES(NULL,"Randall Hunter",230617,NULL,305,7);
+INSERT INTO Booking VALUES(NULL,"Joann Campbell",020518,280518,NULL,304,0,7);
+INSERT INTO Booking VALUES(NULL,"Randall Hunter",230617,280617,NULL,305,0,7);
 
 /*---diamond suites (5)---*/
-INSERT INTO Booking VALUES(NULL,"Gregory Wallace",220518,NULL,101,8);
-INSERT INTO Booking VALUES(NULL,"Sergio Gutierrez",250319,NULL,202,8);
-INSERT INTO Booking VALUES(NULL,"Greg Stone",291117,NULL,302,8);
-INSERT INTO Booking VALUES(NULL,"Glenda Lewis",071021,NULL,401,8);
+INSERT INTO Booking VALUES(NULL,"Gregory Wallace",220518,280518,NULL,101,0,8);
+INSERT INTO Booking VALUES(NULL,"Sergio Gutierrez",250319,280319,NULL,202,0,8);
+INSERT INTO Booking VALUES(NULL,"Greg Stone",291117,051217,NULL,302,0,8);
+INSERT INTO Booking VALUES(NULL,"Glenda Lewis",071021,281021,NULL,401,0,8);
 
 /*---hotel bifrost (2)---*/
-INSERT INTO Booking VALUES(NULL,"Annika Halstead",210218,NULL,101,9);
-INSERT INTO Booking VALUES(NULL,"Toshiko Nomura",060817,NULL,203,9);
-INSERT INTO Booking VALUES(NULL,"Benita Donahue",090919,NULL,301,9);
+INSERT INTO Booking VALUES(NULL,"Annika Halstead",210218,280218,NULL,101,0,9);
+INSERT INTO Booking VALUES(NULL,"Toshiko Nomura",060817,280817,NULL,203,0,9);
+INSERT INTO Booking VALUES(NULL,"Benita Donahue",090919,280919,NULL,301,0,9);
 
 /*---kerlingarfjoll mountain resort (1)---*/
-INSERT INTO Booking VALUES(NULL,"Matthew Zielinski",160621,NULL,201,10);
+INSERT INTO Booking VALUES(NULL,"Matthew Zielinski",160621,280621,NULL,201,0,10);
 
 /*---AVAILABLE---*/
 
