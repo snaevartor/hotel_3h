@@ -73,7 +73,8 @@ CREATE TABLE RoomSearch (
 CREATE TABLE Booking(
 	nr integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(50),
-	date int,
+	dateFrom int,
+        dateTo int,
 	cardnr int,
 	roomnr int,
 	hotelnr integer REFERENCES Hotel(nr)
