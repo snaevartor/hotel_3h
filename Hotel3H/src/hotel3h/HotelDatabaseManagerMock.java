@@ -28,7 +28,7 @@ public class HotelDatabaseManagerMock {
     private static Connection connect() {
         Connection conn = null;
         try {
-            String url = "jdbc:sqlite:src/sql/hoteltest11.db";
+            String url = "jdbc:sqlite:src/sql/hotel.db";
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
