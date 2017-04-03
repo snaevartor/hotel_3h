@@ -41,6 +41,7 @@ public class hotel_gui extends javax.swing.JFrame {
     ArrayList<Hotel> hotel;
     static Hotel h,htemp;
     int compare;
+    int areaCode;
     Date dateFrom, dateTo;
     int dayFrom, dayTo, monthFrom, monthTo, yearFrom, yearTo;
     int[] d1,d2;
@@ -80,7 +81,7 @@ public class hotel_gui extends javax.swing.JFrame {
         int cWheelchairaccess = boolToInt(checkWheelchairaccess);
         int cElevatoraccess = boolToInt(checkElevatoraccess);
         int cFlybus = boolToInt(checkFlybus);
-        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minPrice, maxPrice, minSize, maxSize, minBeds};
+        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minPrice, maxPrice, minSize, maxSize, minBeds,areaCode};
         return heild;
     }
 
@@ -109,10 +110,12 @@ public class hotel_gui extends javax.swing.JFrame {
     
     //Returns array of ints which would return every hotel
     public static int[] getNone(){
-        int[] i = new int[21];
-        for(int j=0;j<21;j++){
+        int[] i = new int[22];
+        for(int j=0;j<22;j++){
             i[j]=0;
         }
+        i[17] = 1000000;
+        i[19] = 1000000;
         return i;
     }
     
@@ -167,7 +170,7 @@ public class hotel_gui extends javax.swing.JFrame {
 
         jLabel2.setText("Region");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Höfuðborgarsvæði", "Suðurnes", "Vesturland", "Vestfirðir", "Norðurland vestra", "Norðurland eystra", "Suðurland" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any Region", "Capital Region", "Western Region", "Westfjords", "Northern Region", "Eastern Region", "Southern Region", "Westman Islands" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -456,7 +459,7 @@ public class hotel_gui extends javax.swing.JFrame {
                             .addComponent(jCheckBox10))
                         .addGap(68, 68, 68))
                     .addComponent(jLogin, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,6 +552,13 @@ public class hotel_gui extends javax.swing.JFrame {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+        int i = jComboBox2.getSelectedIndex();
+        if(i<1 || i>902){
+            areaCode = 0;
+        }
+        else{
+            areaCode = i;
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     //Function for the search button.
@@ -787,9 +797,21 @@ public class hotel_gui extends javax.swing.JFrame {
         logIn.setVisible(true);
         if(logIn.wtev==1){
             SearchManager sm = new SearchManager(getNone());
-            String[] s = sm.searchHotelName();
-            whatToEditView wtev = new whatToEditView(this,true,s,getHotel(),logIn.selected);
+            ArrayList<Hotel> s = sm.searchHotel();
+            whatToEditView wtev = new whatToEditView(this,true,s,logIn.selected);
             wtev.setVisible(true);
+            if(whatToEditView.openEdit==1){
+                EditOrAddHotelView editadd = new EditOrAddHotelView(this,true,whatToEditView.hotel);
+                editadd.setVisible(true);
+                if(EditOrAddHotelView.addRoom == 1){
+                    EditOrAddRoomView editaddroom = new EditOrAddRoomView(this,true,whatToEditView.room,s,EditOrAddHotelView.hotelnr);
+                    editaddroom.setVisible(true);
+                }
+            }
+            else if(whatToEditView.openRoomEdit==1){
+                EditOrAddRoomView editaddroom = new EditOrAddRoomView(this,true,whatToEditView.room,s,0);
+                editaddroom.setVisible(true);
+            }
         }
     }//GEN-LAST:event_jLoginActionPerformed
 

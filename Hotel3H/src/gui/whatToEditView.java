@@ -10,10 +10,15 @@ import javax.swing.DefaultComboBoxModel;
  * @author Soley
  */
 public class whatToEditView extends javax.swing.JDialog {
-    static String[] sHotels;
+    String[] sHotels;
     String[] sRooms;
     static ArrayList<Hotel> alHotel;
     static String user;
+    static Hotel hotel;
+    static Hotel[] hotelListi;
+    static int openEdit = 0;
+    static int openRoomEdit = 0;
+    static Room room;
 
     /**
      * Creates new form whatToEditView
@@ -22,12 +27,21 @@ public class whatToEditView extends javax.swing.JDialog {
      * @param s
      * @param h
      */
-    public whatToEditView(java.awt.Frame parent, boolean modal, String[] s, ArrayList<Hotel> h, String u) {
+    public whatToEditView(java.awt.Frame parent, boolean modal, ArrayList<Hotel> h, String u) {
         super(parent, modal);
         initComponents();
-        sHotels = s;
-        jComboBox1.setModel(new DefaultComboBoxModel(sHotels));
         alHotel = h;
+        int fjoldi = alHotel.size();
+        Hotel[] hList = new Hotel[fjoldi];
+        sHotels = new String[fjoldi];
+        int i = 0;
+        for(Hotel hl:alHotel){
+            hList[i] = hl;
+            sHotels[i] = hList[i].getName();
+            i++;
+        }
+
+        jComboBox1.setModel(new DefaultComboBoxModel(sHotels));
         user = u;
         jWelcome.setText("Welcome " + user);
     }
@@ -58,8 +72,18 @@ public class whatToEditView extends javax.swing.JDialog {
         jLabel1.setText("Please choose what you want to do");
 
         jNewHotel.setText("Add New Hotel");
+        jNewHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewHotelActionPerformed(evt);
+            }
+        });
 
         jNewRoom.setText("Add New Room");
+        jNewRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewRoomActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +93,11 @@ public class whatToEditView extends javax.swing.JDialog {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Choose hotel");
 
@@ -82,6 +111,11 @@ public class whatToEditView extends javax.swing.JDialog {
         });
 
         jEditRoom.setText("Edit Selected Room");
+        jEditRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditRoomActionPerformed(evt);
+            }
+        });
 
         jWelcome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jWelcome.setText("Welcome");
@@ -142,6 +176,8 @@ public class whatToEditView extends javax.swing.JDialog {
 
     private void jEditHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditHotelActionPerformed
         // TODO add your handling code here:
+        openEdit = 1;
+        this.setVisible(false);
     }//GEN-LAST:event_jEditHotelActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -157,8 +193,45 @@ public class whatToEditView extends javax.swing.JDialog {
             j++;
         }
         jComboBox2.setModel(new DefaultComboBoxModel(rooms));
+        hotel = alHotel.get(jComboBox1.getSelectedIndex());
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jNewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewHotelActionPerformed
+        // TODO add your handling code here:
+        hotel = null;
+        openEdit = 1;
+        this.setVisible(false);
+    }//GEN-LAST:event_jNewHotelActionPerformed
+
+    private void jEditRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditRoomActionPerformed
+        // TODO add your handling code here:
+        int i = jComboBox2.getSelectedIndex();
+        int j = 0;
+        Room[] rFylki = new Room[hotel.getRooms().size()];
+        for(Room r: hotel.getRooms()){
+            rFylki[j] = r;
+            j++;
+        }
+        if(i>=0){
+            room = rFylki[i];
+            openRoomEdit = 1;
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jEditRoomActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jNewRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewRoomActionPerformed
+        // TODO add your handling code here:
+        openRoomEdit = 1;
+        this.setVisible(false);
+    }//GEN-LAST:event_jNewRoomActionPerformed
+
+    public static int getOpenEdit(){
+        return openEdit;
+    }
     /**
      * @param args the command line arguments
      */
@@ -189,7 +262,7 @@ public class whatToEditView extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                whatToEditView dialog = new whatToEditView(new javax.swing.JFrame(), true, sHotels, alHotel, user);
+                whatToEditView dialog = new whatToEditView(new javax.swing.JFrame(), true, alHotel, user);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

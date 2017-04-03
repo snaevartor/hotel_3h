@@ -94,11 +94,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add New Hotel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jNewHotelActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jNewRoom">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add New Room"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jNewRoomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
@@ -129,6 +135,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -155,6 +164,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit Selected Room"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jEditRoomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jWelcome">
       <Properties>

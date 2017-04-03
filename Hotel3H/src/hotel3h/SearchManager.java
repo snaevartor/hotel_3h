@@ -9,7 +9,8 @@ import java.util.List;
  */
 public class SearchManager {
     //All of the conditions the search asks for
-    int type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,minPrice,maxPrice,minSize,maxSize,minBeds;
+    int type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,minPrice,maxPrice,minSize,maxSize,minBeds,areaCode;
+    int aCode;
     
     public SearchManager(int[] heild){
         //Set all values
@@ -34,6 +35,7 @@ public class SearchManager {
         minSize = heild[18];
         maxSize = heild[19];
         minBeds = heild[20];
+        areaCode = heild[21];
     }
     
     public ArrayList<Hotel> searchHotel(){
@@ -73,8 +75,18 @@ public class SearchManager {
         for(int j=0;j<temp;j++){
             h.remove(hFylki[j]);
         }
-        hFylki = new Hotel[h.size()];
-        temp = 0;
+        hFylki = searchCount(h);
+        for(Hotel htemp:hFylki){
+            h.remove(htemp);
+        }
+        hFylki = searchAreaCode(h);
+        for(Hotel htemp:hFylki){
+            h.remove(htemp);
+        }
+    }
+    private Hotel[] searchCount(ArrayList<Hotel> h){
+        int temp=0;
+        Hotel[] hFylki = new Hotel[h.size()];
         for(Hotel htemp: h){
             Room[] rFylki = new Room[htemp.getRooms().size()];
             int rTalning = 0;
@@ -92,9 +104,43 @@ public class SearchManager {
                 temp++;
             }
         }
-        for(int j=0;j<temp;j++){
-            h.remove(hFylki[j]);
+        return hFylki;
+    }
+    
+    private Hotel[] searchAreaCode(ArrayList<Hotel> h){
+        int temp = 0;
+        Hotel[] hFylki= new Hotel[h.size()];
+        for(Hotel htemp:h){
+            if(htemp.getAreacode()<300){
+                aCode = 1;
+            }
+            else if(htemp.getAreacode()<400){
+                aCode = 2;
+            }
+            else if(htemp.getAreacode()<500){
+                aCode = 3;
+            }
+            else if(htemp.getAreacode()<680){
+                aCode = 4;
+            }
+            else if(htemp.getAreacode()<780){
+                aCode = 5;
+            }
+            else if (htemp.getAreacode()<900){
+                aCode = 6;
+            }
+            else if (htemp.getAreacode()<903){
+                aCode = 7;
+            }
+            else{
+                aCode = 0;
+            }
+            if(areaCode != aCode && areaCode!=0){
+                hFylki[temp] = htemp;
+                temp++;
+            } 
         }
+        return hFylki;
     }
     
 }

@@ -65,7 +65,6 @@ public class BookingView extends javax.swing.JDialog {
         jAddress = new javax.swing.JTextField();
         jPhonenr = new javax.swing.JTextField();
         jEmail = new javax.swing.JTextField();
-        jClose = new javax.swing.JButton();
         jHotelName = new javax.swing.JLabel();
         jPeople = new javax.swing.JLabel();
         jPrice = new javax.swing.JLabel();
@@ -114,13 +113,6 @@ public class BookingView extends javax.swing.JDialog {
         jFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFullNameActionPerformed(evt);
-            }
-        });
-
-        jClose.setText("x");
-        jClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCloseActionPerformed(evt);
             }
         });
 
@@ -174,17 +166,13 @@ public class BookingView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jEmail))
                     .addComponent(jBook))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jClose))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addComponent(jClose))
+                .addContainerGap()
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -258,12 +246,6 @@ public class BookingView extends javax.swing.JDialog {
         int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete.", null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
         this.dispose();
     }//GEN-LAST:event_jBookActionPerformed
-
-    private void jCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCloseActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_jCloseActionPerformed
 
     private void jFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFullNameActionPerformed
         // TODO add your handling code here:
@@ -343,7 +325,6 @@ public class BookingView extends javax.swing.JDialog {
     private javax.swing.JButton jBook;
     private javax.swing.JTextField jCardnr;
     private javax.swing.JButton jChange;
-    private javax.swing.JButton jClose;
     private javax.swing.JLabel jDateFrom;
     private javax.swing.JLabel jDateTo;
     private javax.swing.JTextField jEmail;
