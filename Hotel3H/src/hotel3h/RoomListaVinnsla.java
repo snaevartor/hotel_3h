@@ -10,7 +10,7 @@ import hotel3h.Room;
  * @author Soley
  */
 public class RoomListaVinnsla extends DefaultListModel{
-    DefaultListModel listiRoom = new DefaultListModel();  //New DefaultListModel
+    DefaultListModel listiRoom = new DefaultListModel();//New DefaultListModel
     
     public RoomListaVinnsla(ArrayList<Room> herb){
         //Adds all Rooms from the ArrayList to the List

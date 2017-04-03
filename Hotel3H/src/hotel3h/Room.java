@@ -1,5 +1,7 @@
 package hotel3h;
 
+import java.util.ArrayList;
+
 /**
 * Class: Room
 * Usage: Class for creating Room objects.
@@ -177,6 +179,31 @@ public class Room {
 	public void setBaby(int baby) {
 		this.baby = baby;
 	}
+        
+        public int getIndex(ArrayList<Room> rList){
+            int i = 1;
+            for(Room rtemp:rList){
+                if(rtemp.getNr() == nr) return i;
+                i++;
+            }
+            return -1;
+        }
+        
+        public Room getNextLeft(ArrayList<Room> rList){
+            int i = getIndex(rList)-1;
+            if(i>0){
+                return rList.get(i);
+            }
+            return null;
+        }
+        
+        public Room getNextRight(ArrayList<Room> rList){
+            int i = getIndex(rList) + 1;
+            if(i<rList.size()){
+                return rList.get(i);
+            }
+            return null;
+        }
         
         public int[] getAllInt(int minPrice, int maxPrice, int minSize, int maxSize){
             int[] i = {hnr, pets, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac, 

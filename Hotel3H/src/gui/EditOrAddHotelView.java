@@ -634,6 +634,7 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         addRoom = 1;
         hotelnr = nr;
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jAddRoomsActionPerformed
 
     private void jFlybusNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFlybusNoActionPerformed

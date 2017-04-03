@@ -723,6 +723,8 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
     private void jConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmActionPerformed
         // TODO add your handling code here:
         System.out.print("Senda inn upplýsingar");
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jConfirmActionPerformed
 
     private void jHotelNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHotelNrActionPerformed

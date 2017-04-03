@@ -921,7 +921,7 @@ public class hotel_gui extends javax.swing.JFrame {
             int i = JOptionPane.showOptionDialog(null, new JLabel("You haven't chosen any dates for your trip.", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
         }
         else{
-            BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn(),this);
+            BookingView bookingDialog = new BookingView(this,true,hotelView.getValinn(),this,hotelView.other);
             bookingDialog.setVisible(true);
         }
     }

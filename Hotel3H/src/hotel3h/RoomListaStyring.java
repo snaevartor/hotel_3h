@@ -3,6 +3,7 @@ package hotel3h;
 import gui.hotelView;
 import java.util.ArrayList;
 import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 /**
@@ -28,6 +29,5 @@ public class RoomListaStyring  implements ListSelectionListener{
         int i = lSelect.getSelectedIndex();
         herb = hotelGluggi.getRooms().get(i);
         hotelGluggi.setValinn(herb);
-        
     }
 }
