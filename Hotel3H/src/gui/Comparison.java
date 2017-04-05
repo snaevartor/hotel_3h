@@ -2,6 +2,7 @@ package gui;
 
 import hotel3h.Hotel;
 import hotel3h.Room;
+import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,8 +34,11 @@ public class Comparison extends javax.swing.JDialog {
         //Sets all labels.
         tabletest();
         jTable.setModel(new DefaultTableModel(data,columnNames));
-        jTable.doLayout();
         jTable.setEnabled(false);
+        jTable.setFont(new Font("Tahoma",Font.PLAIN,14));
+        jTable.getTableHeader().setFont(new Font("Tahoma",Font.BOLD,16));
+        jTable.setRowHeight(20);
+        jTable.sizeColumnsToFit(0);
     }
     //Getters which change 1 and 0 to "Yes"s and "No"s
     private String getGym(Hotel h){
@@ -148,21 +152,20 @@ public class Comparison extends javax.swing.JDialog {
     
     private void tabletest(){
         data = new Object[][]{
-            {"","Book now","Book now"},
             {"Stars:", hotel1.getStars(), hotel2.getStars()},
-            {"Cheapest", hotel1.getMinPrice(),hotel2.getMinPrice()},
-            {"Most expensive:", hotel1.getMaxPrice(), hotel2.getMaxPrice()},
+            {"Cheapest", hotel1.getMinPrice() + " USD",hotel2.getMinPrice() + " USD"},
+            {"Most expensive:", hotel1.getMaxPrice() + " USD", hotel2.getMaxPrice() + " USD"},
             {"Address:", hotel1.getAddress(), hotel2.getAddress()},
-            {"Free wifi:", hotel1.getWifi(), hotel2.getWifi()},
-            {"All inclusive", hotel1.getInclusive(), hotel2.getInclusive()},
-            {"Breakfast", hotel1.getBreakfast(), hotel2.getBreakfast()},
-            {"Gym", hotel1.getGym(), hotel2.getGym()},
-            {"Spa", hotel1.getSpa(), hotel2.getSpa()},
-            {"Restaurant", hotel1.getRestaurant(), hotel2.getRestaurant()},
-            {"Bar", hotel1.getBar(), hotel2.getBar()},
-            {"Elevator access:", hotel1.getElevator(), hotel2.getElevator()},
-            {"Wheelchair access:", hotel1.getWheelchair(), hotel2.getWheelchair()},
-            {"Free cancellation:", hotel1.getCancellation(), hotel2.getCancellation()}
+            {"Free wifi:", getWifi(hotel1), getWifi(hotel2)},
+            {"All inclusive", getInclusive(hotel1), getInclusive(hotel2)},
+            {"Breakfast", getBreakfast(hotel1), getBreakfast(hotel2)},
+            {"Gym", getGym(hotel1), getGym(hotel2)},
+            {"Spa", getSpa(hotel1), getSpa(hotel2)},
+            {"Restaurant", getRestaurant(hotel1), getRestaurant(hotel2)},
+            {"Bar", getBar(hotel1), getBar(hotel2)},
+            {"Elevator access:", getElevator(hotel1), getElevator(hotel2)},
+            {"Wheelchair access:", getWheelchair(hotel1), getWheelchair(hotel2)},
+            {"Free cancellation:", getCancellation(hotel1), getCancellation(hotel2)}
         };
         columnNames = new String[]{"Name:", hotel1.getName(), hotel2.getName()};
     }
@@ -219,19 +222,18 @@ public class Comparison extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(264, 264, 264)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBookButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBookButton2))
-                            .addComponent(jLabel1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jBookButton1)
+                        .addGap(187, 187, 187)
+                        .addComponent(jBookButton2))
+                    .addComponent(jLabel1))
+                .addContainerGap(154, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
