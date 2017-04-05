@@ -259,9 +259,9 @@ public class BookingView extends javax.swing.JDialog {
             phonenr = Integer.valueOf(jPhonenr.getText());
             System.out.println(dateFrom[0] + " " + dateFrom[1] + " " + dateFrom[2]);
             if(bm.isAvailable(r.getHnr(), r.getNr(), getDateFrom(), getDateTo())){
-              bookingNr =  bm.book(getName(), bm.getSqlDate(dateFrom), bm.getSqlDate(dateTo), getCardnr(), r.getNr(), r.getHnr());
-             String[] tmp = {"OK"};
-int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete. Your booking number is: " + bookingNr, null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+                bookingNr =  bm.book(getName(), bm.getSqlDate(dateFrom), bm.getSqlDate(dateTo), getCardnr(), r.getNr(), r.getHnr());
+                String[] tmp = {"OK"};
+                int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete. Your booking number is: " + bookingNr, null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             }
             else{
                  String[] tmp = {"OK"};

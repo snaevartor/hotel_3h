@@ -797,6 +797,7 @@ public class hotel_gui extends javax.swing.JFrame {
                 Comparison cGluggi = new Comparison(this,true,getChosenHotel(),getSecondHotel());
                 cGluggi.setVisible(true);
                 compare = 0;
+                jCompare.setText("");
                 if(cGluggi.show > 0){
                     setHotel(cGluggi.getChosen());
                     openHotel();
