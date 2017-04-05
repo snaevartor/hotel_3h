@@ -1,6 +1,10 @@
 package gui;
 
+import hotel3h.BookingManager;
 import hotel3h.Room;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,7 +26,12 @@ public class BookingView extends javax.swing.JDialog {
     private int[] dateFrom;
     private int[] dateTo;
     private hotel_gui gui;
+
+    private int bookingNr;
+    private BookingManager bm = new BookingManager();
+
     static Room other;
+
     
     public BookingView(java.awt.Frame parent, boolean modal, Room rm, hotel_gui gui, Room other) {
         super(parent, modal);
@@ -243,19 +252,32 @@ public class BookingView extends javax.swing.JDialog {
 
     //Reads from the textfields
     private void jBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBookActionPerformed
-        // TODO add your handling code here:
-        name = jFullName.getText();
-        address = jAddress.getText();
-        email = jEmail.getText();
-        cardnr = Integer.valueOf(jCardnr.getText());
-        phonenr = Integer.valueOf(jPhonenr.getText());
-        
+        try {
+            // TODO add your handling code here:
+            name = jFullName.getText();
+            address = jAddress.getText();
+            email = jEmail.getText();
+            cardnr = Integer.valueOf(jCardnr.getText());
+            phonenr = Integer.valueOf(jPhonenr.getText());
+            System.out.println(dateFrom[0] + " " + dateFrom[1] + " " + dateFrom[2]);
+            if(bm.isAvailable(r.getHnr(), r.getNr(), getDateFrom(), getDateTo())){
+              bookingNr =  bm.book(getName(), bm.getSqlDate(dateFrom), bm.getSqlDate(dateTo), getCardnr(), r.getNr(), r.getHnr());
+             String[] tmp = {"OK"};
+int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete. Your booking number is: " + bookingNr, null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+            }
+            else{
+                 String[] tmp = {"OK"};
+              int k = JOptionPane.showOptionDialog(null, new JLabel("That room is not available for the dates selected", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+            }
+            
 //        setGuestHlutur(name, address, 1, cardnr, phonenr, email);
-        
-        //A JOptionPane shows that the booking is complete.
-        String[] tmp = {"OK"};
-        int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete.", null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
-        this.dispose();
+
+//A JOptionPane shows that the booking is complete.
+
+this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBookActionPerformed
 
     private void jFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFullNameActionPerformed
