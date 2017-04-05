@@ -26,7 +26,7 @@ public class BookingView extends javax.swing.JDialog {
     private int[] dateFrom;
     private int[] dateTo;
     private hotel_gui gui;
-
+    static Room other;
     private int bookingNr;
     private BookingManager bm = new BookingManager();
 
@@ -38,6 +38,7 @@ public class BookingView extends javax.swing.JDialog {
         dateFrom = gui.getDateFrom();
         dateTo = gui.getDateTo();
         r = rm;
+        other = gui.other;
         //Set texts for labels
         jHotelName.setText(hotel_gui.getChosenHotel().getName());
         jDateFrom.setText(dateFrom[0] + "/" + dateFrom[1] + "/" + dateFrom[2]);
@@ -338,7 +339,7 @@ this.dispose();
             public void run() {
                 Room r = null;
                 hotel_gui gui = null;
-                BookingView dialog = new BookingView(new javax.swing.JFrame(), true, r, gui,other);
+                BookingView dialog = new BookingView(new javax.swing.JFrame(), true, r, gui);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

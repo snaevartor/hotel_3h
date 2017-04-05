@@ -24,20 +24,24 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="662" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jBookButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jBookButton2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,10 +51,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBookButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBookButton2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="93" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,329 +71,40 @@
         <Property name="text" type="java.lang.String" value="Hotel comparison"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Component class="javax.swing.JButton" name="jBookButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show more"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBookButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBookButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show more"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBookButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jStars" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheapest" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jExpensive" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jWifi" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jInclusive" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBreakfast" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jGym" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSpa" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRestaurant" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBar" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jElevator" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jWheelchair" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCancellation" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="185" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jHotelName" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBookButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jBookButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jHotelName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jStars" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheapest" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jExpensive" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jAddress" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jWifi" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jInclusive" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBreakfast" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jGym" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSpa" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jRestaurant" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jElevator" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jWheelchair" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCancellation" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jGym">
+        <Component class="javax.swing.JTable" name="jTable">
           <Properties>
-            <Property name="text" type="java.lang.String" value="gym"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jHotelName">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="HotelName"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jSpa">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="spa"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jStars">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Stars"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jRestaurant">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="restaurant"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jCheapest">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="cheapest"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jBar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="bar"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jExpensive">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="most expensive"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jElevator">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="elevator access"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jAddress">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Address"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jWheelchair">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="wheelchair access"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jCancellation">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="free cancellation"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jWifi">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="free wifi"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jInclusive">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="allinclusive"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jBreakfast">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="breakfast"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBookButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Show more"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBookButton1ActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jStars1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheapest1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jExpensive1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jAddress1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jWifi1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jInclusive1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBreakfast1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jGym1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSpa1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRestaurant1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBar1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jElevator1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jWheelchair1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCancellation1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="176" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jHotelName1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBookButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jBookButton2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jHotelName1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jStars1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheapest1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jExpensive1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jAddress1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jWifi1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jInclusive1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBreakfast1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jGym1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSpa1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jRestaurant1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jElevator1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jWheelchair1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCancellation1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jGym1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="gym"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jHotelName1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="HotelName"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jSpa1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="spa"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jStars1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Stars"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jRestaurant1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="restaurant"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jCheapest1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="cheapest"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jBar1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="bar"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jExpensive1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="most expensive"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jElevator1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="elevator access"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jAddress1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Address"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jWheelchair1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="wheelchair access"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jCancellation1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="free cancellation"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jWifi1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="free wifi"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jInclusive1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="allinclusive"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jBreakfast1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="breakfast"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBookButton2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Show more"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBookButton2ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
