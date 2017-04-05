@@ -17,11 +17,8 @@ public class ResetDatabase {
         
     private static void resetDatabase() throws IOException {
     
-//    String init_file = "src\\sql\\init\\FakeInit.db";
-//    String file_to_replace = "src\\sql\\FakeTarget.db";
-
-    File init_file = new File("src\\sql\\init\\Hotel.db");
-    File file_to_replace = new File("src\\sql\\Hotel.db");
+    File init_file = new File("src\\sql\\init\\hotel_init.db");
+    File file_to_replace = new File("src\\sql\\hotel.db");
 
     Files.copy(init_file.toPath(), file_to_replace.toPath(), StandardCopyOption.REPLACE_EXISTING);
     
