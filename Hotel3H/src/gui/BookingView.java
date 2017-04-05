@@ -44,7 +44,7 @@ public class BookingView extends javax.swing.JDialog {
             int ipeople = r.getCount() + other.getCount();
             int iprice = r.getPrice() + other.getPrice();
             jPeople.setText(r.getCount() + " + " + other.getCount() + " = " + ipeople);
-            jPrice.setText(r.getPrice() + " + " + other.getPrice() + " = " + iprice);
+            jPrice.setText(r.getPrice() + " + " + other.getPrice() + " = " + iprice + " USD per night");
 
         }
     }

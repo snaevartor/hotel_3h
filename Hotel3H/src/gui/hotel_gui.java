@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import hotel3h.HotelListaVinnsla;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -54,6 +55,26 @@ public class hotel_gui extends javax.swing.JFrame {
         initComponents();        
         compare = 0;
         jCompareButton.setEnabled(false); //Cannot compare if nothing has been searched for.
+        dateFrom = jDateFrom.getLinkDay();
+        jDateFrom.setDate(dateFrom);
+        d1 = settingDates(dateFrom);
+        dayFrom = d1[0];
+        monthFrom = d1[1];
+        yearFrom = d1[2];
+        dateTo = addDays(dateFrom,1);
+        jDateTo.setDate(dateTo);
+        d2 = settingDates(dateTo);
+        dayTo = d2[0];
+        monthTo = d2[1];
+        yearTo = d2[2];
+    }
+    
+    //Gets a date and an int and adds the number of days to the date, returns the date with the added days
+    public static Date addDays(Date date, int days){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, days); //minus number would decrement the days
+        return c.getTime();
     }
     
     //Changes boolean to int
@@ -165,6 +186,7 @@ public class hotel_gui extends javax.swing.JFrame {
         jDateFrom = new org.jdesktop.swingx.JXDatePicker();
         jDateTo = new org.jdesktop.swingx.JXDatePicker();
         jSortByPrice = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -397,6 +419,13 @@ public class hotel_gui extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Cancel booking");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -458,7 +487,10 @@ public class hotel_gui extends javax.swing.JFrame {
                             .addComponent(jCheckBox9)
                             .addComponent(jCheckBox10))
                         .addGap(68, 68, 68))
-                    .addComponent(jLogin, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLogin)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -468,7 +500,8 @@ public class hotel_gui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jCompareButton)
-                    .addComponent(jLogin))
+                    .addComponent(jLogin)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -864,7 +897,10 @@ public class hotel_gui extends javax.swing.JFrame {
     private void jDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateFromActionPerformed
         // TODO add your handling code here:
         dateFrom = jDateFrom.getDate();
-        jDateTo.setDate(dateFrom);
+        if(dateTo.before(dateFrom)){
+            dateTo = addDays(dateFrom,1);
+            jDateTo.setDate(dateTo);
+        }
         d1 = settingDates(dateFrom);
         dayFrom = d1[0];
         monthFrom = d1[1];
@@ -905,6 +941,12 @@ public class hotel_gui extends javax.swing.JFrame {
             jList.addListSelectionListener(new HotelListaStyring(this,hotel));
         }
     }//GEN-LAST:event_jSortByPriceActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        removeBookingView remove = new removeBookingView(this,true);
+        remove.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     //Opens the dialog which looks at a Hotel
     private void openHotel(){
@@ -987,6 +1029,7 @@ public class hotel_gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Search;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
