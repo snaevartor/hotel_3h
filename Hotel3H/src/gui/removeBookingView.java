@@ -22,6 +22,8 @@ public class removeBookingView extends javax.swing.JDialog {
     int price;
     /**
      * Creates new form removeBookingView
+     * @param parent
+     * @param modal
      */
     public removeBookingView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

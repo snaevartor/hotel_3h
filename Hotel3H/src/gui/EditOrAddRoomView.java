@@ -26,6 +26,7 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
      * @param modal
      * @param r1
      * @param h1
+     * @param h
      */
     public EditOrAddRoomView(java.awt.Frame parent, boolean modal, Room r1, ArrayList<Hotel> h1, int h) {
         super(parent, modal);

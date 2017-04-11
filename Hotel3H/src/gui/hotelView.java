@@ -1,17 +1,11 @@
 package gui;
 
 import hotel3h.Hotel;
-import hotel3h.HotelListaStyring;
-import hotel3h.HotelListaVinnsla;
 import hotel3h.Room;
 import hotel3h.RoomListaStyring;
 import hotel3h.RoomListaVinnsla;
 import java.util.ArrayList;
-import java.util.Arrays;
-import javax.swing.ImageIcon;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 /**
  *
  * @author Soley
@@ -22,7 +16,7 @@ public class hotelView extends javax.swing.JDialog {
     int book;
     static Room valinn = null;
     static Room other;
-    int selected = 0;
+    static int selected = 0;
     
     /**
      * Creates new form NewJDialog
@@ -93,6 +87,10 @@ public class hotelView extends javax.swing.JDialog {
     
     public static String getHotelName(){
         return hotel.getName();
+    }
+    
+    public static int getSelected(){
+        return selected;
     }
     
     //getters which change 1 and 0 to "Yes" and "No"

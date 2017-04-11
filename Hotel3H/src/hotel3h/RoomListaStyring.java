@@ -1,6 +1,7 @@
 package hotel3h;
 
 import gui.hotelView;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
@@ -15,12 +16,13 @@ public class RoomListaStyring  implements ListSelectionListener{
     private hotelView hotelGluggi;
     ArrayList<Room> rooms; //ArrayList of Rooms
     Room herb; //Selected Room
+    int last = 0;
     
     public RoomListaStyring(hotelView gluggi, ArrayList<Room> room){
         hotelGluggi = gluggi;
         rooms = room;
     }
-    
+
     //Finds the selected Room.
     @Override
     public void valueChanged(ListSelectionEvent e) {
@@ -29,5 +31,8 @@ public class RoomListaStyring  implements ListSelectionListener{
         int i = lSelect.getSelectedIndex();
         herb = hotelGluggi.getRooms().get(i);
         hotelGluggi.setValinn(herb);
+        if(hotelGluggi.getSelected() == 0){
+            last = i;
+        }
     }
 }

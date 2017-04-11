@@ -24,8 +24,8 @@ public class whatToEditView extends javax.swing.JDialog {
      * Creates new form whatToEditView
      * @param parent
      * @param modal
-     * @param s
      * @param h
+     * @param u
      */
     public whatToEditView(java.awt.Frame parent, boolean modal, ArrayList<Hotel> h, String u) {
         super(parent, modal);

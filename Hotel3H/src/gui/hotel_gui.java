@@ -6,7 +6,6 @@ import hotel3h.HotelListaStyring;
 import java.util.ArrayList;
 import hotel3h.HotelListaVinnsla;
 import hotel3h.Room;
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -965,7 +964,7 @@ public class hotel_gui extends javax.swing.JFrame {
         if(hotelDialog.book == 1){
             other = hotelView.other;
             openBooking();
-            hotelDialog.other = null;
+            hotelView.other = null;
         }
     }
     //Opens the dialog for booking.

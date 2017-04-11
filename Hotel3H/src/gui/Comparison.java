@@ -1,9 +1,7 @@
 package gui;
 
 import hotel3h.Hotel;
-import hotel3h.Room;
 import java.awt.Font;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**

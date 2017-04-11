@@ -38,7 +38,7 @@ public class BookingView extends javax.swing.JDialog {
         dateFrom = gui.getDateFrom();
         dateTo = gui.getDateTo();
         r = rm;
-        other = gui.other;
+        other = hotel_gui.other;
         //Set texts for labels
         jHotelName.setText(hotel_gui.getChosenHotel().getName());
         jDateFrom.setText(dateFrom[0] + "/" + dateFrom[1] + "/" + dateFrom[2]);
