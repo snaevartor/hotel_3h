@@ -49,15 +49,17 @@ public class BookingManager {
         return nr;
     }
     
-    private String check(int i){
-        if (i < 10) return "0" + i;
-        else return Integer.toString(i);
-    }
     public int getSqlDate(int[] date){
         String num = "" + check(date[0]) + check(date[1]) + date[2];
         return Integer.parseInt(num);
     }
-    public int getIntDate(int[] date){
+    
+    private String check(int i){
+        if (i < 10) return "0" + i;
+        else return Integer.toString(i);
+    }
+    
+    private int getIntDate(int[] date){
         String num = date[2] + check(date[1]) + check(date[0]);
         return Integer.parseInt(num);
     }
