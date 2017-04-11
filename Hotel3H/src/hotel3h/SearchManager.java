@@ -11,6 +11,8 @@ public class SearchManager {
     //All of the conditions the search asks for
     int type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,minPrice,maxPrice,minSize,maxSize,minBeds,areaCode;
     int aCode;
+    int[] d1,d2;
+    BookingManager bm = new BookingManager();
     
     public SearchManager(int[] heild){
         //Set all values
@@ -36,6 +38,8 @@ public class SearchManager {
         maxSize = heild[19];
         minBeds = heild[20];
         areaCode = heild[21];
+        d1 = new int[]{heild[22],heild[23],heild[24]};
+        d2 = new int[]{heild[25],heild[26],heild[27]};
     }
     
     public ArrayList<Hotel> searchHotel(){
@@ -83,6 +87,11 @@ public class SearchManager {
         for(Hotel htemp:hFylki){
             h.remove(htemp);
         }
+        hFylki = searchAvailable(h);
+        for(Hotel htemp:hFylki){
+            h.remove(htemp);
+        }
+        
     }
     private Hotel[] searchCount(ArrayList<Hotel> h){
         int temp=0;
@@ -143,4 +152,28 @@ public class SearchManager {
         return hFylki;
     }
     
+    public Hotel[] searchAvailable(ArrayList<Hotel> h){
+        for(Hotel htemp: h){
+            Room[] rFylki = new Room[htemp.getRooms().size()];
+            int i = 0;
+            for(Room rtemp: htemp.getRooms()){
+                if(!bm.isAvailable(htemp.getNr(), rtemp.getNr(), d1, d2)){
+                    rFylki[i] = rtemp;
+                    i++;
+                }
+            }
+            for(Room r: rFylki){
+                htemp.getRooms().remove(r);
+            }
+        }
+        Hotel[] hFylki = new Hotel[h.size()];
+        int j = 0;
+        for(Hotel htemp: h){
+            if(htemp.getRooms() == null){
+                hFylki[j] = htemp;
+                j++;
+            }
+        }
+        return hFylki;
+    }
 }

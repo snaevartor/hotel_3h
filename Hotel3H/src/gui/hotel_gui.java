@@ -103,7 +103,7 @@ public class hotel_gui extends javax.swing.JFrame {
         int cWheelchairaccess = boolToInt(checkWheelchairaccess);
         int cElevatoraccess = boolToInt(checkElevatoraccess);
         int cFlybus = boolToInt(checkFlybus);
-        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minPrice, maxPrice, minSize, maxSize, minBeds,areaCode};
+        int[] heild = {checkType, cGym, cSpa, cPool, cHotTub, cWifi, cConferenceRoom, cRestaurant, cBar, cAllin, cBreakfast, cCancellation, cRoomservice, cWheelchairaccess, cElevatoraccess, cFlybus, minPrice, maxPrice, minSize, maxSize, minBeds,areaCode,d1[0],d1[1],d1[2],d2[0],d2[1],d2[2]};
         return heild;
     }
 
@@ -133,7 +133,7 @@ public class hotel_gui extends javax.swing.JFrame {
     //Returns array of ints which would return every hotel
     public static int[] getNone(){
         int[] i = new int[22];
-        for(int j=0;j<22;j++){
+        for(int j=0;j<28;j++){
             i[j]=0;
         }
         i[17] = 1000000;
