@@ -965,6 +965,7 @@ public class hotel_gui extends javax.swing.JFrame {
         if(hotelDialog.book == 1){
             other = hotelView.other;
             openBooking();
+            hotelDialog.other = null;
         }
     }
     //Opens the dialog for booking.

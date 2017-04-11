@@ -386,7 +386,7 @@ public class hotelView extends javax.swing.JDialog {
     private void jBookNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBookNowActionPerformed
         // TODO add your handling code here:
         if (valinn != null){
-            selected = 1;
+            selected = 1;            
             if(other==null){
                 String[] tmp = {"Yes","No"};
                 int j = JOptionPane.showOptionDialog(null, "Do you want to book adjacent rooms?", "Booking multiple rooms?", JOptionPane.YES_NO_OPTION, JOptionPane.YES_NO_OPTION, null, tmp, tmp);
@@ -394,40 +394,13 @@ public class hotelView extends javax.swing.JDialog {
                     book = 1;
                     this.setVisible(false);
                 }
-                else{
+                else{                    
                     //jListi.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
                 }
             }
             else{
                 book = 1;
                 this.setVisible(false);
-
-    /*                
-                    Room left = valinn.getNextLeft(rListi);
-                    Room right = valinn.getNextRight(rListi);
-                    Room leftleft = left.getNextLeft(rListi);
-                    Room rightright = right.getNextRight(rListi);
-                    Room[] rlst = {leftleft,left,right,rightright};
-                    Room[] list = new Room[4];
-                    String[] rname = new String[4];
-                    int i = 0;
-                    for(Room rtemp:rlst){
-                        if(rtemp!=null){
-                            list[i] = rtemp;
-                            rname[i] = "" + rtemp.getNr();
-                        }
-                        i++;
-                    }
-                    JList jListi = new JList(rname);
-                    String s = "Your room is number " + valinn.getNr() + ". Please select which rooms you want to add to your order.";
-                    JOptionPane.showMessageDialog(null, jListi, s, JOptionPane.PLAIN_MESSAGE);
-                    int[] valin = jListi.getSelectedIndices();
-                    int t = 0;
-                    for(int v:valin){
-                        otherRooms[t] = list[v];
-                        t++;
-                    }
-    */
             }
         }
         else {

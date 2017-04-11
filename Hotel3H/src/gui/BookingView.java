@@ -264,8 +264,8 @@ public class BookingView extends javax.swing.JDialog {
                 int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete. Your booking number is: " + bookingNr, null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             }
             else{
-                 String[] tmp = {"OK"};
-              int k = JOptionPane.showOptionDialog(null, new JLabel("That room is not available for the dates selected", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
+                String[] tmp = {"OK"};
+                int k = JOptionPane.showOptionDialog(null, new JLabel("That room is not available for the dates selected", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             }
             
 //        setGuestHlutur(name, address, 1, cardnr, phonenr, email);
