@@ -169,7 +169,7 @@ public class SearchManager {
         Hotel[] hFylki = new Hotel[h.size()];
         int j = 0;
         for(Hotel htemp: h){
-            if(htemp.getRooms() == null){
+            if(htemp.getRooms().isEmpty()){
                 hFylki[j] = htemp;
                 j++;
             }
