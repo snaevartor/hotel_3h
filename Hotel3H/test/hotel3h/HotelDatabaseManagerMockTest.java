@@ -37,6 +37,9 @@ public class HotelDatabaseManagerMockTest {
     /**
      * Test of 1 searchRooms method, of class HotelDatabaseManager.
      * Should return the rooms from the first hotel in the database.
+     * (Other hotels may have 12 rooms listed as well, but in this case,
+     * the database is small enough that it is unlikely that this test will
+     * return a false positive.)
      */
     @Test
     public void testSearchRooms() {
@@ -133,6 +136,9 @@ public class HotelDatabaseManagerMockTest {
     /**
      * Test 1 of searchHotels method, of class HotelDatabaseManager.
      * Should return an array list containing all hotels in database.
+     * (This test will fail if there are more than 10 hotels in our
+     * database, but that can be fixed by having this test or the before
+     * function get the total number of hotels and store it in an int first.)
      */
     @Test
     public void testSearchHotels() {
@@ -163,6 +169,9 @@ public class HotelDatabaseManagerMockTest {
     /**
      * Test 2 of searchHotels method, of class HotelDatabaseManager.
      * Should return no hotels (empty array list) as no hotels currently meet specified conditions.
+     * (This test might fail if a hotel is added that does meet all of these requirements.
+     * However, the requirements could simply be set to something that falls outside
+     * of the database's purview altogether.)
      */
     @Test
     public void testSearchHotels2() {
@@ -205,6 +214,8 @@ public class HotelDatabaseManagerMockTest {
 
     /**
      * Test 2 of getHotelStringInfo method, of class HotelDatabaseManager.
+     * Should return the string format information about the fifth hotel in the database.
+     * (Perhaps unnecessary, as this falls within the same equivalence class as the first hotel.)
      */
     @Test
     public void testGetHotelStringInfo2() {
@@ -245,6 +256,7 @@ public class HotelDatabaseManagerMockTest {
     /**
      * Test 2 of getHotelIntInfo method, of class HotelDatabaseManager.
      * Should return the integer format information about the last hotel in the database.
+     * (Redundant due to falling within the same equivalence class as the prior test?)
      */
     @Test
     public void testGetHotelIntInfo2() {
