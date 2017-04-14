@@ -53,6 +53,7 @@ public class BookingManager {
         String num = "" + check(date[0]) + check(date[1]) + date[2];
         return Integer.parseInt(num);
     }
+
     
     private String check(int i){
         if (i < 10) return "0" + i;
@@ -60,6 +61,7 @@ public class BookingManager {
     }
     
     private int getIntDate(int[] date){
+
         String num = date[2] + check(date[1]) + check(date[0]);
         return Integer.parseInt(num);
     }
@@ -97,15 +99,89 @@ public class BookingManager {
         }
         return true;
     }
+
+	public String getBookingStringInfo(int nr){
+            String sql1 = "SELECT * FROM Booking WHERE nr = " + nr;
+            String name = "";
+            try (Connection conn = connect();
+            Statement stmt  = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql1)){
+		 
+           name = rs.getString("name");
+          
+            
+        } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        }
+            return name;
+        }
+        
+        
+        public Booking getBooking(int nr){
+            String sql1 = "SELECT * FROM Booking WHERE nr = " + nr;
+            HotelDatabaseManager hdbm = new HotelDatabaseManager();
+            int dateFrom = 0, dateTo = 0, cardnr = 0, phonenr = 0, roomnr = 0, hotelnr = 0, cancel = 0;
+            Hotel h;
+            Room r;
+            String name = "", address= "", email = "", hotelName, hotelAddress, hotelWebsite;
+            try (Connection conn = connect();
+            Statement stmt  = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql1)){
+                
+           name = rs.getString("name");
+           address = rs.getString("address");
+           email = rs.getString("email");
+           dateFrom = rs.getInt("dateFrom");
+           dateTo = rs.getInt("dateTo");
+           cardnr = rs.getInt("cardnr");
+           phonenr = rs.getInt("phonenr");
+           roomnr = rs.getInt("roomnr");
+           cancel = rs.getInt("cancel");
+           hotelnr = rs.getInt("hotelnr");
+          
+            
+        } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        }
+         r = hdbm.getRoomObject(hotelnr, roomnr);
+         h = hdbm.getHotelObject(hotelnr);
+     
+            Booking b = new Booking(name, address, email, phonenr, cardnr, h, r, dateFrom, dateTo);
+           return b;
+        }
+        
+        public String[] getHotelStringInfo(int nr){
+             String sql1 = "SELECT * FROM Hotel WHERE nr = " + nr;
+             String[] info = new String[3];
+              try (Connection conn = connect();
+                    Statement stmt  = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql1)){
+                  info[0] = rs.getString("name");
+                  info[1] = rs.getString("address");
+                  info[2] = rs.getString("website");
+              } catch (SQLException e) {
+                 System.out.println(e.getMessage());
+        }
+              
+              return info;
+        }
+		 
+
 	
-    public void cancel(int bookingnr/* Í því tilfelli að við erum ekki með bookingnr*//*String name, int date, int cardnr, int roomnr, int hotelnr*/){
+    public void cancel(int bookingnr){
         String sql1 = "DELETE FROM Booking WHERE nr = " + bookingnr + ";";
         try (Connection conn = connect();
         Statement stmt  = conn.createStatement();){	 
-            stmt.executeQuery(sql1);
-            // stmt.executeQuery(sql2);		
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }	
+
+            stmt.executeUpdate(sql1);
+			
+			
+} catch (SQLException e) {
+System.out.println(e.getMessage());
 }
+
+}
+	
+}
+
+    
