@@ -113,6 +113,20 @@ public class HotelDatabaseManager {
             int wheelChair,
             int elevator,
             int flyBus){
+         ArrayList<Hotel> hotels = new ArrayList<>();
+                String sql;
+                sql = "SELECT * FROM HotelSearch, Hotel WHERE HotelSearch.nr = Hotel.nr AND "
+                + "gym >= " + gym + " AND spa >= " + spa +
+                " AND pool >= " + pool + " AND hottub >= " + hottub +
+                " AND wifi >= " + wifi + " AND conference >= " + conference +
+                " AND restaurant >= " + restaurant + " AND bar >= " + bar +
+                " AND inclusive >= " + inclusive + " AND breakfast >= " + breakfast +
+                " AND cancellation >= " + cancellation + " AND roomService >= " + roomService +
+                " AND wheelChair >= " + wheelChair + " AND elevator >= " + elevator +
+                " AND flyBus >= " + flyBus;
+                
+                if (type != 0)
+                sql += " AND type = " + type;
                         try (Connection conn = connect();
 		             Statement stmt  = conn.createStatement();
 		             ResultSet rs    = stmt.executeQuery(sql)){
@@ -169,10 +183,8 @@ public class HotelDatabaseManager {
 		      
 		    
 	 	}
-                
-                
-                
-              public Room getRoomObject(int hnr, int rnr){
+               
+                    public Room getRoomObject(int hnr, int rnr){
                      String sql = "SELECT * FROM RoomSearch, Room WHERE RoomSearch.nr = Room.nr AND Room.nr = " + rnr + " AND hotelnr = hnr AND hnr = " + hnr;
 		   
                      Room r = null;
@@ -222,9 +234,6 @@ public class HotelDatabaseManager {
 		   
 		        return h;
                     }
-                
-		      
-              
 		
 
                
