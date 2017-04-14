@@ -5,21 +5,24 @@
  */
 package gui;
 
-import java.util.Date;
+import hotel3h.BookingManager;
+import hotel3h.Booking;
 
 /**
  *
  * @author Soley
  */
 public class removeBookingView extends javax.swing.JDialog {
-    int bookingNr;
+    int bookingNr = -1;
     String name;
-    Date dateFrom;
-    Date dateTo;
+    int dateFrom;
+    int dateTo;
     String hotelName;
     String address;
     int nrPeople;
     int price;
+    BookingManager bm = new BookingManager();
+            
     /**
      * Creates new form removeBookingView
      * @param parent
@@ -86,7 +89,7 @@ public class removeBookingView extends javax.swing.JDialog {
 
         jLabel9.setText("Price:");
 
-        jAccept.setText("Accept");
+        jAccept.setText("Go Back");
         jAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAcceptActionPerformed(evt);
@@ -94,6 +97,11 @@ public class removeBookingView extends javax.swing.JDialog {
         });
 
         jCancelBooking.setText("Cancel booking");
+        jCancelBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelBookingActionPerformed(evt);
+            }
+        });
 
         jName.setText(" ");
 
@@ -120,20 +128,20 @@ public class removeBookingView extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBookingNr))
                     .addComponent(jOK)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateFrom, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jDateFrom, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jHotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jHotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jAccept)
                             .addGap(18, 18, 18)
@@ -141,7 +149,7 @@ public class removeBookingView extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jHotelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,7 +163,7 @@ public class removeBookingView extends javax.swing.JDialog {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jNrPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,9 +191,9 @@ public class removeBookingView extends javax.swing.JDialog {
                     .addComponent(jLabel6)
                     .addComponent(jHotelName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jHotelAddress))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jHotelAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -216,25 +224,32 @@ public class removeBookingView extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jAcceptActionPerformed
 
+    private void jCancelBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelBookingActionPerformed
+       if(bookingNr != -1)
+        bm.cancel(bookingNr);
+   
+           
+    }//GEN-LAST:event_jCancelBookingActionPerformed
+
     private void setAll(int bnr){
-        //Use information from booking to get everything
-        /*
-        name = ;
-        hotelName = ;
-        address = ;
-        nrPeople = ;
-        price = ;
-        dateFrom = ;
-        dateTo = ;
-        */
+        BookingManager bm = new BookingManager();
+        Booking b = bm.getBooking(bnr);
+        name = b.getName();
+        hotelName = b.getHotel().getName();
+        address = b.getHotel().getAddress();
+        nrPeople = b.getRoom().getCount();
+        price = b.getRoom().getPrice();
+        dateFrom = b.getDateFrom();
+        dateTo = b.getDateTo();
+     
         
         jName.setText(name);
         jHotelName.setText(hotelName);
-        jHotelAddress.setText(address);
+        jHotelAddress.setText("" + address);
         jNrPeople.setText("" + nrPeople);
         jPrice.setText("" + price);
-        jDateFrom.setText(dateFrom.toString());
-        jDateTo.setText(dateTo.toString());
+        jDateFrom.setText("" + dateFrom);
+        jDateTo.setText("" + dateTo);
     }
     
     /**
