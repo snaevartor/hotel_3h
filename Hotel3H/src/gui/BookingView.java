@@ -26,11 +26,12 @@ public class BookingView extends javax.swing.JDialog {
     private int[] dateFrom;
     private int[] dateTo;
     private hotel_gui gui;
+    private int price;
     static Room other;
     private int bookingNr;
     private BookingManager bm = new BookingManager();
 
-    
+   
     public BookingView(java.awt.Frame parent, boolean modal, Room rm, hotel_gui gui) {
         super(parent, modal);
         initComponents();
@@ -38,6 +39,11 @@ public class BookingView extends javax.swing.JDialog {
         dateFrom = gui.getDateFrom();
         dateTo = gui.getDateTo();
         r = rm;
+        price = r.getPrice();
+        
+
+   
+
         other = hotel_gui.other;
         //Set texts for labels
         jHotelName.setText(hotel_gui.getChosenHotel().getName());
