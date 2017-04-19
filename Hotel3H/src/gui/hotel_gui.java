@@ -6,11 +6,13 @@ import hotel3h.HotelListaStyring;
 import java.util.ArrayList;
 import hotel3h.HotelListaVinnsla;
 import hotel3h.Room;
+import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 /**
  *
  * @author Snaevar
@@ -960,7 +962,24 @@ public class hotel_gui extends javax.swing.JFrame {
     //Opens the dialog which looks at a Hotel
     private void openHotel(){
         hotelView hotelDialog = new hotelView(this,true,getChosenHotel());
-        hotelDialog.setVisible(true);
+
+        //New code for displaying images
+        
+        JPanel imagepanel = new JPanel(new BorderLayout());
+        imagepanel.setSize(360,240);
+//        imagepanel.setSize(400,300);
+        imagepanel.setLocation(0,80);
+                
+        DisplayImages d = new DisplayImages(getChosenHotel().getNr());
+//        Figure out where the display panel should be located on the hotelView frame / panel
+//        DisplayImages d = new DisplayImages(hotelnr);
+        
+        imagepanel.add(d.getContentPane());                
+        hotelDialog.add(imagepanel);
+        
+//        imagepanel.setLocation(500,500);
+        
+        hotelDialog.setVisible(true);        
         if(hotelDialog.book == 1){
             other = hotelView.other;
             openBooking();

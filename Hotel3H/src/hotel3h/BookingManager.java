@@ -23,8 +23,8 @@ public class BookingManager {
             // db parameters
             String url = "jdbc:sqlite:src/sql/hotel.db";
             // create a connection to the database
-            conn = DriverManager.getConnection(url);        
-            System.out.println("Connection to SQLite has been established.");        
+            conn = DriverManager.getConnection(url);
+//            System.out.println("Connection to SQLite has been established.");        
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
