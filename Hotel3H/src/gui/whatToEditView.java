@@ -19,6 +19,7 @@ public class whatToEditView extends javax.swing.JDialog {
     static int openEdit = 0;
     static int openRoomEdit = 0;
     static Room room;
+    static int n;
 
     /**
      * Creates new form whatToEditView
@@ -44,6 +45,7 @@ public class whatToEditView extends javax.swing.JDialog {
         jComboBox1.setModel(new DefaultComboBoxModel(sHotels));
         user = u;
         jWelcome.setText("Welcome " + user);
+        n = alHotel.size();
     }
 
     /**
@@ -198,13 +200,18 @@ public class whatToEditView extends javax.swing.JDialog {
 
     private void jNewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewHotelActionPerformed
         // TODO add your handling code here:
+        jNewHotel.setText("You need higher priority");
+        /*
         hotel = null;
         openEdit = 1;
         this.setVisible(false);
+        */
     }//GEN-LAST:event_jNewHotelActionPerformed
 
     private void jEditRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditRoomActionPerformed
         // TODO add your handling code here:
+        jEditRoom.setText("You need higher priority");
+        /*
         int i = jComboBox2.getSelectedIndex();
         int j = 0;
         Room[] rFylki = new Room[hotel.getRooms().size()];
@@ -217,6 +224,7 @@ public class whatToEditView extends javax.swing.JDialog {
             openRoomEdit = 1;
             this.setVisible(false);
         }
+        */
     }//GEN-LAST:event_jEditRoomActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -225,10 +233,17 @@ public class whatToEditView extends javax.swing.JDialog {
 
     private void jNewRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewRoomActionPerformed
         // TODO add your handling code here:
+        jNewRoom.setText("You need higher priority");
+        /*
         openRoomEdit = 1;
         this.setVisible(false);
+        */
     }//GEN-LAST:event_jNewRoomActionPerformed
 
+    public static int getN(){
+        return n;
+    }
+    
     public static int getOpenEdit(){
         return openEdit;
     }

@@ -6,6 +6,7 @@
 package gui;
 
 import hotel3h.Hotel;
+import hotel3h.HotelDatabaseManager;
 import hotel3h.Room;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -723,9 +724,13 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
 
     private void jConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmActionPerformed
         // TODO add your handling code here:
-        System.out.print("Senda inn upplýsingar");
+        if(r != null){
+            HotelDatabaseManager hdm = new HotelDatabaseManager();
+            hdm.editRoom(nr, hnr, size, price, bed1, bed2, baby, pets, count, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac);
+        }
+        Room rm = new Room(nr,hnr,pets,count,washing,kitchen,minifridge,tv,bath,view,noise,smoke,ac,price,size,bed1,bed2,baby);
         this.setVisible(false);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jConfirmActionPerformed
 
     private void jHotelNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHotelNrActionPerformed
@@ -822,13 +827,14 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         else{
             jBabyYes.setSelected(true);
         }
+        jHotelNr.setModel(new DefaultComboBoxModel(new String[]{"" + hnr}));
         jCountBox.setSelectedIndex(count);
         jBed1Box.setSelectedIndex(bed1);
         jBed2Box.setSelectedIndex(bed2);
         jSize.setText(""+size);
         jPrice.setText(""+price);
         jNumber.setText(""+nr);
-        jHotelNr.setSelectedIndex(hnr);
+        jHotelNr.setSelectedIndex(0);
         jHotelNr.setEnabled(false);
     }
     private void setForAdd(){

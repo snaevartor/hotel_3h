@@ -133,7 +133,7 @@ public class hotel_gui extends javax.swing.JFrame {
     
     //Returns array of ints which would return every hotel
     public static int[] getNone(){
-        int[] i = new int[22];
+        int[] i = new int[28];
         for(int j=0;j<28;j++){
             i[j]=0;
         }
@@ -845,7 +845,7 @@ public class hotel_gui extends javax.swing.JFrame {
             whatToEditView wtev = new whatToEditView(this,true,s,logIn.selected);
             wtev.setVisible(true);
             if(whatToEditView.openEdit==1){
-                EditOrAddHotelView editadd = new EditOrAddHotelView(this,true,whatToEditView.hotel);
+                EditOrAddHotelView editadd = new EditOrAddHotelView(this,true,whatToEditView.hotel, whatToEditView.getN());
                 editadd.setVisible(true);
                 if(EditOrAddHotelView.addRoom == 1){
                     EditOrAddRoomView editaddroom = new EditOrAddRoomView(this,true,whatToEditView.room,s,EditOrAddHotelView.hotelnr);

@@ -2,8 +2,6 @@ package hotel3h;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import hotel3h.Room;
 
 /**
  *

@@ -277,5 +277,65 @@ public class HotelDatabaseManager {
         }   
         return hotelIntInfo;      
     }
+    
+    public void addHotel(Hotel h){
+        String sql1 = "INSERT INTO Hotel VALUES(" + h.getNr() + "," + h.getName() + "," + h.getAddress() + "," + h.getStars() + "," + h.getAreacode() + "," + h.getWebsite() + ");";
+        String sql2 = "INSERT INTO HotelSearch VALUES(" + h.getNr() + "," + h.getType() + "," + h.getGym() + "," + h.getSpa() + "," + h.getPool() + "," + h.getHottub() + "," + h.getWifi() + "," + h.getConference() + "," + h.getRestaurant() + "," + h.getBar() + "," + h.getInclusive() + "," + h.getBreakfast() + "," + h.getCancellation() + "," + h.getRoomservice() + "," + h.getWheelchair() + "," + h.getElevator() + "," + h.getFlybus() + ");";
+        try(Connection conn = connect();
+                Statement stmt1 = conn.createStatement();
+                ResultSet rs = stmt1.executeQuery(sql1)){
+        } catch(SQLException e){
+            System.out.println("OK");
+        }
+        try(Connection conn = connect();
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs = stmt2.executeQuery(sql2)){
+        } catch(SQLException e){
+            System.out.println("OK2");
+        }
+    }
+    
+    public void editHotel(String name, String address, String website, int stars, int areacode, int nr, int type, int gym, int spa, int pool, int hottub, int wifi, int conference, int restaurant, int bar, int inclusive, int breakfast, int cancellation, int roomservice, int wheelchair, int elevator, int flybus){
+        String sql1 = "UPDATE Hotel SET name = " + name +  ", address = " + address + ", stars = " + stars + ", areacode = " 
+                + areacode + ", website = " + website + " WHERE nr = " + nr + ";";
+        String sql2 = "UPDATE HotelSearch SET type = " + type + ", gym = " + gym + ", spa = " + spa + ", pool = " 
+                + pool + ", hottub = " + hottub + ", wifi = " + wifi + ", conference = " + conference + ", restaurant = " 
+                + restaurant + ", bar = " + bar + ", inclusive = " + inclusive + ", breakfast = " + breakfast + ", cancellation = " 
+                + cancellation + ", roomservice = " + roomservice + ", wheelchair = " + wheelchair + ", elevator = " 
+                + elevator + ", flybus = " + flybus + " WHERE nr = " + nr + ";";
+        try(Connection conn = connect();
+        Statement stmt1 = conn.createStatement();
+        ResultSet rs = stmt1.executeQuery(sql1)){
+        } catch(SQLException e){
+            System.out.println("OK");
+        }
+        try(Connection conn = connect();
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs = stmt2.executeQuery(sql2)){
+        } catch(SQLException e){
+            System.out.println("OK2");
+        }
+    }
+    
+    
+    public void editRoom(int nr, int hotelnr, int size, int price, int bed1, int bed2, int baby, int pets, int count, int washing, int kitchen, int minifridge, int tv, int bath, int view, int noise, int smoke, int ac){
+        String sql1 = "UPDATE Room SET size = " + size + ", price = " + price + ", bed1 = " + bed1 + ", bed 2 = "
+                + bed2 + ", baby = " + baby + " WHERE  nr = " + nr + " AND hotelnr = " + hotelnr + ";";
+        String sql2 = "UPDATE RoomSearch SET pets = " + pets + ", count = " + count + ", washing = " + washing + ", kitchen = "
+                + kitchen + ", minifridge = " + minifridge + ", tv = " + tv + ", bath = " + bath + ", view = " + view + ", noise = "
+                + noise + ", smoke = " + smoke + ", ac = " + ac + " WHERE nr = " + nr + " AND hotelnr = " + hotelnr + ";";
+        try(Connection conn = connect();
+                Statement stmt1 = conn.createStatement();
+                ResultSet rs = stmt1.executeQuery(sql1)){
+        } catch(SQLException e){
+            System.out.println("OK");
+        }
+        try(Connection conn = connect();
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs = stmt2.executeQuery(sql2)){
+        } catch(SQLException e){
+            System.out.println("OK2");
+        }
+    }
 	
 }

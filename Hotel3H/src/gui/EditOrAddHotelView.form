@@ -485,6 +485,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFlybusYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jFlybusNo">
       <Properties>
@@ -504,6 +507,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jElevatorYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jElevatorNo">
       <Properties>
@@ -523,6 +529,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jWheelchairYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jWheelchairNo">
       <Properties>
@@ -542,6 +551,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRoomServiceYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRoomServiceNo">
       <Properties>
@@ -561,6 +573,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCancellationYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jCancellationNo">
       <Properties>
@@ -580,6 +595,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBreakfastYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jBreakfastNo">
       <Properties>
@@ -599,6 +617,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAllinYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jAllinNo">
       <Properties>
@@ -618,6 +639,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBarYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jBarNo">
       <Properties>
@@ -637,6 +661,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRestaurantYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRestaurantNo">
       <Properties>
@@ -656,6 +683,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jConferenceYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jConferenceNo">
       <Properties>
@@ -675,6 +705,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jWifiYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jWifiNo">
       <Properties>
@@ -694,6 +727,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jHottubYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jHottubNo">
       <Properties>
@@ -713,6 +749,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPoolYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jPoolNo">
       <Properties>
@@ -732,6 +771,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSpaYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jSpaNo">
       <Properties>
@@ -751,6 +793,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jGymYesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jGymNo">
       <Properties>

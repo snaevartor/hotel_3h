@@ -6,6 +6,7 @@
 package gui;
 
 import hotel3h.Hotel;
+import hotel3h.HotelDatabaseManager;
 import hotel3h.Room;
 import java.util.ArrayList;
 
@@ -26,8 +27,9 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
     int acCount;
     static int hotelnr;
     static int addRoom = 0;
+    static int n;
     
-    public EditOrAddHotelView(java.awt.Frame parent, boolean modal,Hotel h) {
+    public EditOrAddHotelView(java.awt.Frame parent, boolean modal,Hotel h, int n1) {
         super(parent, modal);
         initComponents();
         hotel = h; //Null if it is no hotel, else the hotel to edit
@@ -37,6 +39,7 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         else{ //editing a hotel
             setAllForHotel();
         }
+        n = n1;
         setButtons();
         
     }
@@ -189,6 +192,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         flybusGroup.add(jFlybusYes);
         jFlybusYes.setText("Yes");
+        jFlybusYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFlybusYesActionPerformed(evt);
+            }
+        });
 
         flybusGroup.add(jFlybusNo);
         jFlybusNo.setText("No");
@@ -200,6 +208,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         elevatorGroup.add(jElevatorYes);
         jElevatorYes.setText("Yes");
+        jElevatorYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jElevatorYesActionPerformed(evt);
+            }
+        });
 
         elevatorGroup.add(jElevatorNo);
         jElevatorNo.setText("No");
@@ -211,6 +224,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         wheelchairGroup.add(jWheelchairYes);
         jWheelchairYes.setText("Yes");
+        jWheelchairYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jWheelchairYesActionPerformed(evt);
+            }
+        });
 
         wheelchairGroup.add(jWheelchairNo);
         jWheelchairNo.setText("No");
@@ -222,6 +240,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         roomserviceGroup.add(jRoomServiceYes);
         jRoomServiceYes.setText("Yes");
+        jRoomServiceYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRoomServiceYesActionPerformed(evt);
+            }
+        });
 
         roomserviceGroup.add(jRoomServiceNo);
         jRoomServiceNo.setText("No");
@@ -233,6 +256,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         cancellationGroup.add(jCancellationYes);
         jCancellationYes.setText("Yes");
+        jCancellationYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancellationYesActionPerformed(evt);
+            }
+        });
 
         cancellationGroup.add(jCancellationNo);
         jCancellationNo.setText("No");
@@ -244,6 +272,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         breakfastGroup.add(jBreakfastYes);
         jBreakfastYes.setText("Yes");
+        jBreakfastYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBreakfastYesActionPerformed(evt);
+            }
+        });
 
         breakfastGroup.add(jBreakfastNo);
         jBreakfastNo.setText("No");
@@ -255,6 +288,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         allinGroup.add(jAllinYes);
         jAllinYes.setText("Yes");
+        jAllinYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAllinYesActionPerformed(evt);
+            }
+        });
 
         allinGroup.add(jAllinNo);
         jAllinNo.setText("No");
@@ -266,6 +304,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         barGroup.add(jBarYes);
         jBarYes.setText("Yes");
+        jBarYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBarYesActionPerformed(evt);
+            }
+        });
 
         barGroup.add(jBarNo);
         jBarNo.setText("No");
@@ -277,6 +320,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         restaurantGroup.add(jRestaurantYes);
         jRestaurantYes.setText("Yes");
+        jRestaurantYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRestaurantYesActionPerformed(evt);
+            }
+        });
 
         restaurantGroup.add(jRestaurantNo);
         jRestaurantNo.setText("No");
@@ -288,6 +336,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         conferenceGroup.add(jConferenceYes);
         jConferenceYes.setText("Yes");
+        jConferenceYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConferenceYesActionPerformed(evt);
+            }
+        });
 
         conferenceGroup.add(jConferenceNo);
         jConferenceNo.setText("No");
@@ -299,6 +352,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         wifiGroup.add(jWifiYes);
         jWifiYes.setText("Yes");
+        jWifiYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jWifiYesActionPerformed(evt);
+            }
+        });
 
         wifiGroup.add(jWifiNo);
         jWifiNo.setText("No");
@@ -310,6 +368,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         hottubGroup.add(jHottubYes);
         jHottubYes.setText("Yes");
+        jHottubYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHottubYesActionPerformed(evt);
+            }
+        });
 
         hottubGroup.add(jHottubNo);
         jHottubNo.setText("No");
@@ -321,6 +384,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         poolGroup.add(jPoolYes);
         jPoolYes.setText("Yes");
+        jPoolYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPoolYesActionPerformed(evt);
+            }
+        });
 
         poolGroup.add(jPoolNo);
         jPoolNo.setText("No");
@@ -332,6 +400,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         spaGroup.add(jSpaYes);
         jSpaYes.setText("Yes");
+        jSpaYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSpaYesActionPerformed(evt);
+            }
+        });
 
         spaGroup.add(jSpaNo);
         jSpaNo.setText("No");
@@ -343,6 +416,11 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
         gymGroup.add(jGymYes);
         jGymYes.setText("Yes");
+        jGymYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGymYesActionPerformed(evt);
+            }
+        });
 
         gymGroup.add(jGymNo);
         jGymNo.setText("No");
@@ -639,66 +717,82 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
     private void jFlybusNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFlybusNoActionPerformed
         // TODO add your handling code here:
+        flybus = 0;
     }//GEN-LAST:event_jFlybusNoActionPerformed
 
     private void jElevatorNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jElevatorNoActionPerformed
         // TODO add your handling code here:
+        elevator = 0;
     }//GEN-LAST:event_jElevatorNoActionPerformed
 
     private void jWheelchairNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWheelchairNoActionPerformed
         // TODO add your handling code here:
+        wheelchair = 0;
     }//GEN-LAST:event_jWheelchairNoActionPerformed
 
     private void jRoomServiceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRoomServiceNoActionPerformed
         // TODO add your handling code here:
+        roomservice = 0;
     }//GEN-LAST:event_jRoomServiceNoActionPerformed
 
     private void jCancellationNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancellationNoActionPerformed
         // TODO add your handling code here:
+        cancellation = 0;
     }//GEN-LAST:event_jCancellationNoActionPerformed
 
     private void jBreakfastNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBreakfastNoActionPerformed
         // TODO add your handling code here:
+        breakfast = 0;
     }//GEN-LAST:event_jBreakfastNoActionPerformed
 
     private void jAllinNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAllinNoActionPerformed
         // TODO add your handling code here:
+        inclusive = 0;
     }//GEN-LAST:event_jAllinNoActionPerformed
 
     private void jBarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBarNoActionPerformed
         // TODO add your handling code here:
+        bar = 0;
     }//GEN-LAST:event_jBarNoActionPerformed
 
     private void jRestaurantNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestaurantNoActionPerformed
         // TODO add your handling code here:
+        restaurant = 0;
     }//GEN-LAST:event_jRestaurantNoActionPerformed
 
     private void jConferenceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConferenceNoActionPerformed
         // TODO add your handling code here:
+        conference = 0;
     }//GEN-LAST:event_jConferenceNoActionPerformed
 
     private void jWifiNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWifiNoActionPerformed
         // TODO add your handling code here:
+        wifi = 0;
     }//GEN-LAST:event_jWifiNoActionPerformed
 
     private void jHottubNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHottubNoActionPerformed
         // TODO add your handling code here:
+        hottub = 0;
     }//GEN-LAST:event_jHottubNoActionPerformed
 
     private void jPoolNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPoolNoActionPerformed
         // TODO add your handling code here:
+        pool = 0;
     }//GEN-LAST:event_jPoolNoActionPerformed
 
     private void jSpaNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSpaNoActionPerformed
         // TODO add your handling code here:
+        spa = 0;
     }//GEN-LAST:event_jSpaNoActionPerformed
 
     private void jGymNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGymNoActionPerformed
         // TODO add your handling code here:
+        gym = 0;
     }//GEN-LAST:event_jGymNoActionPerformed
 
     private void jAreacodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAreacodeActionPerformed
         // TODO add your handling code here:
+        areacode = Integer.parseInt(jAreacode.getText());
     }//GEN-LAST:event_jAreacodeActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -727,8 +821,95 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
 
     private void jConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmActionPerformed
         // TODO add your handling code here:
-        hotel = new Hotel(nr,type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,stars,areacode,name,address,website,rooms);
+        if(hotel!= null){
+            HotelDatabaseManager hdm = new HotelDatabaseManager();
+            hdm.editHotel(name, address, website, stars, areacode, nr, type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomservice, wheelchair, elevator, flybus);
+        }
+        else{
+            nr = n+1;
+            hotel = new Hotel(nr,type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,stars,areacode,name,address,website,rooms);
+            HotelDatabaseManager hdm = new HotelDatabaseManager();
+            hdm.addHotel(hotel);
+        }
+        
+        this.setVisible(false);
+        //this.dispose();
     }//GEN-LAST:event_jConfirmActionPerformed
+
+    private void jGymYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGymYesActionPerformed
+        // TODO add your handling code here:
+        gym = 1;
+    }//GEN-LAST:event_jGymYesActionPerformed
+
+    private void jSpaYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSpaYesActionPerformed
+        // TODO add your handling code here:
+        spa = 1;
+    }//GEN-LAST:event_jSpaYesActionPerformed
+
+    private void jPoolYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPoolYesActionPerformed
+        // TODO add your handling code here:
+        pool = 1;
+    }//GEN-LAST:event_jPoolYesActionPerformed
+
+    private void jHottubYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHottubYesActionPerformed
+        // TODO add your handling code here:
+        hottub = 1;
+    }//GEN-LAST:event_jHottubYesActionPerformed
+
+    private void jWifiYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWifiYesActionPerformed
+        // TODO add your handling code here:
+        wifi = 1;
+    }//GEN-LAST:event_jWifiYesActionPerformed
+
+    private void jConferenceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConferenceYesActionPerformed
+        // TODO add your handling code here:
+        conference = 1;
+    }//GEN-LAST:event_jConferenceYesActionPerformed
+
+    private void jRestaurantYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestaurantYesActionPerformed
+        // TODO add your handling code here:
+        restaurant = 1;
+    }//GEN-LAST:event_jRestaurantYesActionPerformed
+
+    private void jBarYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBarYesActionPerformed
+        // TODO add your handling code here:
+        bar = 1;
+    }//GEN-LAST:event_jBarYesActionPerformed
+
+    private void jAllinYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAllinYesActionPerformed
+        // TODO add your handling code here:
+        inclusive = 1;
+    }//GEN-LAST:event_jAllinYesActionPerformed
+
+    private void jBreakfastYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBreakfastYesActionPerformed
+        // TODO add your handling code here:
+        breakfast = 1;
+    }//GEN-LAST:event_jBreakfastYesActionPerformed
+
+    private void jCancellationYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancellationYesActionPerformed
+        // TODO add your handling code here:
+        cancellation = 1;
+    }//GEN-LAST:event_jCancellationYesActionPerformed
+
+    private void jRoomServiceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRoomServiceYesActionPerformed
+        // TODO add your handling code here:
+        roomservice = 1;
+    }//GEN-LAST:event_jRoomServiceYesActionPerformed
+
+    private void jWheelchairYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWheelchairYesActionPerformed
+        // TODO add your handling code here:
+        wheelchair = 1;
+    }//GEN-LAST:event_jWheelchairYesActionPerformed
+
+    private void jElevatorYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jElevatorYesActionPerformed
+        // TODO add your handling code here:
+        elevator = 1;
+    }//GEN-LAST:event_jElevatorYesActionPerformed
+
+    private void jFlybusYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFlybusYesActionPerformed
+        // TODO add your handling code here:
+        flybus = 1;
+    }//GEN-LAST:event_jFlybusYesActionPerformed
 
     private void setButtons(){
         if(addoredit==0 || hotel.getFlybus()<1){
@@ -884,7 +1065,7 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditOrAddHotelView dialog = new EditOrAddHotelView(new javax.swing.JFrame(), true, hotel);
+                EditOrAddHotelView dialog = new EditOrAddHotelView(new javax.swing.JFrame(), true, hotel,n);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

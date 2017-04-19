@@ -1,8 +1,6 @@
 package hotel3h;
 
-import gui.hotel_gui;
 import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author Soley
