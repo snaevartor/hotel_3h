@@ -73,9 +73,12 @@ CREATE TABLE RoomSearch (
 CREATE TABLE Booking(
 	nr integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(50),
+        address varchar(50),
+        email varchar(50),
 	dateFrom int,
 	dateTo int,
 	cardnr int,
+        phonenr int,
 	roomnr int,
 	cancel int,
 	hotelnr integer REFERENCES Hotel(nr)
@@ -390,56 +393,56 @@ INSERT INTO RoomSearch VALUES (303,10,0,4,0,0,0,1,1,1,0,3,302,NULL,1,0);
 /*---BOOKING---*/
 
 /*---hilton reykjavik nordica (4)---*/
-INSERT INTO Booking VALUES(NULL,"Jón Jónsson",240617,280617,NULL,101,0,1);
-INSERT INTO Booking VALUES(NULL,"Jón Sveinsson",250617,280617,NULL,102,0,1);
-INSERT INTO Booking VALUES(NULL,"Heimir Jónsson",260617,280617,NULL,103,0,1);
-INSERT INTO Booking VALUES(NULL,"Haraldur Jónsson",270617,280617,NULL,201,0,1);
-INSERT INTO Booking VALUES(NULL,"Sveinn Karlsson",200617,280617,NULL,301,0,1);
-INSERT INTO Booking VALUES(NULL,"Karl Karlsson",210617,280617,NULL,302,0,1);
+INSERT INTO Booking VALUES(NULL,"Jón Jónsson","Aratún 5","jon@gmail.com",240617,280617,NULL,8344833,101,0,1);
+INSERT INTO Booking VALUES(NULL,"Jón Sveinsson","Engimýri 22","svampursveinsson@internet.is",250617,280617,NULL,8120275,102,0,1);
+INSERT INTO Booking VALUES(NULL,"Heimir Jónsson","Sunnakur 15","HemmiGunn@365.is",260617,280617,NULL,8194504,103,0,1);
+INSERT INTO Booking VALUES(NULL,"Haraldur Jónsson","Brattatunga 29","brattur@internet.is",270617,280617,NULL,8327224,201,0,1);
+INSERT INTO Booking VALUES(NULL,"Sveinn Karlsson","Giljaland 1","gilli@internet.is",200617,280617,NULL,8599428,301,0,1);
+INSERT INTO Booking VALUES(NULL,"Karl Karlsson","Seljugerði 32","kalli@internet.is",210617,280617,NULL,8665765,302,0,1);
 
 /*---idelandair hotel reykjavik natura (4)---*/
-INSERT INTO Booking VALUES(NULL,"Daði Grímsson",270917,280917,NULL,102,0,2);
-INSERT INTO Booking VALUES(NULL,"John Smith",200717,280717,NULL,203,0,2);
-INSERT INTO Booking VALUES(NULL,"Grant Wells",210318,280317,NULL,304,0,2);
+INSERT INTO Booking VALUES(NULL,"Daði Grímsson","Dyngjuvegur 11","dabbi@internet.is",270917,280917,NULL,8135968,102,0,2);
+INSERT INTO Booking VALUES(NULL,"John Smith","Rauðalækur 11","john@internet.is",200717,280717,NULL,8170541,203,0,2);
+INSERT INTO Booking VALUES(NULL,"Grant Wells","Funahöfði 22","grant@internet.is",210318,280317,NULL,8369586,304,0,2);
 
 /*---hotel klettur (4)---*/
-INSERT INTO Booking VALUES(NULL,"Dan Rather",260817,280817,NULL,101,0,3);
-INSERT INTO Booking VALUES(NULL,"Jim Piddock",300118,010218,NULL,102,0,3);
-INSERT INTO Booking VALUES(NULL,"Greinir Jónsson",240518,280518,NULL,103,0,3);
-INSERT INTO Booking VALUES(NULL,"Blake Edwards",260917,280917,NULL,202,0,3);
+INSERT INTO Booking VALUES(NULL,"Dan Rather","Eldshöfði 11","dan@internet.is",260817,280817,NULL,8375619,101,0,3);
+INSERT INTO Booking VALUES(NULL,"Jim Piddock","Básbryggja 7","jim@internet.is",300118,010218,NULL,8642639,102,0,3);
+INSERT INTO Booking VALUES(NULL,"Greinir Jónsson","Funafold 4","greinir@internet.is",240518,280518,NULL,8532774,103,0,3);
+INSERT INTO Booking VALUES(NULL,"Blake Edwards","Dverghamrar 6","blake@internet.is",260917,280917,NULL,8608849,202,0,3);
 
 /*---hotel vellir (3)---*/
-INSERT INTO Booking VALUES(NULL,"Nína Völudóttir",250318,280318,NULL,204,0,4);
-INSERT INTO Booking VALUES(NULL,"Raymon Carver",260618,280618,NULL,302,0,4);
-INSERT INTO Booking VALUES(NULL,"Jane Doe",270918,280917,NULL,303,0,4);
+INSERT INTO Booking VALUES(NULL,"Nína Völudóttir","Vesturhús 2","nina@internet.is",250318,280318,NULL,8210755,204,0,4);
+INSERT INTO Booking VALUES(NULL,"Raymon Carver","Gylfaflöt 19","raymon@internet.is",260618,280618,NULL,8783821,302,0,4);
+INSERT INTO Booking VALUES(NULL,"Jane Doe","Smárahrimi 37","jane@internet.is",270918,280917,NULL,8852058,303,0,4);
 
 /*---hotel odinsve (4)---*/
-INSERT INTO Booking VALUES(NULL,"Jónína Jóns",011217,031217,NULL,302,0,5);
-INSERT INTO Booking VALUES(NULL,"Lee Mack",101118,121118,NULL,203,0,5);
+INSERT INTO Booking VALUES(NULL,"Jónína Jóns","Starengi 23","jonina@internet.is",011217,031217,NULL,8974603,302,0,5);
+INSERT INTO Booking VALUES(NULL,"Lee Mack","Goðaborgir 12","lee@internet.is",101118,121118,NULL,8763480,203,0,5);
 
 /*---reykjavik residence apartment hotel (4)---*/
-INSERT INTO Booking VALUES(NULL,"Ken Curry",280419,280619,NULL,101,0,6);
-INSERT INTO Booking VALUES(NULL,"Sadie Cobb",130217,280217,NULL,104,0,6);
-INSERT INTO Booking VALUES(NULL,"Lloyd Butler",170717,280717,NULL,203,0,6);
-INSERT INTO Booking VALUES(NULL,"Dolores Fletcher",191020,281020,NULL,303,0,6);
+INSERT INTO Booking VALUES(NULL,"Ken Curry","Breiðavík 24","ken@internet.is",280419,280619,NULL,8444288,101,0,6);
+INSERT INTO Booking VALUES(NULL,"Sadie Cobb","Garðsstaðir 13","sadie@internet.is",130217,280217,NULL,8561048,104,0,6);
+INSERT INTO Booking VALUES(NULL,"Lloyd Butler","Flugumýri 23","lloyd@internet.is",170717,280717,NULL,8732016,203,0,6);
+INSERT INTO Booking VALUES(NULL,"Dolores Fletcher","Hulduhlíð 23","dolores@internet.is",191020,281020,NULL,8400685,303,0,6);
 
 /*---black pearl (5)---*/
-INSERT INTO Booking VALUES(NULL,"Joann Campbell",020518,280518,NULL,304,0,7);
-INSERT INTO Booking VALUES(NULL,"Randall Hunter",230617,280617,NULL,305,0,7);
+INSERT INTO Booking VALUES(NULL,"Joann Campbell","Hamratangi 12","joann@internet.is",020518,280518,NULL,8797919,304,0,7);
+INSERT INTO Booking VALUES(NULL,"Randall Hunter","Blikahöfði 23","randall@interet.is",230617,280617,NULL,8562659,305,0,7);
 
 /*---diamond suites (5)---*/
-INSERT INTO Booking VALUES(NULL,"Gregory Wallace",220518,280518,NULL,101,0,8);
-INSERT INTO Booking VALUES(NULL,"Sergio Gutierrez",250319,280319,NULL,202,0,8);
-INSERT INTO Booking VALUES(NULL,"Greg Stone",291117,051217,NULL,302,0,8);
-INSERT INTO Booking VALUES(NULL,"Glenda Lewis",071021,281021,NULL,401,0,8);
+INSERT INTO Booking VALUES(NULL,"Gregory Wallace","Urðarholt 19","gregory@internet.is",220518,280518,NULL,8402174,101,0,8);
+INSERT INTO Booking VALUES(NULL,"Sergio Gutierrez","Trollateigur 22","sergio@internet.is",250319,280319,NULL,8207378,202,0,8);
+INSERT INTO Booking VALUES(NULL,"Greg Stone","Greynibyggð 1","greg@internet.is",291117,051217,NULL,8896450,302,0,8);
+INSERT INTO Booking VALUES(NULL,"Glenda Lewis","Sölkugata 19","glenda@internet.is",071021,281021,NULL,8404623,401,0,8);
 
 /*---hotel bifrost (2)---*/
-INSERT INTO Booking VALUES(NULL,"Annika Halstead",210218,280218,NULL,101,0,9);
-INSERT INTO Booking VALUES(NULL,"Toshiko Nomura",060817,280817,NULL,203,0,9);
-INSERT INTO Booking VALUES(NULL,"Benita Donahue",090919,280919,NULL,301,0,9);
+INSERT INTO Booking VALUES(NULL,"Annika Halstead","Helgaland 10","annika@internet.is",210218,280218,NULL,8944593,101,0,9);
+INSERT INTO Booking VALUES(NULL,"Toshiko Nomura","Fellsás 10","Toshika@internet.is",060817,280817,NULL,8660283,203,0,9);
+INSERT INTO Booking VALUES(NULL,"Benita Donahue","Kjartansgata 33","Benita@internet.is",090919,280919,NULL,8251798,301,0,9);
 
 /*---kerlingarfjoll mountain resort (1)---*/
-INSERT INTO Booking VALUES(NULL,"Matthew Zielinski",160621,280621,NULL,201,0,10);
+INSERT INTO Booking VALUES(NULL,"Matthew Zielinski","Brákarsund 19","matthew@internet.is",160621,280621,NULL,8472415,201,0,10);
 
 /*---AVAILABLE---*/
 
