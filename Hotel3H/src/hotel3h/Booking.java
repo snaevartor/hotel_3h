@@ -1,4 +1,10 @@
 package hotel3h;
+
+/**
+ *
+ * @author Helgi
+ */
+
 import hotel3h.Room;
 
 public class Booking {

@@ -16,12 +16,9 @@ import java.nio.file.StandardCopyOption;
 public class ResetDatabase {
         
     private static void resetDatabase() throws IOException {
-    
-    File init_file = new File("src\\sql\\init\\hotel_init.db");
-    File file_to_replace = new File("src\\sql\\hotel.db");
-
-    Files.copy(init_file.toPath(), file_to_replace.toPath(), StandardCopyOption.REPLACE_EXISTING);
-    
+        File init_file = new File("src\\sql\\init\\hotel_init.db");
+        File file_to_replace = new File("src\\sql\\hotel.db");
+        Files.copy(init_file.toPath(), file_to_replace.toPath(), StandardCopyOption.REPLACE_EXISTING);    
     }
 
     public static void main(String[] args) throws IOException {
