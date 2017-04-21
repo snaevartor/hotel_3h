@@ -1,7 +1,8 @@
 package hotel3h;
 
 /**
- *
+ * Class: Booking
+ * Usage: Class for creating Booking objects.
  * @author Helgi
  */
 
