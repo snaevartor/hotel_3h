@@ -7,8 +7,9 @@ import hotel3h.RoomListaVinnsla;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
- *
  * @author Soley
+ * 
+ * Window for viewing information and photos for a selected hotel
  */
 public class hotelView extends javax.swing.JDialog {
     ArrayList<Room> rListi;
@@ -383,8 +384,10 @@ public class hotelView extends javax.swing.JDialog {
     //Opens BookingView
     private void jBookNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBookNowActionPerformed
         // TODO add your handling code here:
+        //if there is a Room selected
         if (valinn != null){
             selected = 1;            
+            //if there is only one room selected
             if(other==null){
                 String[] tmp = {"Yes","No"};
                 int j = JOptionPane.showOptionDialog(null, "Do you want to book adjacent rooms?", "Booking multiple rooms?", JOptionPane.YES_NO_OPTION, JOptionPane.YES_NO_OPTION, null, tmp, tmp);
@@ -392,15 +395,13 @@ public class hotelView extends javax.swing.JDialog {
                     book = 1;
                     this.setVisible(false);
                 }
-                else{                    
-                    //jListi.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-                }
             }
             else{
                 book = 1;
                 this.setVisible(false);
             }
         }
+        //if no room is selected.
         else {
             bookingPopup.setText("Please select a room");
         }

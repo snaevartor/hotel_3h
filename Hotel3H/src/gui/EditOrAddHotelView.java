@@ -6,8 +6,10 @@ import hotel3h.Room;
 import java.util.ArrayList;
 
 /**
- *
  * @author Soley
+ * 
+ * A window which reads user inputs to alter a hotel or to create a new hotel
+ * Communicates with HotelDatabaseManager to do that.
  */
 public class EditOrAddHotelView extends javax.swing.JDialog {
 
@@ -19,7 +21,6 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
     int nr,type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,stars,areacode;
     ArrayList<Room> rooms;
     int addoredit; //0 if adding a hotel, 1 if editing a hotel
-    int acCount;
     static int hotelnr;
     static int addRoom = 0;
     static int n;
@@ -36,7 +37,6 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         }
         n = n1;
         setButtons();
-        
     }
 
     /**
@@ -702,6 +702,7 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //opens a new window to add rooms to the selected hotel
     private void jAddRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddRoomsActionPerformed
         // TODO add your handling code here:
         addRoom = 1;
@@ -709,97 +710,115 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jAddRoomsActionPerformed
-
+    
+    //sets flybus to no/0
     private void jFlybusNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFlybusNoActionPerformed
         // TODO add your handling code here:
         flybus = 0;
     }//GEN-LAST:event_jFlybusNoActionPerformed
-
+    
+    //sets elevatoraccess to no/0
     private void jElevatorNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jElevatorNoActionPerformed
         // TODO add your handling code here:
         elevator = 0;
     }//GEN-LAST:event_jElevatorNoActionPerformed
 
+    //sets wheelchair access to no / 0
     private void jWheelchairNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWheelchairNoActionPerformed
         // TODO add your handling code here:
         wheelchair = 0;
     }//GEN-LAST:event_jWheelchairNoActionPerformed
 
+    //sets room service to no/0
     private void jRoomServiceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRoomServiceNoActionPerformed
         // TODO add your handling code here:
         roomservice = 0;
     }//GEN-LAST:event_jRoomServiceNoActionPerformed
 
+    //sets free cancellation to no/0
     private void jCancellationNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancellationNoActionPerformed
         // TODO add your handling code here:
         cancellation = 0;
     }//GEN-LAST:event_jCancellationNoActionPerformed
 
+    //sets breakfast to no/0
     private void jBreakfastNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBreakfastNoActionPerformed
         // TODO add your handling code here:
         breakfast = 0;
     }//GEN-LAST:event_jBreakfastNoActionPerformed
-
+    //sets all inclusive to no / 0
     private void jAllinNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAllinNoActionPerformed
         // TODO add your handling code here:
         inclusive = 0;
     }//GEN-LAST:event_jAllinNoActionPerformed
 
+    //sets bar to no / 0
     private void jBarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBarNoActionPerformed
         // TODO add your handling code here:
         bar = 0;
     }//GEN-LAST:event_jBarNoActionPerformed
 
+    //sets restaurant to no / 0
     private void jRestaurantNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestaurantNoActionPerformed
         // TODO add your handling code here:
         restaurant = 0;
     }//GEN-LAST:event_jRestaurantNoActionPerformed
 
+    //sets conference to no / 0
     private void jConferenceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConferenceNoActionPerformed
         // TODO add your handling code here:
         conference = 0;
     }//GEN-LAST:event_jConferenceNoActionPerformed
 
+    //sets wifi to no/0
     private void jWifiNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWifiNoActionPerformed
         // TODO add your handling code here:
         wifi = 0;
     }//GEN-LAST:event_jWifiNoActionPerformed
 
+    //sets hottub to no / 0
     private void jHottubNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHottubNoActionPerformed
         // TODO add your handling code here:
         hottub = 0;
     }//GEN-LAST:event_jHottubNoActionPerformed
 
+    //sets pool to no/0
     private void jPoolNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPoolNoActionPerformed
         // TODO add your handling code here:
         pool = 0;
     }//GEN-LAST:event_jPoolNoActionPerformed
 
+    //sets spa to no/0
     private void jSpaNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSpaNoActionPerformed
         // TODO add your handling code here:
         spa = 0;
     }//GEN-LAST:event_jSpaNoActionPerformed
 
+    //sets gym to no/0
     private void jGymNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGymNoActionPerformed
         // TODO add your handling code here:
         gym = 0;
     }//GEN-LAST:event_jGymNoActionPerformed
 
+    //reads input for area code
     private void jAreacodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAreacodeActionPerformed
         // TODO add your handling code here:
         areacode = Integer.parseInt(jAreacode.getText());
     }//GEN-LAST:event_jAreacodeActionPerformed
 
+    //gets the selected type from the combobox
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
         type = jComboBox2.getSelectedIndex();
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    //gets the selected stars from the combobox
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         stars = jComboBox2.getSelectedIndex();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    //checks if input area code is accepted
     private void jAreacodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAreacodeKeyPressed
         // TODO add your handling code here:
         if(jAreacode.getText().length()>2){
@@ -814,98 +833,116 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jAreacodeKeyPressed
 
+    //adds the information to the database
     private void jConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmActionPerformed
         // TODO add your handling code here:
+        //if we are editing a hotel
         if(hotel!= null){
             HotelDatabaseManager hdm = new HotelDatabaseManager();
             hdm.editHotel(name, address, website, stars, areacode, nr, type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomservice, wheelchair, elevator, flybus);
         }
+        //if we are adding a hotel
         else{
-            nr = n+1;
+            nr = n+1; //hotel number is one higher
             hotel = new Hotel(nr,type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,stars,areacode,name,address,website,rooms);
             HotelDatabaseManager hdm = new HotelDatabaseManager();
             hdm.addHotel(hotel);
         }
         
         this.setVisible(false);
-        //this.dispose();
     }//GEN-LAST:event_jConfirmActionPerformed
 
+    //sets gym to yes/1
     private void jGymYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGymYesActionPerformed
         // TODO add your handling code here:
         gym = 1;
     }//GEN-LAST:event_jGymYesActionPerformed
 
+    //sets spa to yes/1
     private void jSpaYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSpaYesActionPerformed
         // TODO add your handling code here:
         spa = 1;
     }//GEN-LAST:event_jSpaYesActionPerformed
 
+    //sets pool to yes/1
     private void jPoolYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPoolYesActionPerformed
         // TODO add your handling code here:
         pool = 1;
     }//GEN-LAST:event_jPoolYesActionPerformed
 
+    //sets hottub to yes/1
     private void jHottubYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHottubYesActionPerformed
         // TODO add your handling code here:
         hottub = 1;
     }//GEN-LAST:event_jHottubYesActionPerformed
 
+    //sets wifi to yes/1
     private void jWifiYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWifiYesActionPerformed
         // TODO add your handling code here:
         wifi = 1;
     }//GEN-LAST:event_jWifiYesActionPerformed
 
+    //sets conference to yes/1
     private void jConferenceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConferenceYesActionPerformed
         // TODO add your handling code here:
         conference = 1;
     }//GEN-LAST:event_jConferenceYesActionPerformed
 
+    //sets restaurant to yes/1
     private void jRestaurantYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestaurantYesActionPerformed
         // TODO add your handling code here:
         restaurant = 1;
     }//GEN-LAST:event_jRestaurantYesActionPerformed
 
+    //sets bar to yes/1
     private void jBarYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBarYesActionPerformed
         // TODO add your handling code here:
         bar = 1;
     }//GEN-LAST:event_jBarYesActionPerformed
 
+    //sets all inclusive to yes/1
     private void jAllinYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAllinYesActionPerformed
         // TODO add your handling code here:
         inclusive = 1;
     }//GEN-LAST:event_jAllinYesActionPerformed
 
+    //sets breakfast to yes/1
     private void jBreakfastYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBreakfastYesActionPerformed
         // TODO add your handling code here:
         breakfast = 1;
     }//GEN-LAST:event_jBreakfastYesActionPerformed
 
+    //sets cancellation to yes/1
     private void jCancellationYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancellationYesActionPerformed
         // TODO add your handling code here:
         cancellation = 1;
     }//GEN-LAST:event_jCancellationYesActionPerformed
 
+    //sets roomservice to yes /1
     private void jRoomServiceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRoomServiceYesActionPerformed
         // TODO add your handling code here:
         roomservice = 1;
     }//GEN-LAST:event_jRoomServiceYesActionPerformed
 
+    //sets wheelchair access to yes/1
     private void jWheelchairYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWheelchairYesActionPerformed
         // TODO add your handling code here:
         wheelchair = 1;
     }//GEN-LAST:event_jWheelchairYesActionPerformed
 
+    //sets elevator access to yes/1
     private void jElevatorYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jElevatorYesActionPerformed
         // TODO add your handling code here:
         elevator = 1;
     }//GEN-LAST:event_jElevatorYesActionPerformed
 
+    //sets flybus to yes/1
     private void jFlybusYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFlybusYesActionPerformed
         // TODO add your handling code here:
         flybus = 1;
     }//GEN-LAST:event_jFlybusYesActionPerformed
 
+    //set the buttons to the values of the selected hotel or all to no if the hotel is new
     private void setButtons(){
         if(addoredit==0 || hotel.getFlybus()<1){
             jFlybusNo.setSelected(true);
@@ -999,6 +1036,7 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
         }
     }
     
+    //initialize all variables for an existing hotel
     private void setAllForHotel(){
         addoredit = 1;
         nr = hotel.getNr();

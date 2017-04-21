@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 /**
- *
  * @author Soley
+ * 
+ * A list model for the list of rooms in hotelView
  */
 public class RoomListaVinnsla extends DefaultListModel{
     DefaultListModel listiRoom = new DefaultListModel();//New DefaultListModel

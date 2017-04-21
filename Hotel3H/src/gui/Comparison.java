@@ -5,8 +5,9 @@ import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
  * @author Soley
+ * 
+ * A window to view all information for two selected hotels
  */
 public class Comparison extends javax.swing.JDialog {
     /**
@@ -32,10 +33,10 @@ public class Comparison extends javax.swing.JDialog {
         //Sets all labels.
         tabletest();
         jTable.setModel(new DefaultTableModel(data,columnNames));
-        jTable.setEnabled(false);
-        jTable.setFont(new Font("Tahoma",Font.PLAIN,14));
-        jTable.getTableHeader().setFont(new Font("Tahoma",Font.BOLD,16));
-        jTable.setRowHeight(20);
+        jTable.setEnabled(false); //table is not clickable
+        jTable.setFont(new Font("Tahoma",Font.PLAIN,14)); //nicer font, easier to look at
+        jTable.getTableHeader().setFont(new Font("Tahoma",Font.BOLD,16)); //nicer font to look at
+        jTable.setRowHeight(20); //makes the table easier to read to have the rows a little bigger
         jTable.sizeColumnsToFit(0);
     }
     //Getters which change 1 and 0 to "Yes"s and "No"s
@@ -148,6 +149,7 @@ public class Comparison extends javax.swing.JDialog {
         return chosen;
     }
     
+    //create the table
     private void tabletest(){
         data = new Object[][]{
             {"Stars:", hotel1.getStars(), hotel2.getStars()},

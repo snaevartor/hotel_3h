@@ -9,8 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Soley
+ * 
+ * Window for booking
  */
 public class BookingView extends javax.swing.JDialog {
 
@@ -36,29 +37,27 @@ public class BookingView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.gui = gui;
+        //initialize
         dateFrom = gui.getDateFrom();
         dateTo = gui.getDateTo();
         r = rm;
         price = r.getPrice();
-        
-
-   
-
         other = hotel_gui.other;
         //Set texts for labels
         jHotelName.setText(hotel_gui.getChosenHotel().getName());
         jDateFrom.setText(dateFrom[0] + "/" + dateFrom[1] + "/" + dateFrom[2]);
         jDateTo.setText(dateTo[0] + "/" + dateTo[1] + "/" + dateTo[2]);
+        //if there is only one room we get price and count for that room
         if(other==null){
             jPeople.setText("" + r.getCount());
             jPrice.setText(r.getPrice() + " USD per night.");
         }
+        //if there are two rooms we get price and count for both rooms
         else{
-            int ipeople = r.getCount() + other.getCount();
-            int iprice = r.getPrice() + other.getPrice();
-            jPeople.setText(r.getCount() + " + " + other.getCount() + " = " + ipeople);
-            jPrice.setText(r.getPrice() + " + " + other.getPrice() + " = " + iprice + " USD per night");
-
+            int ipeople = r.getCount() + other.getCount(); //sum of people
+            int iprice = r.getPrice() + other.getPrice(); //sum of count
+            jPeople.setText(r.getCount() + " + " + other.getCount() + "= " + ipeople); //string for both counts
+            jPrice.setText(r.getPrice() + " + " + other.getPrice() + " = " + iprice + " USD per night"); //string for both prices
         }
     }
 
@@ -263,22 +262,21 @@ public class BookingView extends javax.swing.JDialog {
             email = jEmail.getText();
             cardnr = Integer.valueOf(jCardnr.getText());
             phonenr = Integer.valueOf(jPhonenr.getText());
-            System.out.println(dateFrom[0] + " " + dateFrom[1] + " " + dateFrom[2]);
+            //if the room is available complete booking and open popup window with booking nr
             if(bm.isAvailable(r.getHnr(), r.getNr(), getDateFrom(), getDateTo())){
                 bookingNr =  bm.book(getName(), bm.getSqlDate(dateFrom), bm.getSqlDate(dateTo), getCardnr(), r.getNr(), r.getHnr());
                 String[] tmp = {"OK"};
                 int i = JOptionPane.showOptionDialog(null, new JLabel("Your booking is complete. Your booking number is: " + bookingNr, null, JLabel.LEFT), "Thank you for your order.", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             }
+            //if the room is not available, open popup window with error message
             else{
                 String[] tmp = {"OK"};
                 int k = JOptionPane.showOptionDialog(null, new JLabel("That room is not available for the dates selected", null, JLabel.LEFT), "Error", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, tmp, tmp);
             }
-            
-//        setGuestHlutur(name, address, 1, cardnr, phonenr, email);
 
 //A JOptionPane shows that the booking is complete.
 
-this.dispose();
+    this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(BookingView.class.getName()).log(Level.SEVERE, null, ex);
         }

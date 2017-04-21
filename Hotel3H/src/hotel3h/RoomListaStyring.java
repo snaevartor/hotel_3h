@@ -6,17 +6,18 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 /**
- *
  * @author Soley
+ * 
+ * Controls the list of rooms in hotelView
  */
 public class RoomListaStyring  implements ListSelectionListener{
-
     private hotelView hotelGluggi;
     ArrayList<Room> rooms; //ArrayList of Rooms
     Room herb; //Selected Room
     int last = 0;
     
     public RoomListaStyring(hotelView gluggi, ArrayList<Room> room){
+        //initializes
         hotelGluggi = gluggi;
         rooms = room;
     }

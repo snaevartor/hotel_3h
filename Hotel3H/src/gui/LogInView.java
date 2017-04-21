@@ -6,8 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Soley
+ * 
+ * Window with a username and password field to allow login
  */
 public class LogInView extends javax.swing.JDialog {
     String user[],username[];
@@ -23,8 +24,11 @@ public class LogInView extends javax.swing.JDialog {
     public LogInView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //existing usersnames
         user = new String[]{"notandi","soley","omar","snaevar","helgi"};
+        //existing users
         username = new String[]{"Notandi","Sóley","Ómar","Snævar","Helgi"};
+        //existing passwords
         char[] p0 = {'l','y','k','i','l','o','r','d'};
         char[] p1 = {'s','b','2','2'};
         char[] p2 = {'o','p','a','0','4'};
@@ -34,6 +38,7 @@ public class LogInView extends javax.swing.JDialog {
         n = user.length;
     }
     
+    //checking if username and password match
     private void logInCheck(){
         String u = jUserName.getText();
         char[] p = jPassword.getPassword();
@@ -166,6 +171,7 @@ public class LogInView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jPasswordKeyTyped
 
+    //enables the user to sign in using the enter key instead of pressing the login button
     private void jPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){

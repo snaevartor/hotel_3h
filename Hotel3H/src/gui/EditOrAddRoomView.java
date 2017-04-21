@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *
  * @author Soley
+ * 
+ * Window which uses user input to create new room or edit an existing room
  */
 public class EditOrAddRoomView extends javax.swing.JDialog {
     static Room r;
@@ -30,9 +31,11 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         r = r1;
         hList = h1;
         hotel = h;
+        //if we are going to create a new room
         if(r==null){
             setForAdd();
         }
+        //if we are editing an existing room
         else{
             getRoomValues();
             setRoomValues();
@@ -577,36 +580,45 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //read price from user input
     private void jPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPriceActionPerformed
         // TODO add your handling code here:
         price = Integer.parseInt(jPrice.getText());
     }//GEN-LAST:event_jPriceActionPerformed
 
+    //read size from user input
     private void jSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSizeActionPerformed
         // TODO add your handling code here:
         size = Integer.parseInt(jSize.getText());
     }//GEN-LAST:event_jSizeActionPerformed
 
+    // gets chosen combobox item for number of single beds
     private void jBed1BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBed1BoxActionPerformed
         // TODO add your handling code here:
         bed1 = jBed1Box.getSelectedIndex();
     }//GEN-LAST:event_jBed1BoxActionPerformed
 
+    //gets chosen combobox item for number of double beds
     private void jBed2BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBed2BoxActionPerformed
         // TODO add your handling code here:
         bed2 = jBed2Box.getSelectedIndex();
     }//GEN-LAST:event_jBed2BoxActionPerformed
 
+    //gets chosen combobox item for number of people
     private void jCountBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCountBoxActionPerformed
         // TODO add your handling code here:
         count = jCountBox.getSelectedIndex();
     }//GEN-LAST:event_jCountBoxActionPerformed
 
+    //reads the user input for number
     private void jNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumberActionPerformed
         // TODO add your handling code here:
         nr = Integer.parseInt(jNumber.getText());
     }//GEN-LAST:event_jNumberActionPerformed
 
+    /*
+    * Next few functions set elements to 0 or 1 (no or yes) depending on which button was pressed
+    */
     private void jBabyYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBabyYesActionPerformed
         // TODO add your handling code here:
         baby = 1;
@@ -717,22 +729,25 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         pets = 0;
     }//GEN-LAST:event_jPetsNoActionPerformed
 
+    //adds a new room to the database or edits a room in the database and closes the window.
     private void jConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmActionPerformed
         // TODO add your handling code here:
+        //edits a room
         if(r != null){
             HotelDatabaseManager hdm = new HotelDatabaseManager();
             hdm.editRoom(nr, hnr, size, price, bed1, bed2, baby, pets, count, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac);
         }
         Room rm = new Room(nr,hnr,pets,count,washing,kitchen,minifridge,tv,bath,view,noise,smoke,ac,price,size,bed1,bed2,baby);
         this.setVisible(false);
-        //this.dispose();
     }//GEN-LAST:event_jConfirmActionPerformed
 
+    //gets the hotel number from user input
     private void jHotelNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHotelNrActionPerformed
         // TODO add your handling code here:
         hnr = jHotelNr.getSelectedIndex();
     }//GEN-LAST:event_jHotelNrActionPerformed
 
+    //reads all values from an existing room
         private void getRoomValues(){
         addoredit = 0;
         nr = r.getNr();
@@ -755,6 +770,7 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         baby = r.getBaby();
     }
     
+    //sets all values to the altered room
     private void setRoomValues(){
         if(pets==0){
             jPetsNo.setSelected(true);
@@ -832,6 +848,8 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         jHotelNr.setSelectedIndex(0);
         jHotelNr.setEnabled(false);
     }
+    
+    //sets all values to empty (or 0) for adding rooms
     private void setForAdd(){
         addoredit = 1;
         jPetsNo.setSelected(true);

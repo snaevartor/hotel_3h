@@ -6,20 +6,25 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *
  * @author Soley
+ * 
+ * A window which lets the user decide what to do:
+ *      edit a room
+ *      edit a hotel
+ *      add a room
+ *      add a hotel
  */
 public class whatToEditView extends javax.swing.JDialog {
-    String[] sHotels;
-    String[] sRooms;
-    static ArrayList<Hotel> alHotel;
-    static String user;
-    static Hotel hotel;
-    static Hotel[] hotelListi;
-    static int openEdit = 0;
-    static int openRoomEdit = 0;
-    static Room room;
-    static int n;
+    String[] sHotels; //String of hotel names
+    String[] sRooms;  //String of room names / numbers
+    static ArrayList<Hotel> alHotel; //Arraylist of hotels
+    static String user; //name of the user
+    static Hotel hotel; //selected hotel
+    static Hotel[] hotelListi; //list of hotel objects
+    static int openEdit = 0; //0 means not open a window for hotelediting, 1 means open the window
+    static int openRoomEdit = 0; //same as openEdit for rooms
+    static Room room; //selected room
+    static int n; //a count for number of hotels
 
     /**
      * Creates new form whatToEditView
@@ -31,6 +36,7 @@ public class whatToEditView extends javax.swing.JDialog {
     public whatToEditView(java.awt.Frame parent, boolean modal, ArrayList<Hotel> h, String u) {
         super(parent, modal);
         initComponents();
+        //initialize
         alHotel = h;
         int fjoldi = alHotel.size();
         Hotel[] hList = new Hotel[fjoldi];
@@ -41,9 +47,10 @@ public class whatToEditView extends javax.swing.JDialog {
             sHotels[i] = hList[i].getName();
             i++;
         }
-
+        //sets the hotels into te combobox
         jComboBox1.setModel(new DefaultComboBoxModel(sHotels));
         user = u;
+        //welcomes the user
         jWelcome.setText("Welcome " + user);
         n = alHotel.size();
     }
@@ -176,28 +183,32 @@ public class whatToEditView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //opens a window for editing hotels
     private void jEditHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditHotelActionPerformed
         // TODO add your handling code here:
         openEdit = 1;
         this.setVisible(false);
     }//GEN-LAST:event_jEditHotelActionPerformed
 
+    //gets selected hotel and adds rooms to the combobox for rooms
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         String selected = jComboBox1.getSelectedItem().toString();
         int i = jComboBox1.getSelectedIndex();
         System.out.print(selected);
-        Hotel h1 = alHotel.get(i+1);
+        Hotel h1 = alHotel.get(i+1); //our combobox starts at 0 but the arraylist at 1
         String[] rooms = new String[h1.getRooms().size()];
         int j = 0;
         for(Room r: h1.getRooms()){
-            rooms[j] = "" + r.getNr();
+            rooms[j] = "" + r.getNr(); //puts the room numbers as Strings into the String of room names
             j++;
         }
+        //Adds rooms to the combobox for rooms
         jComboBox2.setModel(new DefaultComboBoxModel(rooms));
         hotel = alHotel.get(jComboBox1.getSelectedIndex());
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    //opens the edit for hotel
     private void jNewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewHotelActionPerformed
         // TODO add your handling code here:
         jNewHotel.setText("You need higher priority");
@@ -208,6 +219,7 @@ public class whatToEditView extends javax.swing.JDialog {
         */
     }//GEN-LAST:event_jNewHotelActionPerformed
 
+    //opens the edit for rooms
     private void jEditRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditRoomActionPerformed
         // TODO add your handling code here:
         jEditRoom.setText("You need higher priority");
@@ -231,6 +243,7 @@ public class whatToEditView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    //opens the edit for rooms
     private void jNewRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewRoomActionPerformed
         // TODO add your handling code here:
         jNewRoom.setText("You need higher priority");
@@ -240,6 +253,7 @@ public class whatToEditView extends javax.swing.JDialog {
         */
     }//GEN-LAST:event_jNewRoomActionPerformed
 
+    // getters
     public static int getN(){
         return n;
     }

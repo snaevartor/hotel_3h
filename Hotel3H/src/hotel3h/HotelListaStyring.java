@@ -11,8 +11,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- *
  * @author Soley
+ * 
+ * Controls the List of hotels in hotel_gui
  */
 public class HotelListaStyring implements ListSelectionListener{
     private hotel_gui hotelGluggi;
@@ -20,6 +21,7 @@ public class HotelListaStyring implements ListSelectionListener{
     Hotel hotel; //A selected hotel
     
     public HotelListaStyring(hotel_gui gluggi, ArrayList<Hotel> hl){
+        //initializes
         hotelGluggi = gluggi;
         hotels = hl;
     }
