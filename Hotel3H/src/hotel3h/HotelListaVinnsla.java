@@ -7,10 +7,7 @@ package hotel3h;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.DefaultListModel;
-/**
- *
- * @author Soley
- */
+
 public class HotelListaVinnsla extends DefaultListModel{
     ArrayList<Hotel> hotel;
     DefaultListModel listiRoom = new DefaultListModel();  //New Default list model

@@ -15,8 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- *
  * @author Snaevar
+ * @author Soley
+ * 
+ * The main gui module for this program.
  */
 public class hotel_gui extends javax.swing.JFrame {
     

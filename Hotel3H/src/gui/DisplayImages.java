@@ -30,24 +30,22 @@ import javax.swing.SwingWorker;
 import javax.swing.Timer;
 
 /**
- * This is a simple class for creating a display element that displays images
- * of a single hotel, depending on the integer value received by the object.
- *
  * @author Snaevar
+ * 
+ * This class creates a display element that displays images of a single hotel
+ * based on the integer value received by the object.
+ *
  */
 public class DisplayImages extends JFrame {
 
     private JLabel photographLabel = new JLabel();
     private JToolBar buttonBar = new JToolBar();
     private MissingIcon placeholderIcon = new MissingIcon();
+    private static int substring_size = 17;
     
     //Default settings
-
     int hotelnumber = 1;
-//    int substring_size = 8; // Magic value. Should replace eventually.
-    String imagedir = "images/" + hotelnumber + "/"; //Relative path. Can switch to line below it for absolute path instead
-//    private String imagedir = "src/gui/images/" + hotelnumber + "/";
-
+    String imagedir = "images/" + hotelnumber + "/";
     String[] imageCaptions = {
         "Default Image 1",
         "Default Image 2",
@@ -91,7 +89,7 @@ public class DisplayImages extends JFrame {
         imageFileNames = getImageNamesFileNames(hotelnr);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Hotel Photo Demo: Please Select an Image");
+        setTitle("Hotel Photo Display: Please Select an Image");
         
         // A label for displaying the pictures
         photographLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -106,14 +104,9 @@ public class DisplayImages extends JFrame {
         buttonBar.add(Box.createGlue());
         add(buttonBar, BorderLayout.SOUTH);
         add(photographLabel, BorderLayout.CENTER);
-        
         setSize(400, 300);
-        
-        // this centers the frame on the screen
-        setLocationRelativeTo(null);
-        
-        // start the image loading SwingWorker in a background thread
-        loadimages.execute();
+        setLocationRelativeTo(null); // Centers the frame on the screen
+        loadimages.execute(); // Start the image loading SwingWorker in a background thread
     }
     
     /**
@@ -132,7 +125,6 @@ public class DisplayImages extends JFrame {
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < imageCaptions.length; i++) {
                 ImageIcon icon;
-//                icon = createImageIcon(imageFileNames[i], imageCaptions[i]);
                 icon = createImageIcon(imagedir + imageFileNames[i], imageCaptions[i]);
                 
                 ThumbnailAction thumbAction;
@@ -142,8 +134,7 @@ public class DisplayImages extends JFrame {
                     thumbAction = new ThumbnailAction(icon, thumbnailIcon, imageCaptions[i]);
                     
                 }else{
-                    // the image failed to load for some reason
-                    // so load a placeholder instead
+                    // The image failed to load for some reason so load a placeholder instead
                     thumbAction = new ThumbnailAction(placeholderIcon, placeholderIcon, imageCaptions[i]);
                 }
                 publish(thumbAction);
@@ -204,7 +195,7 @@ public class DisplayImages extends JFrame {
     private class ThumbnailAction extends AbstractAction{
         
         /**
-         *The icon if the full image we want to display.
+         *The icon of the full image to display.
          */
         private Icon displayPhoto;
         
@@ -230,7 +221,6 @@ public class DisplayImages extends JFrame {
         public void actionPerformed(ActionEvent e) {
             photographLabel.setIcon(displayPhoto);
             setTitle(getValue(SHORT_DESCRIPTION).toString());
-//            setTitle("Hotel Photo Demo: " + getValue(SHORT_DESCRIPTION).toString());
         }
     }
 
@@ -247,15 +237,12 @@ public class DisplayImages extends JFrame {
 
     private static String[] getImageNamesOnly(int hotelnr) {
         
-//        System.out.println(getFullDirectory(hotelnr));
         File path = new File(getFullDirectory(hotelnr));
-//        System.out.println("Is directory: " + path.isDirectory());            
         File[] imgfiles_file = path.listFiles();
         String[] imgfiles = new String[imgfiles_file.length];
         for (int i = 0; i < imgfiles_file.length; i++) {
             imgfiles[i] = imgfiles_file[i].toString();
-            imgfiles[i] = imgfiles[i].substring(17); // Magic number. Should replace eventually.
-//            imgfiles[i] = imgfiles[i].substring(26); // Magic number. Should replace eventually.
+            imgfiles[i] = imgfiles[i].substring(substring_size);
             imgfiles[i] = imgfiles[i].replaceAll("[_]"," ");
             imgfiles[i] = imgfiles[i].replaceAll("[.jpg]","");
         }    
@@ -269,8 +256,7 @@ public class DisplayImages extends JFrame {
         String[] imgfiles = new String[imgfiles_file.length];
         for (int i = 0; i < imgfiles_file.length; i++) {
             imgfiles[i] = imgfiles_file[i].toString();
-            imgfiles[i] = imgfiles[i].substring(17); // Magic number. Should replace eventually.
-//            imgfiles[i] = imgfiles[i].substring(26);
+            imgfiles[i] = imgfiles[i].substring(substring_size);
         }    
         return imgfiles;
     }
@@ -289,9 +275,7 @@ public class DisplayImages extends JFrame {
     private static String[] getRelativeImageFilePath(String[] stringArray) {
         String[] relativePath = new String[stringArray.length];
         for (int i = 0; i < stringArray.length; i++) {
-            relativePath[i] = stringArray[i].substring(17); // Magic number. Should replace eventually.            
-//            relativePath[i] = stringArray[i].substring(8); // Magic number. Should replace eventually.            
-//            relativePath[i] = stringArray[i].substring(3); // Magic number. Should replace eventually.
+            relativePath[i] = stringArray[i].substring(substring_size);
         }
         return relativePath;
     }

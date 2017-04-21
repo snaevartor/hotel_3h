@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 /**
  *
  * @author Snaevar
+ * 
  * Class for resetting the database to its default contents and configuration
  * as outlined in the .sql file included with this project. Copies the 'init'
  * version over the version being operated on during runtime.
