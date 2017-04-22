@@ -7,6 +7,7 @@ import hotel3h.Booking;
  *
  * @author Soley
  */
+//A window where users can cancel their bookings
 public class removeBookingView extends javax.swing.JDialog {
     int bookingNr = -1;
     String name;
@@ -206,26 +207,25 @@ public class removeBookingView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Shows information regarding a booking
     private void jOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOKActionPerformed
-        // TODO add your handling code here:
         bookingNr = Integer.parseInt(jBookingNr.getText());
         setAll(bookingNr);
     }//GEN-LAST:event_jOKActionPerformed
-
+    //Go back to the previous window
     private void jAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcceptActionPerformed
-        // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jAcceptActionPerformed
-
+    //Cancels the booking corresponding with the booking number entered
     private void jCancelBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelBookingActionPerformed
        if(bookingNr != -1)
         bm.cancel(bookingNr);
    
            
     }//GEN-LAST:event_jCancelBookingActionPerformed
-
+    //Creates a booking object from the booking number and shows information
+    //regarding the specified booking
     private void setAll(int bnr){
         BookingManager bm = new BookingManager();
         Booking b = bm.getBooking(bnr);
