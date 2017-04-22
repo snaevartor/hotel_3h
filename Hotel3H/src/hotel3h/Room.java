@@ -8,7 +8,7 @@ import java.util.ArrayList;
 * @author Helgi
 * @author Omar
 */
-
+//Room object
 public class Room {
 
 	int nr, hnr, pets, count, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac, price, size, bed1, bed2, baby;
@@ -35,7 +35,7 @@ public class Room {
 		this.baby = baby;
                 this.count = 2*bed2 + bed1;
 	}
-
+        //Getters and setters
 	public int getNr() {
 		return nr;
 	}
