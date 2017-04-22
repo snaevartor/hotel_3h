@@ -7,7 +7,9 @@ package hotel3h;
  */
 
 import hotel3h.Room;
-
+//Booking object that stores the name, address, email, phone number and number
+//of the person booking the room as well as the hotel, room and the dates
+//of the stay
 public class Booking {
 
 	    private String name, address, email;
@@ -28,6 +30,7 @@ public class Booking {
 			this.dateFrom = dateFrom;
 			this.dateTo = dateTo;
 		}
+                //Getters and setters
 		public String getName() {
 			return name;
 		}
