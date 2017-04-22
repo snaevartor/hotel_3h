@@ -8,7 +8,7 @@ import java.util.ArrayList;
 * @author Helgi
 * @author Omar
 */
-
+//Hotel object
 public class Hotel implements Comparable<Hotel>{
  
 
@@ -64,7 +64,7 @@ public class Hotel implements Comparable<Hotel>{
             this.address = address;
             this.website = website;
         }
-
+        //Getters and setters
 	public int getStars() {
 		return stars;
 	}
