@@ -212,18 +212,13 @@ public class whatToEditView extends javax.swing.JDialog {
     private void jNewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewHotelActionPerformed
         // TODO add your handling code here:
         jNewHotel.setText("You need higher priority");
-        /*
-        hotel = null;
-        openEdit = 1;
-        this.setVisible(false);
-        */
     }//GEN-LAST:event_jNewHotelActionPerformed
 
     //opens the edit for rooms
     private void jEditRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditRoomActionPerformed
         // TODO add your handling code here:
-        jEditRoom.setText("You need higher priority");
-        /*
+//        jEditRoom.setText("You need higher priority");
+        
         int i = jComboBox2.getSelectedIndex();
         int j = 0;
         Room[] rFylki = new Room[hotel.getRooms().size()];
@@ -236,7 +231,7 @@ public class whatToEditView extends javax.swing.JDialog {
             openRoomEdit = 1;
             this.setVisible(false);
         }
-        */
+        
     }//GEN-LAST:event_jEditRoomActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -247,10 +242,6 @@ public class whatToEditView extends javax.swing.JDialog {
     private void jNewRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewRoomActionPerformed
         // TODO add your handling code here:
         jNewRoom.setText("You need higher priority");
-        /*
-        openRoomEdit = 1;
-        this.setVisible(false);
-        */
     }//GEN-LAST:event_jNewRoomActionPerformed
 
     // getters
@@ -260,6 +251,10 @@ public class whatToEditView extends javax.swing.JDialog {
     
     public static int getOpenEdit(){
         return openEdit;
+    }
+    
+    public static int getSelectedHnr(){
+        return hotel.getNr();
     }
     /**
      * @param args the command line arguments

@@ -280,20 +280,30 @@ public class HotelDatabaseManager {
     /**
      * Add a hotel to the database
      */
-    public void addHotel(Hotel h){
-        String sql1 = "INSERT INTO Hotel VALUES(" + h.getNr() + "," + h.getName() + "," + h.getAddress() + "," + h.getStars() + "," + h.getAreacode() + "," + h.getWebsite() + ");";
-        String sql2 = "INSERT INTO HotelSearch VALUES(" + h.getNr() + "," + h.getType() + "," + h.getGym() + "," + h.getSpa() + "," + h.getPool() + "," + h.getHottub() + "," + h.getWifi() + "," + h.getConference() + "," + h.getRestaurant() + "," + h.getBar() + "," + h.getInclusive() + "," + h.getBreakfast() + "," + h.getCancellation() + "," + h.getRoomservice() + "," + h.getWheelchair() + "," + h.getElevator() + "," + h.getFlybus() + ");";
+    public void addHotel(Hotel h) throws SQLException{
+        String sql1 = "INSERT INTO Hotel VALUES(NULL,\'" + h.getName() + "\',\'" + h.getAddress() + "\'," + h.getStars() + "," + h.getAreacode() + ",\'" + h.getWebsite() + "\');";
+        String sql3 = "SELECT nr FROM Hotel ORDER BY nr DESC LIMIT 1;";
+        int newhnr = 0;
+        boolean worked = false;
         try(Connection conn = connect();
                 Statement stmt1 = conn.createStatement();
-                ResultSet rs = stmt1.executeQuery(sql1)){
+                Statement stmt3 = conn.createStatement();
+                ){
+                    stmt1.executeUpdate(sql1);
+                    ResultSet rs = stmt3.executeQuery(sql3);
+                    newhnr = rs.getInt("nr");
         } catch(SQLException e){
-            System.out.println("OK");
+            worked=true;
         }
-        try(Connection conn = connect();
-                Statement stmt2 = conn.createStatement();
-                ResultSet rs = stmt2.executeQuery(sql2)){
-        } catch(SQLException e){
-            System.out.println("OK2");
+        
+        if(worked){
+            String sql2 = "INSERT INTO HotelSearch VALUES(" + newhnr + "," + h.getType() + "," + h.getGym() + "," + h.getSpa() + "," + h.getPool() + "," + h.getHottub() + "," + h.getWifi() + "," + h.getConference() + "," + h.getRestaurant() + "," + h.getBar() + "," + h.getInclusive() + "," + h.getBreakfast() + "," + h.getCancellation() + "," + h.getRoomservice() + "," + h.getWheelchair() + "," + h.getElevator() + "," + h.getFlybus() + ");";
+            try(Connection conn = connect();
+                    Statement stmt2 = conn.createStatement()){
+                stmt2.executeUpdate(sql2);
+            } catch(SQLException e){
+                System.out.println("OK2");
+            }
         }
     }
     /**
@@ -324,23 +334,25 @@ public class HotelDatabaseManager {
     /**
      * Edit information of a room in the database
      */
-    public void editRoom(int nr, int hotelnr, int size, int price, int bed1, int bed2, int baby, int pets, int count, int washing, int kitchen, int minifridge, int tv, int bath, int view, int noise, int smoke, int ac){
-        String sql1 = "UPDATE Room SET size = " + size + ", price = " + price + ", bed1 = " + bed1 + ", bed 2 = "
-                + bed2 + ", baby = " + baby + " WHERE  nr = " + nr + " AND hotelnr = " + hotelnr + ";";
+    public void editRoom(int nr, int hotelnr, int size, int price, int bed1, int bed2, int baby, int pets, int count, int washing, int kitchen, int minifridge, int tv, int bath, int view, int noise, int smoke, int ac) throws SQLException{
+        String sql1 = "UPDATE Room SET size = " + size + ", price = " + price + ", bed1 = " + bed1 + ", bed2 = "
+                + bed2 + ", baby = " + baby + " WHERE nr = " + nr + " AND hotelnr = " + hotelnr + ";";
         String sql2 = "UPDATE RoomSearch SET pets = " + pets + ", count = " + count + ", washing = " + washing + ", kitchen = "
                 + kitchen + ", minifridge = " + minifridge + ", tv = " + tv + ", bath = " + bath + ", view = " + view + ", noise = "
-                + noise + ", smoke = " + smoke + ", ac = " + ac + " WHERE nr = " + nr + " AND hotelnr = " + hotelnr + ";";
+                + noise + ", smoke = " + smoke + ", ac = " + ac + " WHERE nr = " + nr + " AND hnr = " + hotelnr + ";";
         try(Connection conn = connect();
-                Statement stmt1 = conn.createStatement();
-                ResultSet rs = stmt1.executeQuery(sql1)){
-        } catch(SQLException e){
-            System.out.println("OK");
+            Statement stmt1 = conn.createStatement();
+            ResultSet rs1 = stmt1.executeQuery(sql1)
+        ){     
+        } catch (SQLException e){
+            System.out.print(sql1);
         }
         try(Connection conn = connect();
-                Statement stmt2 = conn.createStatement();
-                ResultSet rs = stmt2.executeQuery(sql2)){
-        } catch(SQLException e){
-            System.out.println("OK2");
+            Statement stmt2 = conn.createStatement();
+            ResultSet rs2 = stmt2.executeQuery(sql2)
+        ){     
+        } catch (SQLException e){
+            System.out.print(sql2);
         }
     }
 	

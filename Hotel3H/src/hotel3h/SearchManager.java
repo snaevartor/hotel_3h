@@ -206,4 +206,13 @@ public class SearchManager {
         //return an array of hotels with no available rooms
         return hFylki;
     }
+    
+    //leit að öllum hótelum, hvort sem þau hafa herbergi eða ekki
+    public ArrayList<Hotel> searchAllHotels(){
+        //connect to HotelDatabaseManager
+        HotelDatabaseManager hdm = new HotelDatabaseManager();
+        //Searches in HotelDataBaseManager
+        ArrayList <Hotel> h = hdm.searchHotels(type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus);
+        return h;
+    }
 }

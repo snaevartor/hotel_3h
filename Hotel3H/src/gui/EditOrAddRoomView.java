@@ -3,7 +3,10 @@ package gui;
 import hotel3h.Hotel;
 import hotel3h.HotelDatabaseManager;
 import hotel3h.Room;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -15,7 +18,7 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
     static Room r;
     static ArrayList<Hotel> hList;
     static int hotel;
-    int addoredit; //0 if add, 1 if edit
+    int addoredit; //1 if add, 0 if edit
     int nr,hnr,pets,count,washing,kitchen,minifridge,tv,bath,view,noise,smoke,ac,price,size,bed1,bed2,baby;
     /**
      * Creates new form EditOrAddRoomView
@@ -39,6 +42,7 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
         else{
             getRoomValues();
             setRoomValues();
+            jNumber.setEditable(false);
         }
     }
     
@@ -733,18 +737,24 @@ public class EditOrAddRoomView extends javax.swing.JDialog {
     private void jConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmActionPerformed
         // TODO add your handling code here:
         //edits a room
-        if(r != null){
+        //if(r != null){
             HotelDatabaseManager hdm = new HotelDatabaseManager();
+        try {
             hdm.editRoom(nr, hnr, size, price, bed1, bed2, baby, pets, count, washing, kitchen, minifridge, tv, bath, view, noise, smoke, ac);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditOrAddRoomView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Room rm = new Room(nr,hnr,pets,count,washing,kitchen,minifridge,tv,bath,view,noise,smoke,ac,price,size,bed1,bed2,baby);
+        //}
+        //Room rm = new Room(nr,hnr,pets,count,washing,kitchen,minifridge,tv,bath,view,noise,smoke,ac,price,size,bed1,bed2,baby);
         this.setVisible(false);
     }//GEN-LAST:event_jConfirmActionPerformed
 
     //gets the hotel number from user input
     private void jHotelNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHotelNrActionPerformed
         // TODO add your handling code here:
-        hnr = jHotelNr.getSelectedIndex();
+        if(addoredit==1){
+            hnr = jHotelNr.getSelectedIndex();
+        }
     }//GEN-LAST:event_jHotelNrActionPerformed
 
     //reads all values from an existing room

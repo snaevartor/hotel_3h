@@ -844,7 +844,7 @@ public class hotel_gui extends javax.swing.JFrame {
         logIn.setVisible(true);
         if(logIn.wtev==1){
             SearchManager sm = new SearchManager(getNone());
-            ArrayList<Hotel> s = sm.searchHotel();
+            ArrayList<Hotel> s = sm.searchAllHotels();
             whatToEditView wtev = new whatToEditView(this,true,s,logIn.selected);
             wtev.setVisible(true);
             if(whatToEditView.openEdit==1){
@@ -856,9 +856,10 @@ public class hotel_gui extends javax.swing.JFrame {
                 }
             }
             else if(whatToEditView.openRoomEdit==1){
-                EditOrAddRoomView editaddroom = new EditOrAddRoomView(this,true,whatToEditView.room,s,0);
+                EditOrAddRoomView editaddroom = new EditOrAddRoomView(this,true,whatToEditView.room,s,whatToEditView.getSelectedHnr());
                 editaddroom.setVisible(true);
             }
+            whatToEditView.openEdit = 0;
         }
     }//GEN-LAST:event_jLoginActionPerformed
 

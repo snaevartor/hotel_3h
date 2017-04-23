@@ -841,14 +841,6 @@ public class EditOrAddHotelView extends javax.swing.JDialog {
             HotelDatabaseManager hdm = new HotelDatabaseManager();
             hdm.editHotel(name, address, website, stars, areacode, nr, type, gym, spa, pool, hottub, wifi, conference, restaurant, bar, inclusive, breakfast, cancellation, roomservice, wheelchair, elevator, flybus);
         }
-        //if we are adding a hotel
-        else{
-            nr = n+1; //hotel number is one higher
-            hotel = new Hotel(nr,type,gym,spa,pool,hottub,wifi,conference,restaurant,bar,inclusive,breakfast,cancellation,roomservice,wheelchair,elevator,flybus,stars,areacode,name,address,website,rooms);
-            HotelDatabaseManager hdm = new HotelDatabaseManager();
-            hdm.addHotel(hotel);
-        }
-        
         this.setVisible(false);
     }//GEN-LAST:event_jConfirmActionPerformed
 
